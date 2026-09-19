@@ -1,0 +1,29 @@
+schema_version: 1
+pilot_id: PILOT-FMNIST-IID-DELETE-001
+status: COMPLETE
+immutable: true
+experiment_id: fashion-cnn-random-01pct-schema2-rocm-pilot-v1
+experiment_schema: 2
+dataset: Fashion-MNIST
+regime: R0_IID
+deletion_fraction: 0.01
+exact_retraining_k: 15
+artifacts:
+  result:
+    path: results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json
+    sha256: 9415cd89cecaeaa8864a9a6919bd394db16cb452ab7d335fda4048343e94bebe
+  config:
+    path: configs/experiments/fashion_cnn_random_01pct_schema2_rocm_pilot.yaml
+    sha256: 8ec45ffca784d96239d353032f5b9aa37e63f6769016a7bb15a0fb990c6b4178
+  deletion_manifest:
+    path: deletion_manifests/fashion_mnist/random-0p010-seed-1009.json
+    sha256: 7da3cb273e0afbd6ea2c651c70b6a622c44f9f1741c028b3ebf5fad76f7b6dce
+conclusion: The schema-v2 pipeline passed all integrity and convergence diagnostics.
+  Approximate methods fell within the observed exact-retraining variability for JS
+  divergence and prediction disagreement. Absolute accuracy on deleted examples remained
+  high. Because deleted examples were sampled IID from Fashion-MNIST, high forget-set
+  accuracy is not sufficient to establish residual memorization or failed unlearning.
+prohibited_interpretations:
+- publication evidence
+- proof of successful unlearning
+- proof of failed unlearning from absolute forget accuracy

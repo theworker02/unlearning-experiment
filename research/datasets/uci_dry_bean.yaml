@@ -1,0 +1,27 @@
+schema_version: 1
+dataset_id: uci_dry_bean
+status: ACQUIRED_AND_VALIDATED_DEVELOPMENT_ONLY
+publication_role: tabular_replication
+canonical_source: https://archive.ics.uci.edu/dataset/602/dry+bean+dataset
+doi: 10.24432/C50S4B
+provenance_verification_date: 2026-08-31
+reported_structure:
+  samples: 13611
+  features: 16
+  classes: 7
+  missing_values: false
+license:
+  identifier: CC-BY-4.0
+  status: stated_on_canonical_uci_record
+  attribution_required: true
+acquisition:
+  status: acquired_2026-09-02
+  source_archive: data/raw/uci_dry_bean/raw/dry+bean+dataset.zip
+  source_archive_sha256: 0a64eff5be87f48c3dbbfc0a12a56c5d5b5167ef8e61cd45d69b3e7c7130c06f
+  canonical_member: DryBeanDataset/Dry_Bean_Dataset.arff
+  processed_hash: b2a4a76a2aedfb8ed415adfc1bfc70b5f202cb00cb72e500766e364c14834014
+  validation_config: configs/experiments/uci_dry_bean_mlp_smoke.yaml
+  split_counts: {train: 9527, validation: 1361, test: 2723}
+limitations:
+  - features are derived from segmented bean images rather than raw images
+  - current acquisition and smoke run are development-only, not publication evidence

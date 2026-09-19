@@ -1,0 +1,5 @@
+schema_version: 1
+allowed_classes: [LITERATURE, EXPERIMENTAL, MATHEMATICAL, INTERPRETIVE, LIMITATION, HYPOTHETICAL]
+required_fields: [claim_id, text, classification, manuscript_location, verification_status]
+experimental_required_fields: [experiment_ids, result_artifacts, analysis_script, uncertainty]
+release_requires_all_verified: true

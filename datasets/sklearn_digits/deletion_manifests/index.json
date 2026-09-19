@@ -1,0 +1,11 @@
+{
+  "canonical_manifest_paths": [
+    "deletion_manifests/sklearn_digits/random-0p001-seed-1107.json",
+    "deletion_manifests/sklearn_digits/random-0p005-seed-1108.json",
+    "deletion_manifests/sklearn_digits/random-0p010-seed-1109.json",
+    "deletion_manifests/sklearn_digits/random-0p020-seed-1110.json",
+    "deletion_manifests/sklearn_digits/random-0p050-seed-1111.json",
+    "deletion_manifests/sklearn_digits/random-0p100-seed-1112.json"
+  ],
+  "schema_version": 1
+}

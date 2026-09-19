@@ -1,0 +1,32 @@
+experiment_id: digits-mlp-rocm-random-01pct-smoke-v1
+maturity: VALIDATION
+dataset:
+  name: sklearn_digits
+  test_fraction: 0.2
+  validation_fraction: 0.1
+  split_seed: 1729
+model:
+  architecture: mlp
+  hidden_dim: 32
+training:
+  device: auto
+  epochs: 2
+  batch_size: 128
+  learning_rate: 0.01
+  weight_decay: 0.0001
+  deterministic: true
+original_seed: 11
+oracle_seeds: [101, 202, 303]
+deletion:
+  strategy: random
+  fraction: 0.01
+  seed: 404
+unlearning:
+  methods: [fine_tune, naive_gradient_ascent]
+  epochs: 1
+  learning_rate: 0.002
+  retain_weight: 1.0
+  forget_weight: 0.1
+evaluation:
+  ece_bins: 10
+output_root: results/raw

@@ -1,0 +1,163 @@
+# ruff: noqa: E501
+from __future__ import annotations
+
+import html
+import json
+from pathlib import Path
+
+import yaml
+
+
+def main() -> None:
+    inventory = json.loads(
+        Path("release/metadata/repository_inventory.json").read_text(encoding="utf-8")
+    )
+    questions = yaml.safe_load(
+        Path("research/research_questions.yaml").read_text(encoding="utf-8")
+    )["questions"]
+    counts = inventory["counts"]
+    rq_list = "".join(
+        f"<li><strong>{q['id']}</strong> {html.escape(q['question'])}</li>" for q in questions
+    )
+    slides = [
+        {
+            "title": "Evaluating Machine Unlearning Against Exact-Retraining Distributions",
+            "body": "<p class='lead'>Counterfactual fidelity research program</p><p>Benchmark 0.5.0 · Research Infrastructure Candidate</p><p class='warning'>No empirical conclusion is currently eligible.</p>",
+            "notes": "Open by separating the scientific question from the repository maturity. Do not describe development pilot outputs as findings.",
+            "method": "Artifact-generated status from the repository inventory.",
+            "statistics": "No inferential statistic is presented.",
+            "evidence": "/evidence/",
+            "limitations": "The confirmatory and publication-eligible empirical sample is empty.",
+            "reviewer": "Why present now? To make the protocol and blockers inspectable before expensive experiments.",
+        },
+        {
+            "title": "Research problem",
+            "body": "<p>Successful forgetting should approximate what training would have produced if forgotten samples had never been present.</p><p>Surface utility or one privacy attack may not establish that counterfactual.</p>",
+            "notes": "This is the motivation and hypothesis, not an observed disagreement.",
+            "method": "Define the counterfactual target before selecting evaluation criteria.",
+            "statistics": "Not applicable.",
+            "evidence": "/methodology/",
+            "limitations": "The construct requires empirical validation across modalities and methods.",
+            "reviewer": "Could existing evaluation already capture this? The literature and novelty audit remain incomplete.",
+        },
+        {
+            "title": "Counterfactual comparison",
+            "body": "<img src='/figures/F001_framework.svg' alt='Conceptual evaluation framework'><p>Approximate unlearning is compared with independently retrained models trained only on D \\ F.</p>",
+            "notes": "F001 is conceptual and contains no empirical values.",
+            "method": "Exact replicas use independently controlled seeds and identical retained IDs.",
+            "statistics": "Exact/exact distances form an empirical reference distribution.",
+            "evidence": "/figures/",
+            "limitations": "The adequate number of exact replicas remains unknown.",
+            "reviewer": "Could optimizer mismatch dominate? Training parity must be audited.",
+        },
+        {
+            "title": "Benchmark 0.5 inventory",
+            "body": f"<div class='metrics'><div><b>{counts['available_datasets']}</b> available datasets</div><div><b>{counts['deletion_manifests']}</b> deletion manifests</div><div><b>{counts['indexed_model_checkpoints']}</b> indexed checkpoints</div><div><b>{counts['raw_experiment_records']}</b> historical raw records</div></div>",
+            "notes": "Counts describe artifacts, not strength of evidence. Digits is CI-only and all models are legacy development artifacts.",
+            "method": "Counts are generated from registries and manifests.",
+            "statistics": "No uncertainty applies to inventory counts.",
+            "evidence": "/benchmark/",
+            "limitations": "Only Digits and Fashion-MNIST are available; neither establishes primary-benchmark generalization.",
+            "reviewer": "Why count models that fail gates? They remain scientific provenance and are labeled ineligible.",
+        },
+        {
+            "title": "Counterfactual fidelity is multidimensional",
+            "body": "<ul><li>Predictive and probability fidelity</li><li>Calibration</li><li>Privacy behavior</li><li>Representation similarity</li><li>Robustness</li><li>Computational cost</li></ul><p>No composite score is defined.</p>",
+            "notes": "Explain why an aggregate may conceal conflicting behavior.",
+            "method": "Each metric requires definition, synthetic checks, and reference validation.",
+            "statistics": "Dimensions will be analyzed separately before any aggregation study.",
+            "evidence": "/benchmark/",
+            "limitations": "Metric construct validity is not established merely by implementation tests.",
+            "reviewer": "How will multiplicity be controlled? The confirmatory plan must freeze this.",
+        },
+        {
+            "title": "Research questions",
+            "body": f"<ol>{rq_list}</ol>",
+            "notes": "Every question currently has INCONCLUSIVE status in the machine-readable register.",
+            "method": "Questions precede confirmatory analysis and map to required evidence.",
+            "statistics": "No effect or interval is estimable from eligible evidence.",
+            "evidence": "/evidence/uncertain/",
+            "limitations": "Hypotheses are neither supported nor rejected.",
+            "reviewer": "Are these confirmatory? Not until the statistical protocol and matrix are frozen.",
+        },
+        {
+            "title": "Evidence audit outcome",
+            "body": f"<div class='metrics'><div><b>{counts['gate_passing_records']}</b> gate-passing records</div><div><b>{counts['publication_eligible_records']}</b> publication-eligible</div><div><b>{counts['verified_claims']}</b> verified claims</div><div><b>{counts['empirical_publication_figures']}</b> empirical figures</div></div><p class='warning'>Insufficient evidence.</p>",
+            "notes": "This is a provenance outcome. It is not a negative result about any method.",
+            "method": "Legacy records were re-evaluated without mutation under fail-closed gates.",
+            "statistics": "No unlearning inference is performed.",
+            "evidence": "/evidence/strongest/",
+            "limitations": "Gate failures do not imply the original programs failed to execute.",
+            "reviewer": "Why not repair old records? Doing so would invent missing raw evidence and violate immutability.",
+        },
+        {
+            "title": "Reproducibility infrastructure",
+            "body": "<ul><li>Stable sample IDs and immutable deletion manifests</li><li>Hashed checkpoints and schema-v2 predictions</li><li>SQLite experiment registry</li><li>Independent metric checks and scientific failure tests</li><li>Claim, figure, and release provenance gates</li></ul>",
+            "notes": "Infrastructure capability does not substitute for empirical completion.",
+            "method": "Derived catalogs are regenerated from raw artifacts.",
+            "statistics": "Fifty deterministic randomized metric-reference fixtures pass.",
+            "evidence": "/reproduce/",
+            "limitations": "No clean flagship reproduction has occurred.",
+            "reviewer": "Does the pipeline work end to end? A schema-v2 Digits integration test passes; flagship reproduction is absent.",
+        },
+        {
+            "title": "Known limitations",
+            "body": "<ul><li>No confirmatory or publication-eligible run</li><li>Seed convergence assessed in one pilot condition only</li><li>No frozen confirmatory statistical plan</li><li>No CIFAR or tabular corpus</li><li>No sequential empirical trajectory</li><li>Incomplete citation recheck and baseline fairness audit</li></ul>",
+            "notes": "Do not minimize these blockers.",
+            "method": "Limitations are drawn from gate and readiness records.",
+            "statistics": "Not applicable.",
+            "evidence": "/limitations/",
+            "limitations": "This list itself may expand after external review.",
+            "reviewer": "Is a paper currently justified? No.",
+        },
+        {
+            "title": "Next falsifiable milestone",
+            "body": "<p>Replicate the schema-v2 pilot across original-model seeds, a second deletion fraction, and high-loss deletion.</p><p>Then use the expanded pilot variance to freeze confirmatory endpoints, margins, and run counts.</p>",
+            "notes": "This is planned work, clearly separated from completed artifacts.",
+            "method": "Use predeclared deletion manifests and append-only experiment IDs.",
+            "statistics": "Carry forward the frozen convergence diagnostic and estimate between-original-seed variance.",
+            "evidence": "/results/",
+            "limitations": "Pilot findings will remain non-confirmatory.",
+            "reviewer": "Does k=15 generalize? No; convergence is condition-specific until replicated.",
+        },
+        {
+            "title": "Verify and inspect",
+            "body": '<pre><code>python -m pip install -e ".[dev]"\nmake verify\nmake corpus\nunlearn-bench validate\nunlearn-bench status\nunlearn-bench evidence</code></pre>',
+            "notes": "These commands verify infrastructure and current status; they do not reproduce a paper result.",
+            "method": "Use the active environment documented by the repository.",
+            "statistics": "No expected flagship interval exists.",
+            "evidence": "/reproduce/",
+            "limitations": "Full benchmark and flagship targets remain blocked.",
+            "reviewer": "Can another lab reproduce a conclusion? Not yet, because no eligible conclusion exists.",
+        },
+        {
+            "title": "Conclusion",
+            "body": "<p>The counterfactual-fidelity question remains scientifically open in this repository.</p><p>The defensible outcome of Phase VI is a traceable statement of insufficiency and a concrete path to obtain the missing evidence.</p>",
+            "notes": "End without implying method performance or novelty.",
+            "method": "Conclusion is checked against research/conclusions.yaml.",
+            "statistics": "No inferential conclusion.",
+            "evidence": "/evidence/",
+            "limitations": "Repository maturity remains v0.5.0.",
+            "reviewer": "What did this show? It showed readiness boundaries, not unlearning effectiveness.",
+        },
+    ]
+    data = {
+        "schema_version": 1,
+        "benchmark_version": "0.5.0",
+        "source_inventory": "release/metadata/repository_inventory.json",
+        "contains_empirical_results": False,
+        "slides": slides,
+    }
+    output = Path("site/presentation")
+    output.mkdir(parents=True, exist_ok=True)
+    (output / "presentation-data.json").write_text(
+        json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    encoded = json.dumps(data).replace("</", "<\\/")
+    document = f"""<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Research presentation · Benchmark 0.5.0</title><link rel='stylesheet' href='/assets/style.css'><style>.deck{{max-width:1200px;margin:20px auto;padding:20px}}.slide{{min-height:62vh;border:1px solid #cbd5e1;padding:5vw;display:none}}.slide.active{{display:block}}.slide img{{max-width:100%;max-height:45vh}}.lead{{font-size:1.5rem}}.warning{{border-left:5px solid #a16207;padding:12px;background:#fffbeb}}.metrics{{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}}.metrics div{{border:1px solid #cbd5e1;padding:18px}}.metrics b{{font-size:2rem;display:block}}.controls{{display:flex;justify-content:space-between;margin:15px 0}}progress{{width:100%}}details{{margin-top:18px}}@media(max-width:700px){{.metrics{{grid-template-columns:1fr}}}}</style></head><body><main class='deck'><div class='controls'><button id='prev'>← Previous</button><span id='counter'></span><button id='next'>Next →</button><button id='full'>Fullscreen</button></div><progress id='progress'></progress><div id='slides'></div></main><script id='data' type='application/json'>{encoded}</script><script>const d=JSON.parse(document.getElementById('data').textContent),root=document.getElementById('slides');let i=0;d.slides.forEach((s,n)=>{{const e=document.createElement('section');e.className='slide';e.id='slide-'+(n+1);e.innerHTML='<h1>'+s.title+'</h1>'+s.body+'<details><summary>Technical notes / defense mode</summary><p><b>Speaker notes:</b> '+s.notes+'</p><p><b>Method:</b> '+s.method+'</p><p><b>Statistics:</b> '+s.statistics+'</p><p><b>Limitations:</b> '+s.limitations+'</p><p><b>Reviewer question:</b> '+s.reviewer+'</p><p><a href="'+s.evidence+'">View evidence</a></p></details>';root.appendChild(e)}});function show(n){{i=Math.max(0,Math.min(d.slides.length-1,n));document.querySelectorAll('.slide').forEach((e,j)=>e.classList.toggle('active',j===i));counter.textContent=(i+1)+' / '+d.slides.length;progress.max=d.slides.length;progress.value=i+1;history.replaceState(null,'','#slide-'+(i+1))}};prev.onclick=()=>show(i-1);next.onclick=()=>show(i+1);full.onclick=()=>document.documentElement.requestFullscreen();document.addEventListener('keydown',e=>{{if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1)}});show(Number(location.hash.replace('#slide-',''))-1||0);</script></body></html>"""
+    (output / "index.html").write_text(document, encoding="utf-8")
+    print(output / "index.html")
+
+
+if __name__ == "__main__":
+    main()

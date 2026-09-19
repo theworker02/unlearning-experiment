@@ -1,0 +1,4 @@
+preprocessing: divide uint8 pixels by 255
+normalization: '[0, 1] fixed scaling; no fitted statistics'
+augmentation: none in current validation/pilot configurations
+transformations: deterministic tensor conversion

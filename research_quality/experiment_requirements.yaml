@@ -1,0 +1,25 @@
+schema_version: 1
+preconditions:
+  - dataset_provenance_complete
+  - dataset_checksum_valid
+  - split_manifest_frozen
+  - deletion_manifest_frozen
+  - forget_retain_disjoint
+  - training_configuration_frozen
+  - statistical_plan_frozen
+  - model_metric_unlearning_tests_passed
+  - seed_manifest_frozen
+  - environment_declared
+  - expected_outputs_declared
+postconditions:
+  - process_completed
+  - checkpoints_present_and_hashed
+  - raw_predictions_and_labels_present
+  - metadata_complete
+  - all_numeric_outputs_finite
+  - dataset_identity_matches
+  - exact_retraining_exclusion_verified_twice
+  - configuration_hash_matches
+  - metric_ranges_valid
+  - runtime_and_environment_complete
+promotion_requires_explicit_ledger_event: true

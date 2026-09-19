@@ -1,0 +1,499 @@
+{
+  "compute_and_storage": {
+    "existing_exact_models_reused": 30,
+    "measured_bytes_per_existing_checkpoint": 884365,
+    "minimum_probability_array_bytes": 2000000,
+    "minimum_true_label_array_bytes": 16000,
+    "new_exact_training_jobs": 20,
+    "projected_new_checkpoint_bytes": 17687300,
+    "runtime_blocker": "target_device_benchmark_not_yet_measured",
+    "runtime_estimate": null,
+    "validation_prediction_exports": 50
+  },
+  "conditions": [
+    {
+      "architecture": "small_cnn",
+      "calibration_runs": [
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2001.pt",
+            "sha256": "68e53f21263ddfeadc19a4cd9581cc34f23a181b386e91bacb0bde06a0a6b5c6"
+          },
+          "seed": 2001,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2001.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2002.pt",
+            "sha256": "b0a480dfc22a0b9e7df75e601571a88a40caad40b789e6d93557528033cbfd5e"
+          },
+          "seed": 2002,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2002.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2003.pt",
+            "sha256": "ef6d3da6453703c90bacb013ce50001865c70e8849dfec949e327d599c8796de"
+          },
+          "seed": 2003,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2003.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2004.pt",
+            "sha256": "0a1d8beab1b420a3347ae903fffe79c86d156d489d2fa80d0f5e705c0acc51a9"
+          },
+          "seed": 2004,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2004.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2005.pt",
+            "sha256": "09295a5b64c6c46996aed7b45ac6880b8575ef9b68177d8d62fda9705db12606"
+          },
+          "seed": 2005,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2005.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2006.pt",
+            "sha256": "d54cf11a996068bf5d324195679d3e45c2c7e3a4cd211f6c1e137b224cff3be9"
+          },
+          "seed": 2006,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2006.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2007.pt",
+            "sha256": "f34a8b57ede4c67a6e3bf33f5ed7d2674478d01095e10640a09e0738aa2f7a21"
+          },
+          "seed": 2007,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2007.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2008.pt",
+            "sha256": "619635f3443834d7251c04628cfbd4aff0503848875083efa095e24e1ee8228b"
+          },
+          "seed": 2008,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2008.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2009.pt",
+            "sha256": "f07e076e8a187d7b277ef44096eed349ec5ae34d51067e36c2f1578cdaf2d15c"
+          },
+          "seed": 2009,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2009.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2010.pt",
+            "sha256": "84af6e91633b23488004b85e553818726f8b4c3cd038c5dac92fa12ed0d56501"
+          },
+          "seed": 2010,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2010.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2011.pt",
+            "sha256": "1fb8eaa989f7dca18879d7e351be110ee72d5f40a392d61878e8e01c67747656"
+          },
+          "seed": 2011,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2011.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2012.pt",
+            "sha256": "f5602b0df14cde22789f367ed73df5543785e64fcc66c3e349111003a85623c2"
+          },
+          "seed": 2012,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2012.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2013.pt",
+            "sha256": "879837c02d41013d3db47b850e55099d85319793ebd85f1135dc93b1069d6619"
+          },
+          "seed": 2013,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2013.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2014.pt",
+            "sha256": "05de81ae1f639e406e64bc02ad1981c2ecf0a0639627a4b284939a40d78e3374"
+          },
+          "seed": 2014,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2014.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class0-f1p00-2015.pt",
+            "sha256": "55eaed72a6e77d5210e95ca8417fb4bd24dae2dff66548002384424cd49345cb"
+          },
+          "seed": 2015,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2015.npz"
+        }
+      ],
+      "combined_analysis_input_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/ensemble.npz",
+      "condition_id": "r1-class0-f1p00",
+      "dataset": "fashion_mnist",
+      "deletion_manifest": {
+        "path": "deletion_manifests/phase3/fashion_mnist/r1-class0-f1.00-seed3201.json",
+        "sha256": "e70b321593f3f5bd5fb5b62743ee94f41a82f915857b3d564e6c6b7238903b7b"
+      },
+      "holdout_runs": [
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2101.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2101",
+          "seed": 2101,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2101.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2102.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2102",
+          "seed": 2102,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2102.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2103.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2103",
+          "seed": 2103,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2103.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2104.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2104",
+          "seed": 2104,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2104.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2105.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2105",
+          "seed": 2105,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2105.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2106.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2106",
+          "seed": 2106,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2106.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2107.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2107",
+          "seed": 2107,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2107.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2108.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2108",
+          "seed": 2108,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2108.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2109.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2109",
+          "seed": 2109,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2109.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class0-f1p00/checkpoints/exact-2110.pt",
+          "run_id": "equivalence-v2-1-r1-class0-f1p00-exact-2110",
+          "seed": 2110,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2110.npz"
+        }
+      ]
+    },
+    {
+      "architecture": "small_cnn",
+      "calibration_runs": [
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2001.pt",
+            "sha256": "47c6be2e3c4b530d70d1d484bf775fb1bb220604fcc08212f9a900968c3e6976"
+          },
+          "seed": 2001,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2001.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2002.pt",
+            "sha256": "244e583a966f53c0dfb487df9df343736503e1437f477a81844f69e8d6a6dcf8"
+          },
+          "seed": 2002,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2002.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2003.pt",
+            "sha256": "bc345989fcf70f65df52e10010c5ae2bcf9ca4addcebd8c4e70352ad07a3428b"
+          },
+          "seed": 2003,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2003.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2004.pt",
+            "sha256": "b8dfcf9e95627a659b44f886c2db0018f7c2315d132502a32dc9924984b9c1a1"
+          },
+          "seed": 2004,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2004.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2005.pt",
+            "sha256": "9113f21b1dd4a1ea8616ba34af2784427bf9edf227ee80b4863a0099d62a51a9"
+          },
+          "seed": 2005,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2005.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2006.pt",
+            "sha256": "5cedb2d201576e35ba042472c7eea95d5a711092267e2bb79798ddfcffc5954f"
+          },
+          "seed": 2006,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2006.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2007.pt",
+            "sha256": "aa86168baa7c664316e59788ce30a5f46ba065a971884f2453e1446db79e4663"
+          },
+          "seed": 2007,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2007.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2008.pt",
+            "sha256": "8a7d5d71376a344a5f4383f16ed06602819faad88f0fbb4c06edfc3a03152a39"
+          },
+          "seed": 2008,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2008.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2009.pt",
+            "sha256": "c40dfc1e0baec6d52fc0d00bd19642a3176cbaf046dc5b1f1734e2eb01278080"
+          },
+          "seed": 2009,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2009.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2010.pt",
+            "sha256": "43f1a054d640332f9de6374f273735d59dd40aa0bec37d4aba6fe01929d15e03"
+          },
+          "seed": 2010,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2010.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2011.pt",
+            "sha256": "3451dc982c044ff7db5d55c4ab797bd0ef925e4a98f58a8c7ac3070ca3fcd4bf"
+          },
+          "seed": 2011,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2011.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2012.pt",
+            "sha256": "851153aae953b9efe6ae67ec49aad4aff53f3ae493e1b435ffc676ae0bf320b7"
+          },
+          "seed": 2012,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2012.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2013.pt",
+            "sha256": "44c19c538c906bfe08425f2e97bdda8834987f76b25889bd2940f085dcf5b900"
+          },
+          "seed": 2013,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2013.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2014.pt",
+            "sha256": "f9a45233052970c5346c48e8215be064f8317bd97e0fff5bd300dcae039c6e74"
+          },
+          "seed": 2014,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2014.npz"
+        },
+        {
+          "checkpoint": {
+            "path": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/checkpoints/exact-r1-class5-f1p00-2015.pt",
+            "sha256": "392d251f5107dcd1b682792cfe99db0d57b53adbe782bd31ab3ef341714a55c5"
+          },
+          "seed": 2015,
+          "source": "reuse_exact_checkpoint",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2015.npz"
+        }
+      ],
+      "combined_analysis_input_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/ensemble.npz",
+      "condition_id": "r1-class5-f1p00",
+      "dataset": "fashion_mnist",
+      "deletion_manifest": {
+        "path": "deletion_manifests/phase3/fashion_mnist/r1-class5-f1.00-seed3201.json",
+        "sha256": "74d7b5dcfb23c925eeb5add886acffd7b7bab501c51a5a0c97423a71a3ca7e69"
+      },
+      "holdout_runs": [
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2101.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2101",
+          "seed": 2101,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2101.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2102.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2102",
+          "seed": 2102,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2102.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2103.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2103",
+          "seed": 2103,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2103.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2104.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2104",
+          "seed": 2104,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2104.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2105.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2105",
+          "seed": 2105,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2105.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2106.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2106",
+          "seed": 2106,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2106.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2107.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2107",
+          "seed": 2107,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2107.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2108.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2108",
+          "seed": 2108,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2108.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2109.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2109",
+          "seed": 2109,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2109.npz"
+        },
+        {
+          "checkpoint_target": "results/raw/equivalence-margin-v2-1/r1-class5-f1p00/checkpoints/exact-2110.pt",
+          "run_id": "equivalence-v2-1-r1-class5-f1p00-exact-2110",
+          "seed": 2110,
+          "source": "new_exact_training_required",
+          "validation_prediction_target": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2110.npz"
+        }
+      ]
+    }
+  ],
+  "execution_authorized": true,
+  "notes": [
+    "Existing checkpoints require fresh validation predictions; test predictions are forbidden.",
+    "Projected bytes exclude NPZ metadata, sample IDs, logits, and environment records.",
+    "This plan does not freeze the one-percent SESOI or authorize any training.",
+    "V2.1 analysis inputs include frozen ground-truth labels for class-stratified selection.",
+    "Frozen after the recorded class-balanced 1% SESOI decision; validation-only scope."
+  ],
+  "plan_id": "equivalence-margin-calibration-v2.1-frozen-input-plan",
+  "prediction_schema": {
+    "arrays": {
+      "model_seeds": [
+        25
+      ],
+      "probabilities": [
+        25,
+        1000,
+        10
+      ],
+      "sample_ids": [
+        1000
+      ],
+      "true_labels": [
+        1000
+      ]
+    },
+    "format": "npz_allow_pickle_false",
+    "label_dtype": "int64",
+    "probability_dtype": "float32"
+  },
+  "protocol": {
+    "path": "study/preregistration/equivalence_margin_calibration_v2_1.yaml",
+    "sha256": "a9294142e2110e78a0c77ce562b597086b232deb16acffe6c74ce5196c78680a"
+  },
+  "schema_version": 1,
+  "split_manifest": {
+    "path": "datasets/fashion_mnist/split_manifest.json",
+    "sha256": "6ae02e78637056b21da9b7eec7d5ac4f36bc61a96abc336d013110f3cdbf8635",
+    "validation_sample_count": 1000,
+    "validation_split_sha256": "5ea0b32b7444fd605d8005a7fb842c18602504ee98b0f620ac23fc95ef57c0d9"
+  },
+  "status": "FROZEN_VALIDATION_ONLY",
+  "training_config": {
+    "path": "configs/experiments/phase3_class_conditioned_assay_pilot.yaml",
+    "sha256": "0c3043cdc3de9b3303e7efe47f5c4fa544214053acd418523ccc3729e218c085"
+  }
+}

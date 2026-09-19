@@ -1,0 +1,143 @@
+{
+  "checkpoint_count": 30,
+  "condition_count": 2,
+  "export_count": 32,
+  "exported": [
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2001.npz",
+      "sha256": "5cd4cb3493824169698c320bab31d869b9358f7be4df93be0f32a92691144d43"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2002.npz",
+      "sha256": "2c31d5356f51ea6635ab5dcc029d33ce70262ebd9a33088ce4d2ad3f63af2d9c"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2003.npz",
+      "sha256": "700dee93cb9240cc6fed838b4288e70858e846de7ac54f588cb40cf466aef03f"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2004.npz",
+      "sha256": "4442cf910ac40b2761fec5b42cc6440cc6f09929ee92e211a69b9631befc12e4"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2005.npz",
+      "sha256": "c37b42c4579adb5a11643febdf3ce65b57c411a45859c0b6009c54c57ad46d3f"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2006.npz",
+      "sha256": "b00143b12d26e130583392ef611e06799e87edd57e2524d6e5d3583dc2426749"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2007.npz",
+      "sha256": "3880d2ccbc936426b088e87f4d374997f2c52d4bac9a44ebeb7d54d9a8e96718"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2008.npz",
+      "sha256": "9bedcc97b4c77bcaf89144add68021a27c4884c8e41c561b3a6f7e1a40c3e58c"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2009.npz",
+      "sha256": "132531b26422fa40d10356c2d3811b649dffdaa5f48f350ac952c471a50a738d"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2010.npz",
+      "sha256": "c9edab4c89ffd13396b672af3262ca8bfe9110412714e6d021cf0479eabc5713"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2011.npz",
+      "sha256": "0e434b386cf19abe541c6ce2a231fec129430eb5c05cf421d35bb437f52e58fa"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2012.npz",
+      "sha256": "ce850122493eee7b779670d81e2294f729941fea2d8ed896557674b8ca1d0d3f"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2013.npz",
+      "sha256": "6664b94d68243a7420e124f18064b30bcdca1a6dfccef457b93787826e78ea75"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2014.npz",
+      "sha256": "10b7cda53a325682bcd0505625ed154fc83b7b7e48ad516c791748b3ef27ee4d"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/exact-2015.npz",
+      "sha256": "04b44b627d4671d694144230020d04874d9b455adb7179f5ccb28a41163751da"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class0-f1p00/ensemble.npz",
+      "sha256": "52d38168c6b41300d41ed38a99af3a0d91ad73e26b58deac5f1384c6bea13c3c"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2001.npz",
+      "sha256": "958c6d36a69702635a8ff386586c108417aeaa84ad8c0732f8f739bf04d0d9fe"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2002.npz",
+      "sha256": "ce29897ed3a93dc0fda3a359ccccedf2aa73f212df53fe77f8a6ec57b872a2f9"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2003.npz",
+      "sha256": "7bba6cbdd90706e99ea65b073965ce587901e4c02d72f85642e34af406d6fa0b"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2004.npz",
+      "sha256": "78d671d534a6da0d13b51402223af52aa9862456cb1ee0b4856c21c6ee5ba00b"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2005.npz",
+      "sha256": "5c6303b7a0f5c5f37f5e7980d66db732f1e78517d1b3c607acc028242350f83e"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2006.npz",
+      "sha256": "8092f35e488bb152444ca8445cb7f108b4e7776c934a9223ba589424aacb9137"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2007.npz",
+      "sha256": "bae55579005a45aea621b76fda39d144a46c0ca52e4cd8357d039057225e34d8"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2008.npz",
+      "sha256": "e188c54977c95813e46f89e7a631e5c8e69277fb3881c8cea09255eafe44d7da"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2009.npz",
+      "sha256": "6b4c2b4bf2dea2a709ead01753f631e37855d54632f5a9452d0c94e23f5f3e4a"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2010.npz",
+      "sha256": "070d6fb6e90dbc0e26d378c0e8ee0850e756d4295cde6f2badd20652300e27de"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2011.npz",
+      "sha256": "9aceb95e521902b053ad2ea08bb455f13c780e21fd37f1f5cca74014712f5610"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2012.npz",
+      "sha256": "b4483e41fa929b6433cd94785bcd57948c9a7bbe25ff755185fdcaac691a9990"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2013.npz",
+      "sha256": "9b942031ff2f3fcbb5f7a62a96f8b6ba2390d7da053e3bb7541877e656836a08"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2014.npz",
+      "sha256": "7f7575b39e905d080a6405fdb460ef795dbc86d6d92a80239e2ca847270c7f58"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/exact-2015.npz",
+      "sha256": "be90e9b126142572173934ef67984b743f3d28b614276317e13f4ec755efdd2e"
+    },
+    {
+      "path": "results/validation/equivalence-margin-v2-1/r1-class5-f1p00/ensemble.npz",
+      "sha256": "edba07481da587552d2d7c46a25524bfa9f6035e848f034545a8e7452112a88f"
+    }
+  ],
+  "plan_sha256": "56ba7173a75b741ec0e85e3f7ed52b7f41679f250d321df857637df785384198",
+  "protocol_sha256": "d976f2c258071f28b4d5bc72ab0e681fb1d64208b2f435ebad67308392d336c0",
+  "schema_version": 1,
+  "state_schema_sha256": "350d38644ba09608bb2f5a8c9dc6161e50455b6d3946317d1b11b1a128f7c393",
+  "status": "PASS",
+  "test_predictions_accessed": false,
+  "training_executed": false,
+  "validation_sample_count": 1000
+}

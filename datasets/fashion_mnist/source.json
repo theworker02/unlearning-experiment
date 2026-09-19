@@ -1,0 +1,9 @@
+{
+  "access_date": "2026-08-30",
+  "citation": "Xiao, Rasul, and Vollgraf (2017)",
+  "dataset": "fashion_mnist",
+  "license": "MIT (Zalando SE, 2017)",
+  "schema_version": 1,
+  "source": "https://github.com/zalandoresearch/fashion-mnist",
+  "version": "official IDX files, accessed 2026-08-30"
+}

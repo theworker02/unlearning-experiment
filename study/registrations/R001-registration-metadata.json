@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "title": "Auditable Machine-Unlearning Evaluation — P001 Fashion-MNIST Pilot Study Record",
+  "registration_kind": "retrospective",
+  "study_status": "completed",
+  "experiment": "P001",
+  "release": "R001",
+  "public": false,
+  "osf_identifier": null,
+  "doi": null,
+  "resources": {
+    "code_doi": null,
+    "data_doi": null,
+    "materials_doi": null,
+    "paper_doi": null,
+    "supplement_doi": null
+  },
+  "submission_status": "not_submitted_requires_authenticated_human_review"
+}

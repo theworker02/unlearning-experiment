@@ -1,0 +1,12 @@
+schema_version: 1
+metrics:
+  - {id: accuracy, family: utility, range: [0, 1]}
+  - {id: balanced_accuracy, family: utility, range: [0, 1]}
+  - {id: macro_f1, family: utility, range: [0, 1]}
+  - {id: nll, family: calibration, range: [0, null]}
+  - {id: brier, family: calibration, range: [0, 2]}
+  - {id: ece, family: calibration, range: [0, 1]}
+  - {id: prediction_agreement, family: predictive_fidelity, range: [0, 1]}
+  - {id: js_divergence, family: probability_fidelity, range: [0, 0.69314718056]}
+  - {id: total_variation, family: probability_fidelity, range: [0, 1]}
+  - {id: linear_cka, family: representation_fidelity, range: [0, 1]}

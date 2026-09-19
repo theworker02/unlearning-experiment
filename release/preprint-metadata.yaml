@@ -1,0 +1,21 @@
+title: >-
+  Auditable Empirical Evaluation of Machine Unlearning: Immutable Deletion Manifests,
+  Exact-Retraining Ensembles, and a Reproducible Fashion-MNIST Pilot
+resource_type: preprint
+language: English
+keywords:
+  - machine unlearning
+  - machine learning
+  - reproducibility
+  - exact retraining
+  - approximate unlearning
+  - empirical evaluation
+  - Fashion-MNIST
+  - research transparency
+license: CC BY 4.0
+registration: null
+code: null
+data: null
+submission_target_candidates: [arXiv cs.LG, MetaArXiv if moderator scope permits]
+submission_status: not_submitted
+human_checks_required: [full legal author name, contributor order, venue policy, final scientific review]

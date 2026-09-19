@@ -1,0 +1,30 @@
+schema_version: 1
+profile: counterfactual_fidelity_pilot
+status: BLOCKED_SCRUB_MECHANISM_SANITY_FAILED
+publication_role: development_bridge_not_headline_evidence
+datasets:
+  - name: fashion_mnist
+    architectures: [small_cnn_bn]
+original_seeds: [101]
+deletion_conditions:
+  - {strategy: random, fraction: 0.01, manifests: 1}
+  - {strategy: random, fraction: 0.05, manifests: 1}
+  - {strategy: high_loss, fraction: 0.01, manifests: 1}
+exact_retraining_seeds: [2001, 2002, 2003, 2004, 2005]
+approximate_methods: [fine_tune, naive_gradient_ascent, scrub]
+method_blockers:
+  scrub: >-
+    The fixed three-seed BatchNorm mechanism study completed, but one seed failed retain-objective
+    recovery; SCRUB is excluded pending a separately designed and validated protocol.
+method_requirements:
+  scrub:
+    protocol: study/preregistration/scrub_sanity_reproduction_v2.yaml
+    required_artifact: results/raw/scrub-fmnist-bn-sanity-v2/result.json
+    required_outcome: overall_acceptance_true_with_matching_protocol_hash
+candidate_seeds: [5001]
+metrics: [accuracy, top1_disagreement, js_divergence, nll, brier, ece, runtime]
+sequential:
+  enabled: true
+  development_only: true
+  request_fractions: [0.01, 0.01]
+launch_authorized: false

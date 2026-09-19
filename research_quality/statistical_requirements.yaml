@@ -1,0 +1,15 @@
+schema_version: 1
+freeze_before_confirmatory: true
+required_fields:
+  - primary_outcome
+  - hypotheses
+  - confidence_level
+  - multiplicity_control
+  - bootstrap_scheme
+  - effect_sizes
+  - exclusion_policy
+  - failed_run_policy
+  - minimum_seeds
+  - stopping_rule
+equivalence_requires_prespecified_margin: true
+failure_to_reject_is_not_equivalence: true

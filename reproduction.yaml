@@ -1,0 +1,60 @@
+study: counterfactual-fidelity-machine-unlearning
+release: R001
+experiment: P001
+schema: 2
+maturity: retrospective_pilot
+dataset:
+  name: Fashion-MNIST
+  dataset_sha256: 1ad69a47dbce37a98443e5e5628a031b5910be879d3589e945a1519f805aa28c
+  train_count: 9000
+  validation_count: 1000
+  test_count: 2500
+deletion:
+  fraction: 0.01
+  count: 90
+  manifest_sha256: 7da3cb273e0afbd6ea2c651c70b6a622c44f9f1741c028b3ebf5fad76f7b6dce
+exact_reference:
+  count: 15
+  seeds:
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 2011
+  - 2012
+  - 2013
+  - 2014
+  - 2015
+hardware_reference:
+  gpu: AMD Radeon RX 7800 XT
+  backend: ROCm
+  rocm: 7.2.53211-e1a6bc5663
+  torch: 2.9.1+rocm7.2.1.gitff65f5bc
+  platform: Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+  python: 3.12.3
+validation:
+  convergence_threshold: 0.1
+expected:
+  convergence:
+    threshold: 0.1
+    js_change: 0.04476579610988505
+    disagreement_change: 0.031412317585951116
+    js_pass: true
+    disagreement_pass: true
+  runtime_reference_seconds:
+    original_training: 9.593213073000001
+    exact_total: 17.455470337999998
+    approximate_total: 3.2864819379999943
+  runtime_values_are_acceptance_criteria: false
+figures:
+- F002
+identifiers:
+  osf_doi: null
+  zenodo_doi: null
+  preprint_identifier: null

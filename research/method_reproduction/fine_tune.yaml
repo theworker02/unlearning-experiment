@@ -1,0 +1,30 @@
+schema_version: 1
+method: retained_data_fine_tuning
+role: simple_engineering_baseline_not_literature_competitive_method
+implementation:
+  module: src/exact_unlearning/unlearning.py
+  callable: fine_tune
+  optimizer: AdamW
+  weight_decay: 0.0
+  third_party_source_included: false
+protocol:
+  path: study/preregistration/fine_tune_tuning_v1.yaml
+  status: draft_not_locked_or_authorized
+  candidate_count: 9
+  candidate_runs: 27
+  selection_rule: validation_utility_constrained_forget_training_cross_entropy
+  guarded_runner: scripts/run_fine_tune_tuning.py
+  artifact_validator: scripts/validate_fine_tune_artifact.py
+claims_policy:
+  permitted:
+    - simple_baseline_behavior_under_declared_setting
+    - selected_hyperparameters_and_validation_rule
+  prohibited:
+    - state_of_the_art_method
+    - successful_unlearning_without_counterfactual_evidence
+    - privacy_guarantee
+release_blockers:
+  - measured_one_seed_runtime_estimate
+  - protocol_lock_and_execution_authorization
+  - passing_artifact_with_recomputed_selection
+  - repository_release_review

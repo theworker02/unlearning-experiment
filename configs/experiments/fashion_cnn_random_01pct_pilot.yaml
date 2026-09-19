@@ -1,0 +1,45 @@
+experiment_id: fashion-cnn-random-01pct-pilot-v1
+maturity: PILOT
+dataset:
+  name: fashion_mnist
+  root: data/raw
+  validation_fraction: 0.1
+  split_seed: 1729
+  train_limit: 10000
+  test_limit: 2500
+model:
+  architecture: small_cnn
+  hidden_dim: 64
+training:
+  device: auto
+  optimizer: adamw
+  epochs: 4
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  momentum: 0.9
+  deterministic: true
+original_seed: 11
+oracle_seeds: [101, 202, 303, 404, 505]
+deletion:
+  strategy: random
+  fraction: 0.01
+  seed: 606
+unlearning:
+  methods: [fine_tune, naive_gradient_ascent, scrub]
+  epochs: 1
+  learning_rate: 0.0002
+  retain_weight: 1.0
+  forget_weight: 0.1
+  optimizer: adam
+  weight_decay: 0.0001
+  alpha: 0.5
+  gamma: 1.0
+  temperature: 1.0
+  max_steps: 1
+  steps: 2
+  forget_batch_size: 64
+  retain_batch_size: 128
+evaluation:
+  ece_bins: 15
+output_root: results/raw

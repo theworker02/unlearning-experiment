@@ -1,0 +1,73 @@
+schema_version: 1
+benchmark_version: 0.5.0
+questions:
+  - id: RQ1
+    question: Do approximate unlearning methods reproduce behavior within the natural distribution of exact retraining?
+    hypothesis: Some approximate methods will lie outside at least one exact-retraining fidelity envelope.
+    status: INCONCLUSIVE
+    reason: One schema-v2 Fashion-MNIST pilot passes the artifact gate, but one deletion condition and original seed cannot establish general behavior.
+    required_evidence: Gate-passing approximate/exact and exact/exact comparisons across independent seeds.
+    planned_analysis: Empirical percentiles, confidence intervals, effect sizes, and equivalence tests.
+    datasets: [fashion_mnist]
+    models: [small_cnn]
+    experiments: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    figures: []
+    tables: []
+    uncertainty: Not estimable from eligible evidence.
+    limitations: [The eligible pilot varies exact-retraining seeds but not original-model seeds, datasets, architectures, or deletion regimes.]
+  - id: RQ2
+    question: Do conventional forgetting and privacy criteria agree with counterfactual fidelity?
+    hypothesis: Some conventional-pass conditions will fail at least one counterfactual-fidelity criterion.
+    status: INCONCLUSIVE
+    reason: The schema-v2 pilot contains conventional and counterfactual metrics, but no pass/fail criteria were frozen and no contradiction matrix is validated.
+    required_evidence: Paired conventional and counterfactual criteria from gate-passing runs.
+    planned_analysis: Agreement rates, contradiction frequencies with uncertainty, and metric correlations.
+    datasets: [fashion_mnist]
+    models: [small_cnn]
+    experiments: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    figures: []
+    tables: []
+    uncertainty: Not estimable from eligible evidence.
+    limitations: [Current membership score is a limited audit and cannot establish privacy equivalence.]
+  - id: RQ3
+    question: Does counterfactual discrepancy accumulate across sequential deletion requests?
+    hypothesis: Accumulation may be nonlinear and method-dependent.
+    status: INCONCLUSIVE
+    reason: Sequential deletion has interfaces and tests but no eligible empirical trajectory.
+    required_evidence: Stage-matched exact-retraining populations for complete deletion sequences.
+    planned_analysis: Trajectory estimates, uncertainty by stage, and method-by-stage interactions.
+    datasets: []
+    models: []
+    experiments: []
+    figures: []
+    tables: []
+    uncertainty: Not estimable from eligible evidence.
+    limitations: [No sequential research corpus exists.]
+  - id: RQ4
+    question: How do deletion size and composition affect counterfactual fidelity?
+    hypothesis: Model-dependent deletion regimes may produce different discrepancies from random deletion.
+    status: INCONCLUSIVE
+    reason: One eligible random 1% pilot exists, but no factorial comparison across size or composition exists.
+    required_evidence: Frozen random, loss-based, class, and other justified scenarios across fractions.
+    planned_analysis: Preregistered contrasts with multiplicity control and cross-condition uncertainty.
+    datasets: [fashion_mnist]
+    models: [small_cnn]
+    experiments: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    figures: []
+    tables: []
+    uncertainty: Not estimable from eligible evidence.
+    limitations: [Only random pilot deletion sets are predeclared independently of legacy runs.]
+  - id: RQ5
+    question: What counterfactual fidelity is sacrificed for computational savings relative to retraining?
+    hypothesis: Methods will occupy distinct points on a multidimensional compute-fidelity frontier.
+    status: INCONCLUSIVE
+    reason: One pilot records device-specific runtime and fidelity distances, but it cannot establish a general frontier.
+    required_evidence: Device-aware runtime and memory measurements paired with fidelity dimensions.
+    planned_analysis: Pareto dominance with uncertainty and retraining-relative cost.
+    datasets: [fashion_mnist]
+    models: [small_cnn]
+    experiments: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    figures: []
+    tables: []
+    uncertainty: Not estimable from eligible evidence.
+    limitations: [Legacy runtimes are not sufficient for publication comparisons.]

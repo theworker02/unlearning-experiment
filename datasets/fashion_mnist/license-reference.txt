@@ -1,0 +1,2 @@
+MIT (Zalando SE, 2017)
+See source.json for the canonical source.

@@ -1,0 +1,28 @@
+{
+  "benchmark_version": "0.5.0",
+  "dataset": "sklearn_digits",
+  "dataset_sha256": "8b3b6ae90863430bdef06a3f7d1ec2f6a905a53d3375655b18cf63780ad98772",
+  "fraction": 0.01,
+  "manifest_hash": "63aac9622e9e3e3ac123b91e0db912a67edb81510732ff70ff5cd624974a1d56",
+  "sample_ids": [
+    316,
+    588,
+    619,
+    635,
+    748,
+    763,
+    843,
+    1006,
+    1255,
+    1468,
+    1629,
+    1671,
+    1791
+  ],
+  "sample_ids_sha256": "5a70d600283af882d580d31b83d24f08048673253bf42fbd6e1bb47b7ad6f10a",
+  "scenario": "random",
+  "schema_version": 1,
+  "seed": 404,
+  "source_experiment_id": "digits-mlp-rocm-random-01pct-smoke-v1",
+  "status": "legacy_observed_not_publication_frozen"
+}

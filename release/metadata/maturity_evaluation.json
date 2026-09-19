@@ -1,0 +1,86 @@
+{
+  "assigned_version": "0.5.0",
+  "checks": {
+    "all_2_0_gates_pass": false,
+    "benchmark_manifest_valid": true,
+    "benchmark_specification_stable": false,
+    "canonical_deletion_scenarios": true,
+    "citation_metadata_complete": false,
+    "clean_reproducibility_audit": false,
+    "confirmatory_statistics_complete": false,
+    "correction_and_deprecation_policies": true,
+    "dataset_abstraction_exists": true,
+    "deletion_manifests_exist": true,
+    "evidence_explorer_complete": true,
+    "exact_retraining_corpus": false,
+    "exact_retraining_population_validated": false,
+    "exact_retraining_supported": true,
+    "experiment_registry_exists": true,
+    "external_reproduction_package_passed": false,
+    "full_results_package": false,
+    "generated_scholarly_site": true,
+    "immutable_result_writer_tested": true,
+    "manuscript_draft_from_evidence": false,
+    "meaningful_experiment_reproduced_by_clean_checkout": false,
+    "metric_reference_checks_pass": true,
+    "model_cards_complete": false,
+    "multi_dataset_publication_benchmark": false,
+    "paper_data_package": false,
+    "pilot_capability_exists": true,
+    "publication_figures_and_tables": false,
+    "release_checksum_manifest_passed": false,
+    "release_tag_exists": false,
+    "sequential_deletion_corpus": false,
+    "standardized_method_interface": true,
+    "standardized_model_interface": true,
+    "two_validated_non_digits_datasets": false,
+    "unlearning_corpus": false,
+    "verified_claim_evidence_graph": false,
+    "verified_multidimensional_result_catalog": false,
+    "visual_provenance_complete": true
+  },
+  "schema_version": 1,
+  "versions": {
+    "0.5.0": {
+      "failures": [],
+      "passed": true
+    },
+    "1.0.0": {
+      "failures": [
+        "benchmark_specification_stable",
+        "two_validated_non_digits_datasets",
+        "exact_retraining_population_validated",
+        "model_cards_complete",
+        "meaningful_experiment_reproduced_by_clean_checkout",
+        "citation_metadata_complete",
+        "release_tag_exists"
+      ],
+      "passed": false
+    },
+    "2.0.0": {
+      "failures": [
+        "multi_dataset_publication_benchmark",
+        "exact_retraining_corpus",
+        "unlearning_corpus",
+        "sequential_deletion_corpus",
+        "confirmatory_statistics_complete",
+        "publication_figures_and_tables",
+        "verified_claim_evidence_graph",
+        "manuscript_draft_from_evidence",
+        "clean_reproducibility_audit"
+      ],
+      "passed": false
+    },
+    "2.3.0": {
+      "failures": [
+        "all_2_0_gates_pass",
+        "verified_multidimensional_result_catalog",
+        "paper_data_package",
+        "full_results_package",
+        "external_reproduction_package_passed",
+        "release_checksum_manifest_passed"
+      ],
+      "passed": false
+    }
+  }
+}

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: >-
+  Cite the exact archived release you used. No DOI exists yet; until an archival
+  release is published, cite the software version and repository commit.
+title: "Measuring Counterfactual Fidelity in Machine Unlearning"
+type: software
+authors:
+  - name: "Magnexis"
+version: 0.5.0
+date-released: 2026-08-31
+license: MIT
+keywords:
+  - machine unlearning
+  - counterfactual fidelity
+  - exact retraining
+  - reproducibility
+  - Fashion-MNIST
+abstract: >-
+  Research software for comparing approximate machine unlearning with distributions
+  of independently retrained models. Version 0.5 contains infrastructure and pilot
+  evidence only; it does not establish successful unlearning.

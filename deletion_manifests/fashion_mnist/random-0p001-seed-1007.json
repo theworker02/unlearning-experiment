@@ -1,0 +1,25 @@
+{
+  "benchmark_version": "0.5.0",
+  "count_rule": "max_one_round_half_to_even",
+  "dataset": "fashion_mnist",
+  "dataset_sha256": "1ad69a47dbce37a98443e5e5628a031b5910be879d3589e945a1519f805aa28c",
+  "fraction": 0.001,
+  "manifest_hash": "8d75e03cb35c370c828be34d9d37cb086c331f9bd8fade4c1ad3562e2f2b47ca",
+  "sample_ids": [
+    3168,
+    4114,
+    4901,
+    11718,
+    25968,
+    38857,
+    39298,
+    43122,
+    49066
+  ],
+  "sample_ids_sha256": "b30543e950ef93be37cf27368fb3d8cdba883de016ae96aeef619793d5b939fc",
+  "scenario": "random",
+  "schema_version": 1,
+  "seed": 1007,
+  "split_hash": "3477d795ad48a9b66d1c4a0f1340e46a2a324c9724dbea36bab5b25c0c7b80ea",
+  "status": "pilot_frozen"
+}

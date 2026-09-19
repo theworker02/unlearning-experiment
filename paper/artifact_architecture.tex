@@ -1,0 +1,82 @@
+\section{Scientific Artifact Architecture}
+\subsection{Experiment manifests}
+Every planned run is generated from a machine-readable condition containing dataset and
+version, architecture, training seed, deletion strategy and fraction, method and
+hyperparameters, exact seeds, metrics, and expected hardware class.  Reduced, main, and
+extended profiles make the size of the experiment explicit before execution.  Expansion
+calculates the number of trainings, approximate device-hours, checkpoint volume, and result
+count, preventing an accidental factorial explosion.
+
+\subsection{Canonical data lineage}
+The lineage chain is
+\begin{center}
+source dataset $\rightarrow$ preprocessing $\rightarrow$ canonical split
+$\rightarrow$ deletion manifest $\rightarrow$ run configuration
+$\rightarrow$ checkpoint and predictions $\rightarrow$ metrics
+$\rightarrow$ statistics $\rightarrow$ figure or table $\rightarrow$ claim.
+\end{center}
+Each edge carries a stable identifier or cryptographic hash.  Split indices and deletion
+indices are archived rather than reconstructed from prose.  Dataset validation records
+schema, counts, class balance, duplicate rate, missing values, label validity, overlap, and
+source integrity in both human- and machine-readable forms.
+
+Lineage is deliberately more granular than an experiment name. A result that only records
+``Fashion-MNIST, seed 11'' cannot establish which preprocessing revision, split, or
+deletion request created it. The stored chain makes counterfactual exclusion auditable:
+the exact-training manifest can be compared directly with the forgotten-ID manifest rather
+than inferred from control flow. This also permits a later reviewer to distinguish a model
+trained under a new preprocessing version from a genuine rerun of an earlier condition.
+
+\subsection{Append-only raw records}
+A completed run receives a unique identifier, timestamp, configuration hash, Git commit,
+environment snapshot, device, runtime, seed, metrics, and checkpoint references.  A rerun
+creates a new record and may point to its parent; it never replaces the earlier payload.
+Raw predictions remain available for metric recomputation.  Processed summaries are
+rebuildable and are kept physically distinct from raw evidence.
+
+Immutability is not a claim that files are technologically impossible to alter; it is an
+operational contract. New execution creates new evidence, and validation records the
+configuration and content identifiers required to detect substitution or accidental
+overwrite. Derived artifacts may be regenerated when analysis code changes, but the
+derivation must identify the raw inputs and software revision used. This separation allows
+an analysis bug to be corrected without rewriting the history of the run that exposed it.
+
+\subsection{Acceptance gates}
+A run enters the paper dataset only when dataset and split hashes match, retained and
+forgotten partitions are disjoint, every forgotten identifier is absent from exact
+training, training completed, predictions exist, metrics validate, metadata is complete,
+and unexplained non-finite values are absent.  Gate success means that these properties
+were checked; it does not mean that the unlearning method succeeded.  Failed runs remain in
+a separate registry with category, exception, configuration, batch impact, and remediation.
+
+The acceptance gate is intentionally conservative. It cannot prove that a method achieved
+unlearning, but it can reject records whose numerical values would otherwise invite an
+unsupported interpretation. For example, a completed training job is insufficient if its
+forgotten examples leaked into the exact-retraining dataset, if predictions for a required
+partition are absent, or if a metric silently contains non-finite values. Failed runs are
+not pooled as observations, yet their presence matters for operational reproducibility and
+for assessing whether a stated experimental matrix was actually completed.
+
+\subsection{Claim--evidence graph}
+Substantive quantitative claims are represented as nodes that point to experiment IDs,
+processed results, statistical analyses, and figure or table outputs.  Release validation
+rejects a verified claim if any referenced artifact is absent or hash-inconsistent.  This
+mechanism reduces manual transcription and distinguishes measured statements from
+interpretation, hypotheses, and limitations.  Headline LaTeX numbers and tables are
+generated from validated artifacts rather than copied into prose.
+
+\subsection{Release and independent reproduction}
+The release bundle contains source, locked configuration, environment records, immutable
+evidence, analysis programs, generated values, figures, tables, manuscript source, and
+checksums.  Level-A reproduction starts from archived predictions; Level-B reproduction
+repeats acquisition and training; Level-C replication independently implements the written
+protocol.  These levels are reported separately because a reproducible script does not by
+itself demonstrate independent scientific replication.
+
+\subsection{Private development disclosure record}
+Substantial automated assistance is recorded privately by activity class---implementation,
+orchestration, analysis, visualization, and drafting---so that the human author can comply
+with a venue's disclosure policy.  Prompt transcripts and irrelevant scratch traces are not
+scientific provenance and need not be public.  Dataset lineage, executed configurations,
+failures, numerical evidence, and manuscript claim links are scientific provenance and are
+retained regardless of the development tools used.

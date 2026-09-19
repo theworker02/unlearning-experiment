@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{bourtoule2021machine}
+Lucas Bourtoule, Varun Chandrasekaran, Christopher~A. Choquette-Choo, Hengrui
+  Jia, Adelin Travers, Baiwu Zhang, David Lie, and Nicolas Papernot.
+\newblock Machine unlearning.
+\newblock In {\em 2021 IEEE Symposium on Security and Privacy}, pages 141--159,
+  2021.
+
+\bibitem{guo2020certified}
+Chuan Guo, Tom Goldstein, Awni Hannun, and Laurens van~der Maaten.
+\newblock Certified data removal from machine learning models.
+\newblock In {\em Proceedings of the 37th International Conference on Machine
+  Learning}, volume 119 of {\em Proceedings of Machine Learning Research},
+  pages 3832--3842, 2020.
+
+\bibitem{kurmanji2023unbounded}
+Meghdad Kurmanji, Peter Triantafillou, Jamie Hayes, and Eleni Triantafillou.
+\newblock Towards unbounded machine unlearning.
+\newblock In {\em Advances in Neural Information Processing Systems},
+  volume~36, 2023.
+
+\bibitem{neel2021descent}
+Seth Neel, Aaron Roth, and Saeed Sharifi-Malvajerdi.
+\newblock Descent-to-delete: Gradient-based methods for machine unlearning.
+\newblock In {\em Proceedings of the 32nd International Conference on
+  Algorithmic Learning Theory}, volume 132 of {\em Proceedings of Machine
+  Learning Research}, pages 931--962, 2021.
+
+\bibitem{sekhari2021remember}
+Ayush Sekhari, Jayadev Acharya, Gautam Kamath, and Ananda~Theertha Suresh.
+\newblock Remember what you want to forget: Algorithms for machine unlearning.
+\newblock In {\em Advances in Neural Information Processing Systems},
+  volume~34, 2021.
+
+\bibitem{shokri2017membership}
+Reza Shokri, Marco Stronati, Congzheng Song, and Vitaly Shmatikov.
+\newblock Membership inference attacks against machine learning models.
+\newblock In {\em 2017 IEEE Symposium on Security and Privacy}, pages 3--18,
+  2017.
+
+\bibitem{thudi2022auditable}
+Anvith Thudi, Hengrui Jia, Ilia Shumailov, and Nicolas Papernot.
+\newblock On the necessity of auditable algorithmic definitions for machine
+  unlearning.
+\newblock In {\em 31st USENIX Security Symposium}, pages 4007--4022, 2022.
+
+\bibitem{xiao2017fashion}
+Han Xiao, Kashif Rasul, and Roland Vollgraf.
+\newblock Fashion-mnist: a novel image dataset for benchmarking machine
+  learning algorithms.
+\newblock {\em arXiv preprint arXiv:1708.07747}, 2017.
+
+\end{thebibliography}

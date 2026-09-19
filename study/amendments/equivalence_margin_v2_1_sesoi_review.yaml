@@ -1,0 +1,37 @@
+schema_version: 1
+review_id: equivalence-margin-v2.1-sesoi-review
+status: DECIDED
+reviewed_protocol:
+  path: study/preregistration/equivalence_margin_calibration_v2_1.yaml
+  sha256: 4ddee5ff5cda0d48db910380ae654744a72f3bb0d0b294ff9403cd394997603b
+reviewed_input_plan:
+  path: study/manifests/equivalence_margin_calibration_v2_1_plan.json
+  sha256: 2ba886bcad48f68fcc74c862306291184769a4e8796b1fa0bd8f31ff306bd853
+preflight_report: reports/equivalence_v2_1_checkpoint_preflight.json
+proposed_sesoi:
+  primary_swap_fraction: 0.01
+  primary_changed_predictions: 10
+  validation_probe_size: 1000
+  primary_class_allocation: exactly_one_selected_sample_per_ground_truth_class
+  sensitivity_changed_predictions: {0.005: 5, 0.01: 10, 0.02: 20}
+  interpretation: one_percentage_point_class_balanced_top1_disagreement
+decision_options: [APPROVE_AS_SPECIFIED, REVISE_BEFORE_FREEZE, REJECT_EQUIVALENCE_ENDPOINT]
+decision: APPROVE_AS_SPECIFIED
+reviewer: Matthew Looney (decision delegated to research agent in current session)
+reviewed_at_utc: '2026-09-02T14:50:00-04:00'
+rationale: >-
+  The class-stratified v2.1 control is preferred over v2 because it eliminates the avoidable
+  class-composition confound while retaining one fixed, interpretable behavioral threshold.
+  The 1% control changes exactly one validation prediction per class on the frozen balanced
+  1,000-example probe. It is approved only as a Fashion-MNIST/small-CNN calibration SESOI,
+  not as a transferable tolerance, unlearning-failure model, publication result, or legal claim.
+required_checks:
+  class_balanced_one_percentage_point_change_is_scientifically_meaningful: true
+  proportional_largest_remainder_allocation_is_acceptable: true
+  top2_swap_is_an_acceptable_positive_control_not_a_failure_model: true
+  fashion_mnist_margin_will_not_be_transferred_to_other_domains: true
+  failed_v1_and_unexecuted_v2_design_remain_reported: true
+  confirmatory_outputs_have_not_been_inspected: true
+approval_effect: >-
+  Approval permits a separate timestamped freeze amendment. It does not itself authorize
+  training, analysis, publication, or a successful-equivalence claim.

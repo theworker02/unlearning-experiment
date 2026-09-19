@@ -1,0 +1,73 @@
+schema_version: 1
+dataset_id: fashion_mnist
+canonical_name: Fashion-MNIST
+origin: Zalando Research
+citation: Xiao, Rasul, and Vollgraf (2017)
+source: https://github.com/zalandoresearch/fashion-mnist
+version: official IDX files, accessed 2026-08-30
+license: MIT (Zalando SE, 2017)
+access_date: '2026-08-30'
+raw_checksums:
+  t10k-images-idx3-ubyte.gz: 346e55b948d973a97e58d2351dde16a484bd415d4595297633bb08f03db6a073
+  t10k-labels-idx1-ubyte.gz: 67da17c76eaffca5446c3361aaab5c3cd6d1c2608764d35dfb1850b086bf8dd5
+  train-images-idx3-ubyte.gz: 3aede38d61863908ad78613f6a32ed271626dd12800ba2636569512369268a84
+  train-labels-idx1-ubyte.gz: a04f17134ac03560a47e3764e11b92fc97de4d1bfaf8ba1a3aa29af54cc90845
+processed_hash: 1ad69a47dbce37a98443e5e5628a031b5910be879d3589e945a1519f805aa28c
+counts:
+  train: 9000
+  validation: 1000
+  test: 2500
+dimensionality:
+- 1
+- 28
+- 28
+class_distribution:
+  train:
+    0: 900
+    1: 900
+    2: 900
+    3: 900
+    4: 900
+    5: 900
+    6: 900
+    7: 900
+    8: 900
+    9: 900
+  validation:
+    0: 100
+    1: 100
+    2: 100
+    3: 100
+    4: 100
+    5: 100
+    6: 100
+    7: 100
+    8: 100
+    9: 100
+  test:
+    0: 250
+    1: 250
+    2: 250
+    3: 250
+    4: 250
+    5: 250
+    6: 250
+    7: 250
+    8: 250
+    9: 250
+preprocessing: divide uint8 pixels by 255
+normalization: '[0, 1] fixed scaling; no fitted statistics'
+augmentation: none in current validation/pilot configurations
+exclusions: stratified development limits may apply from the experiment configuration
+transformations: deterministic tensor conversion
+splits:
+  method: stratified fixed-seed split
+  split_seed: 1729
+  train_ids_sha256: 7ffa63f9b662f65e830b73bb82656f532051a99396b86c5a54a10471644a6007
+  validation_ids_sha256: cdf514a791bde00d89635221331710807615eb6e28b29a33d128927c98268a9e
+  test_ids_sha256: c0e09fb5fcd8521142d909b2e1f6b7106a01f8a94386921251f57cd213fcf494
+known_limitations: Pilot subset and modest image resolution do not establish broad
+  vision generalization.
+ethical_considerations: Benchmark labels are not evidence of real-world deletion guarantees
+  or legal compliance.
+relevance: Low-cost counterfactual-fidelity pilot

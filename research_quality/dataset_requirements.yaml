@@ -1,0 +1,20 @@
+schema_version: 1
+required_card_fields:
+  - canonical_name
+  - origin
+  - citation
+  - source
+  - version
+  - license
+  - access_date
+  - raw_checksums
+  - counts
+  - dimensionality
+  - class_distribution
+  - preprocessing
+  - splits
+  - limitations
+  - ethical_considerations
+immutable_manifest_required: true
+reconstruction_check_required: true
+cross_split_duplicate_audit_required: true

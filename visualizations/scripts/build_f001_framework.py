@@ -1,0 +1,54 @@
+# ruff: noqa: E501
+from __future__ import annotations
+
+import hashlib
+from datetime import UTC, datetime
+from pathlib import Path
+
+import yaml
+
+
+def main() -> None:
+    output = Path("visualizations/conceptual/F001_framework.svg")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    svg = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+<rect width="1200" height="620" fill="#ffffff"/>
+<style>.t{font:24px Arial,sans-serif;fill:#17212b}.s{font:19px Arial,sans-serif;fill:#334155}.b{fill:#f8fafc;stroke:#334155;stroke-width:2}.a{fill:none;stroke:#2563eb;stroke-width:4;marker-end:url(#m)}.e{fill:none;stroke:#7c3aed;stroke-width:4;stroke-dasharray:11 7;marker-end:url(#m2)}</style>
+<defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/></marker><marker id="m2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7c3aed"/></marker></defs>
+<text x="600" y="45" text-anchor="middle" class="t">Counterfactual unlearning evaluation (conceptual)</text>
+<rect x="50" y="220" width="180" height="90" rx="8" class="b"/><text x="140" y="260" text-anchor="middle" class="t">Dataset D</text><text x="140" y="290" text-anchor="middle" class="s">forget set F included</text>
+<rect x="330" y="95" width="230" height="90" rx="8" class="b"/><text x="445" y="135" text-anchor="middle" class="t">Original training</text><text x="445" y="165" text-anchor="middle" class="s">T(D; seed)</text>
+<rect x="650" y="95" width="210" height="90" rx="8" class="b"/><text x="755" y="135" text-anchor="middle" class="t">Original model M</text>
+<rect x="940" y="95" width="210" height="90" rx="8" class="b"/><text x="1045" y="135" text-anchor="middle" class="t">Unlearned Mᵤ</text><text x="1045" y="165" text-anchor="middle" class="s">U(M, F)</text>
+<rect x="330" y="370" width="230" height="90" rx="8" class="b"/><text x="445" y="410" text-anchor="middle" class="t">Retained data D \ F</text>
+<rect x="650" y="370" width="210" height="90" rx="8" class="b"/><text x="755" y="405" text-anchor="middle" class="t">Repeated training</text><text x="755" y="438" text-anchor="middle" class="s">independent seeds</text>
+<rect x="940" y="370" width="210" height="90" rx="8" class="b"/><text x="1045" y="405" text-anchor="middle" class="t">Exact population</text><text x="1045" y="438" text-anchor="middle" class="s">{Mᵣ₁ … Mᵣₖ}</text>
+<path d="M230 245 L330 160" class="a"/><path d="M560 140 L650 140" class="a"/><path d="M860 140 L940 140" class="e"/>
+<path d="M230 285 L330 405" class="a"/><path d="M560 415 L650 415" class="a"/><path d="M860 415 L940 415" class="a"/>
+<path d="M1045 185 L1045 365" class="e"/><text x="1070" y="280" class="s">compare to distribution</text>
+<text x="600" y="570" text-anchor="middle" class="s">Solid blue: exact data/training path · dashed violet: approximate unlearning/comparison</text>
+</svg>"""
+    output.write_text(svg, encoding="utf-8")
+    metadata = {
+        "schema_version": 1,
+        "figure_id": "F001",
+        "title": "Counterfactual unlearning evaluation framework",
+        "type": "conceptual",
+        "contains_empirical_data": False,
+        "benchmark_version": "0.5.0",
+        "source_experiments": [],
+        "generation_script": "visualizations/scripts/build_f001_framework.py",
+        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "git_commit": None,
+        "output": output.as_posix(),
+        "output_sha256": hashlib.sha256(output.read_bytes()).hexdigest(),
+        "dimensions": {"width": 1200, "height": 620, "unit": "SVG viewBox units"},
+    }
+    sidecar = Path("visualizations/metadata/F001.yaml")
+    sidecar.parent.mkdir(parents=True, exist_ok=True)
+    sidecar.write_text(yaml.safe_dump(metadata, sort_keys=False), encoding="utf-8")
+    print(output)
+
+
+if __name__ == "__main__":
+    main()

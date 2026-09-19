@@ -1,0 +1,20 @@
+\subsection{Prospective class-conditioned assay calibration}
+A separate prospective pilot used five original seeds and 15 exact-retraining seeds
+per condition, without evaluating approximate methods. Full deletion of Fashion-MNIST
+class 0 and class 5 produced JS-divergence separability ratios of
+\PhaseThreeClassZeroJSRatio{} and \PhaseThreeClassFiveJSRatio{}, exceeding their
+simulated minimum detectable ratios of \PhaseThreeClassZeroMinimum{} and
+\PhaseThreeClassFiveMinimum{}. Half-class deletion and every tested disagreement,
+CKA-distance, and MMD endpoint remained assay-insensitive. A model-level precision
+simulation selected ten exact seeds for JS under the frozen 20\% interval rule in both
+full-class conditions.
+
+\subsection{Prospective equivalence-margin calibration}
+A second frozen pilot tested whether the condition-specific exact/exact 95th percentile
+could detect a controlled violation in which 1\% of the forbidden class remained in
+training. The candidate margins were \PhaseThreeClassZeroMargin{} for class 0 and
+\PhaseThreeClassFiveMargin{} for class 5. Detection probabilities were only
+\PhaseThreeClassZeroDetection{} and \PhaseThreeClassFiveDetection{}, respectively,
+below the prospectively required 80\% in both cases. The candidate margins are therefore
+inadmissible. Larger contamination levels were designated diagnostics and cannot rescue
+the failed primary rule. No approximate-method equivalence claim is made.

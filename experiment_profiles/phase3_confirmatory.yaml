@@ -1,0 +1,14 @@
+schema_version: 1
+profile: phase3_confirmatory
+maturity: CONFIRMATORY
+status: BLOCKED_PENDING_PREREGISTRATION_LOCK_AND_PILOT_POWER_ANALYSIS
+exact_k: 15
+regimes: [R0, R1, R2, R3]
+requirements:
+  - frozen deletion manifests
+  - frozen seed manifest
+  - frozen power-derived separability threshold
+  - metric-specific k convergence
+  - frozen equivalence bounds and multiplicity family
+  - green quality gates and tests
+

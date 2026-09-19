@@ -1,0 +1,15 @@
+schema_version: 1
+profile: publication_extended
+status: OPTIONAL_BLOCKED_UNTIL_MAIN_ANALYSIS
+inherits: experiment_profiles/main.yaml
+candidate_extensions:
+  architectures: [small_vit]
+  deletion_strategies: [rare_example, influence_selected, low_confidence, high_confidence]
+  modalities: [second_nonvision_dataset]
+  corruption_benchmarks: [licensed_vision_corruptions]
+  method_families: [sisa_training_system, influence_or_fisher, reference_distillation]
+selection_rule: >-
+  Add an extension only when the completed main analysis identifies a specific
+  generalization, mechanism, or robustness question; benchmark count alone is insufficient.
+launch_authorized: false
+

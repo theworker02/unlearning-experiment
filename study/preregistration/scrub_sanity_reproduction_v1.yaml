@@ -1,0 +1,98 @@
+schema_version: 1
+status: LOCKED
+execution_authorized: true
+source_draft_sha256: 297a2550fa2990a4c7ab2d9aea83586402b3c1fcf68d7159bf340f6e6390586d
+freeze_amendment: study/amendments/scrub_sanity_reproduction_v1_freeze_2026-09-02.yaml
+study_class: development_method_reproduction_check_not_publication_evidence
+experiment_id: scrub-fmnist-bn-sanity-v1
+objective: >-
+  Test whether the local paper-derived SCRUB core exhibits its declared max/min mechanism on a
+  train/eval-sensitive architecture before the method is admitted to any comparative study.
+scope:
+  dataset: fashion_mnist
+  dataset_role: development_only
+  architecture: small_cnn_bn
+  hidden_dim: 64
+  dataset_config:
+    name: fashion_mnist
+    root: data/raw
+    validation_fraction: 0.1
+    split_seed: 1729
+    train_limit: 10000
+    test_limit: 2500
+  deletion:
+    strategy: class
+    target_class: 0
+    fraction_within_class: 1.0
+  original_seeds: [3101, 3102, 3103]
+  unlearning_seed_rule: original_seed_plus_10000
+original_training:
+  device: auto
+  optimizer: adamw
+  epochs: 4
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  deterministic: true
+fixed_hyperparameters:
+  optimizer: adam
+  learning_rate: 0.0005
+  weight_decay: 0.0005
+  alpha: 0.5
+  gamma: 1.0
+  temperature: 1.0
+  max_steps: 2
+  steps: 3
+  forget_batch_size: 512
+  retain_batch_size: 128
+tuning_policy:
+  hyperparameter_search_permitted: false
+  test_data_used_for_selection: false
+  published_test_numbers_used_as_targets: false
+  failed_fixed_setting_policy: record_failure_and_redesign_new_version
+mechanism_diagnostics:
+  fixed_probe_batches_by_seed: true
+  record_before_and_after_each_max_min_epoch: true
+  required_fields:
+    - forget_teacher_student_kl
+    - retain_teacher_student_kl
+    - retain_cross_entropy
+    - forget_accuracy
+    - retain_accuracy
+    - test_accuracy
+    - gradient_l2_norm
+acceptance_criteria:
+  - criterion: initial_student_teacher_logits_are_not_identical
+    required_in_every_seed: true
+  - criterion: first_max_epoch_increases_forget_teacher_student_kl
+    required_in_every_seed: true
+  - criterion: first_min_epoch_decreases_retain_objective_on_fixed_probe
+    required_in_every_seed: true
+  - criterion: all_recorded_values_are_finite
+    required_in_every_seed: true
+acceptance_note: >-
+  These are mechanism sanity checks, not equivalence, privacy, competitive-performance, or
+  reproduction-of-headline-number claims.
+compute_control:
+  planned_original_trainings: 3
+  planned_unlearning_runs: 3
+  planned_exact_retrainings: 0
+  wall_time_estimate:
+    source_experiment: phase3-fmnist-class-conditioned-assay-pilot-v3
+    source_result: results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json
+    source_result_sha256: 2782863d7296f6a99611c14dbc64279714d0c92e4dc8d6d6a1577ab156a8ec4b
+    source_measurements: 5
+    observed_training_seconds: {median: 1.2341777159999765, maximum: 1.8014103500026977}
+    three_training_lower_bound_seconds: 5.404231050008093
+    limitation: >-
+      The source used the same dataset limit, epochs, device, and optimizer but a non-BatchNorm
+      small CNN. It is a measured scheduling lower bound, not a performance or memory estimate
+      for this BatchNorm mechanism study.
+  launch_requires_measured_estimate: true
+artifacts:
+  immutable_output_root: results/raw
+  failure_registry_required: true
+  per_epoch_trace_required: true
+release_effect:
+  success: permits behavioral sanity status only; human provenance review remains required
+  failure: SCRUB remains excluded from comparative profiles

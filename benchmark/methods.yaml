@@ -1,0 +1,12 @@
+schema_version: 1
+methods:
+  - {id: exact_retraining, category: control, status: available}
+  - {id: no_op, category: negative_control, status: planned}
+  - {id: fine_tune, category: simple_baseline, status: available}
+  - {id: naive_gradient_ascent, category: simple_baseline, status: available}
+  - id: scrub
+    category: literature_backed
+    status: pilot
+    citation_key: kurmanji2023unbounded
+    implementation: clean_room
+  - {id: sisa, category: literature_backed_system, status: planned}

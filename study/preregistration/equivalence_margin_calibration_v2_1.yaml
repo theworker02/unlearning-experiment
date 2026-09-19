@@ -1,0 +1,64 @@
+schema_version: 1
+protocol_id: equivalence-margin-calibration-v2.1
+status: FROZEN_VALIDATION_ONLY
+execution_authorized: true
+analysis_authorized: true
+freeze_amendment: study/amendments/equivalence_margin_calibration_v2_1_freeze_v2_2026-09-02.yaml
+decision_record: study/amendments/equivalence_margin_v2_1_sesoi_review.yaml
+frozen_input_plan: study/manifests/equivalence_margin_calibration_v2_1_frozen_plan_v2.json
+supersedes_if_approved: study/preregistration/equivalence_margin_calibration_v2.yaml
+change_reason: class_stratification_removes_an_avoidable_positive_control_composition_confound
+preserves_failed_predecessor: study/preregistration/equivalence_margin_calibration_v1.yaml
+endpoint:
+  name: mean_excess_js_to_leave_one_out_exact_ensemble
+  definition: >-
+    For each exact seed, subtract its median JS distance to the remaining exact ensemble from
+    the perturbed model's median JS distance to that same leave-one-out ensemble, then average
+    across independent model seeds.
+  direction: smaller_is_more_faithful
+probe:
+  split: validation
+  sample_ids_frozen_before_predictions: true
+  minimum_samples: 1000
+  expected_split_hash: 5ea0b32b7444fd605d8005a7fb842c18602504ee98b0f620ac23fc95ef57c0d9
+  strata: frozen_ground_truth_class_labels
+positive_control:
+  transformation: deterministic_top1_top2_probability_swap
+  selection: sha256_ranked_sample_ids_within_ground_truth_class
+  allocation: proportional_largest_remainder_with_sha256_tie_break
+  selection_seed: 91631
+  primary_fraction: 0.01
+  sensitivity_fractions: [0.005, 0.01, 0.02]
+  primary_balance_requirement: exactly_one_selected_sample_per_class
+  behavioral_interpretation: one_percentage_point_class_balanced_top1_disagreement
+  tie_policy: reject_condition_if_selected_top_two_probabilities_tie
+margin_estimation:
+  calibration_seed_count: 15
+  heldout_seed_count: 10
+  calibration_seeds: [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015]
+  heldout_seeds: [2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110]
+  seed_partition_frozen_before_prediction_loading: true
+  candidate_margin: one_sided_95_percent_lower_bootstrap_bound_of_primary_control_mean_excess_js
+  bootstrap_repetitions: 10000
+  bootstrap_seed: 91632
+admissibility:
+  minimum_heldout_primary_exceedance_probability: 0.80
+  require_strictly_monotone_heldout_median_across_severities: true
+  require_margin_positive_and_finite: true
+  require_all_conditions_pass: true
+  failure_action: no_equivalence_claim_and_main_profile_remains_blocked
+forbidden_inputs: [approximate_unlearning_outputs, test_split_predictions, method_names_or_rankings, confirmatory_results]
+scope:
+  initial_conditions:
+    - {condition_id: r1-class0-f1p00, dataset: fashion_mnist, architecture: small_cnn}
+    - {condition_id: r1-class5-f1p00, dataset: fashion_mnist, architecture: small_cnn}
+freeze_requirements:
+  - human_approval_of_class_balanced_one_percent_behavioral_SESOI
+  - versioned_v2_1_input_plan_and_preflight
+  - exact_seed_manifest_with_disjoint_calibration_and_holdout_sets
+  - separate_timestamped_freeze_amendment
+authorization_scope: >-
+  Authorized only to construct the heldout exact-retraining calibration controls, export
+  validation-only predictions, and evaluate calibration admissibility. This authorization
+  excludes approximate unlearning methods, test predictions, publication claims, and main
+  study execution.

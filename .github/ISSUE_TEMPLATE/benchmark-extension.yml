@@ -1,0 +1,17 @@
+name: Benchmark extension
+description: Propose a dataset, method, deletion regime, architecture, or metric extension.
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Extension type
+      options: [Dataset, Method, Deletion regime, Architecture, Metric]
+    validations: {required: true}
+  - type: textarea
+    id: scientific_role
+    attributes: {label: Scientific question and non-redundancy}
+    validations: {required: true}
+  - type: textarea
+    id: provenance
+    attributes: {label: Sources, licenses, implementation provenance, and validation plan}
+    validations: {required: true}

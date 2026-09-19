@@ -1,0 +1,80 @@
+\section{Experimental Design}
+\subsection{Dataset and split}
+The completed P001 pilot uses Fashion-MNIST, a ten-class collection of 28-by-28 grayscale
+fashion images \cite{xiao2017fashion}. The standard source contains 60,000 training and
+10,000 test images; P001 intentionally uses a reduced deterministic slice to validate the
+research machinery. The frozen split contains 9,000 training, 1,000 validation, and 2,500
+test examples. Dataset acquisition, scaling, split IDs, and the post-scaling dataset hash
+are recorded. This reduced slice is not presented as publication-scale evidence.
+
+The small slice makes the control path inspectable: a reviewer can reconstruct every split,
+rerun every exact replica, and inspect each raw record without requiring a large compute
+allocation. It does not establish that the observed variability, deletion behavior, or
+method ranking would persist at the scale, augmentation regime, and optimization horizon of
+a main benchmark. Fashion-MNIST is therefore used here as a bridge between Tier-0
+infrastructure checks and a future registered multi-dataset study, not as the empirical
+basis for a general claim about approximate unlearning.
+
+\subsection{Deletion request}
+The deletion policy samples one percent of the frozen training split uniformly without
+replacement using deletion seed 1009. The resulting immutable manifest contains
+\PilotForgetCount{} stable example IDs, leaving 8,910 retained examples. Both lists and
+their hashes are stored; the retained list is verified as the exact complement of the
+deletion list. This is an IID deletion, not a class-deletion, high-influence, rare-example,
+corrupted-label, or memorization stress regime.
+
+IID deletion provides a necessary reference condition because it separates the mechanics of
+manifest construction and counterfactual retraining from a selection rule that deliberately
+targets unusual training examples. It is not expected to be the most revealing deletion
+regime. The experiment schema retains explicit selection interfaces for class-specific,
+rare-example, clustered, mislabeled, influence-selected, and sequential requests. Those
+regimes should be introduced as registered factors rather than retrofitted after inspecting
+the IID pilot, since their selection procedures can change both the difficulty of unlearning
+and the appropriate interpretation of forget-set metrics.
+
+\subsection{Model and training}
+P001 uses the repository's small convolutional architecture with hidden dimension 64.
+Original and exact models are trained for four epochs with AdamW, batch size 128, learning
+rate $10^{-3}$, and weight decay $10^{-4}$. Deterministic execution is requested and the
+device is selected automatically. The original model uses seed 11; the exact population
+uses seeds 2001--2015. All exact models train on the same 8,910-example retained set.
+
+Holding the architecture, preprocessing, training schedule, and retained set fixed makes
+initialization and remaining stochastic training effects the intended source of variation
+within the exact population. Deterministic settings reduce incidental implementation
+variation within a run, but they do not make a single seed representative of all valid
+counterfactual trainings. The seed ensemble is therefore a design feature rather than a
+replication afterthought: its pairwise distances define the reference scale against which an
+approximate output is assessed.
+
+\subsection{Approximate engineering baselines}
+The pilot executes fine-tuning, naive gradient ascent, and SCRUB. Fine-tuning and naive
+gradient ascent are explicitly simple baselines; they are not described as competitive
+leading methods. The archived configuration records one unlearning epoch,
+learning rate $2\times10^{-4}$, retain batch size 128, forget batch size 64, retain weight
+1.0, forget weight 0.1, and the method-specific controls used by the runner. These choices
+validate a common interface and are not the product of a publication-scale tuning study.
+
+The distinction between an engineering baseline and a validated comparison method is
+important. Fine-tuning and naive ascent answer whether the evaluation and artifact pipeline
+can process simple parameter updates; they do not represent the contemporary method
+frontier. Literature-backed candidates enter a later comparative study only after their
+implementation provenance, licensing, mechanism checks, and tuning protocol have been
+documented. A method is not elevated to a publication baseline merely because it conforms to
+the same software API.
+
+\subsection{Environment and scope}
+The recorded run uses Python 3.12.3 and PyTorch 2.9.1 with ROCm 7.2 under WSL2 on an AMD
+Radeon RX 7800 XT. Runtime is measured around the corresponding training operation. R001
+includes P001 and separately labeled calibration evidence; none is treated as confirmatory.
+The C001 design remains an unlocked local draft and may not begin until its decision rules,
+manifests, and public prospective registration are finalized. Because the first
+equivalence-margin calibration failed, C001 currently has no admissible equivalence claim.
+
+The accelerator configuration is recorded because time and memory are properties of a
+specific software--hardware stack, not universal method constants. PyTorch's ROCm backend
+uses the “cuda” device namespace for compatibility even when CUDA itself is unavailable;
+the environment record separately reports the ROCm runtime so this naming convention is not
+misread as an NVIDIA execution claim. CPU execution remains supported for validation and
+small tests, while future profiles may run unchanged on compatible CUDA, ROCm, Apple Silicon,
+or cloud accelerators through the device abstraction.

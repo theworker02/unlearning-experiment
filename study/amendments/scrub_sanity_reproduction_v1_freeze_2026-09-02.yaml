@@ -1,0 +1,17 @@
+schema_version: 1
+amendment_id: scrub-sanity-reproduction-v1-freeze-2026-09-02
+status: LOCKED
+locked_at_utc: "2026-09-02T05:41:31.7711565Z"
+authorization_source: human_author_instruction_in_current_research_session
+authorization_text: "go"
+source_protocol: study/preregistration/scrub_sanity_reproduction_v1.yaml
+source_draft_sha256: 297a2550fa2990a4c7ab2d9aea83586402b3c1fcf68d7159bf340f6e6390586d
+scope: >-
+  Executes exactly three fixed-setting Fashion-MNIST BatchNorm SCRUB mechanism-sanity runs.
+  It does not authorize hyperparameter search, comparative pilot inclusion, equivalence claims,
+  privacy claims, publication, or use as publication evidence.
+compute_preflight: >-
+  The protocol binds a measured same-dataset/epoch/device scheduling lower bound from the
+  archived Phase-3 pilot. Its architecture mismatch is explicit and it must not be used as a
+  scientific performance or memory comparison.
+claims_permitted: development_method_reproduction_check_not_publication_evidence

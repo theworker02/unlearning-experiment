@@ -1,0 +1,68 @@
+schema_version: 1
+dataset_id: sklearn_digits
+canonical_name: Scikit-learn Digits
+origin: UCI optical recognition digits via scikit-learn
+citation: scikit-learn dataset documentation
+source: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html
+version: 1.9.0
+license: See scikit-learn and UCI dataset records
+access_date: '2026-08-30'
+raw_checksums:
+  canonical_loaded_arrays: 8b3b6ae90863430bdef06a3f7d1ec2f6a905a53d3375655b18cf63780ad98772
+processed_hash: 8b3b6ae90863430bdef06a3f7d1ec2f6a905a53d3375655b18cf63780ad98772
+counts:
+  train: 1257
+  validation: 180
+  test: 360
+dimensionality:
+- 64
+class_distribution:
+  train:
+    0: 124
+    1: 127
+    2: 124
+    3: 128
+    4: 127
+    5: 128
+    6: 127
+    7: 125
+    8: 121
+    9: 126
+  validation:
+    0: 18
+    1: 18
+    2: 18
+    3: 18
+    4: 18
+    5: 18
+    6: 18
+    7: 18
+    8: 18
+    9: 18
+  test:
+    0: 36
+    1: 37
+    2: 35
+    3: 37
+    4: 36
+    5: 36
+    6: 36
+    7: 36
+    8: 35
+    9: 36
+preprocessing: divide pixels by 16
+normalization: '[0, 1] fixed scaling; no fitted statistics'
+augmentation: none in current validation/pilot configurations
+exclusions: stratified development limits may apply from the experiment configuration
+transformations: deterministic tensor conversion
+splits:
+  method: stratified fixed-seed split
+  split_seed: 19
+  train_ids_sha256: ccbc1c2c7da08891c2cd0b5b16cd259f9937463b33cd9b587a316f59a975df63
+  validation_ids_sha256: c69217177242a1d4eca12140c5983a791f48a1cb37aff9534696feb84696d796
+  test_ids_sha256: 77e167852b3c23c016477df73d1fbee60fd42a19f6299b7c8a350dad10ce2d8d
+known_limitations: Development-only small grayscale dataset; forbidden as publication
+  evidence.
+ethical_considerations: Benchmark labels are not evidence of real-world deletion guarantees
+  or legal compliance.
+relevance: Infrastructure validation

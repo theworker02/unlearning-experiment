@@ -1,0 +1,112 @@
+schema_version: 1
+status: LOCKED
+execution_authorized: true
+source_draft_sha256: c6345727405b73249a858f97090dd22f136575d7cd733b41efd32e83d45067cf
+freeze_amendment: study/amendments/neggrad_plus_reproduction_v1_freeze_2026-09-02.yaml
+study_class: development_method_reproduction_and_tuning_not_publication_evidence
+experiment_family: neggrad-plus-fmnist-reproduction-v1
+objective: >-
+  Verify the directional behavior of the paper-derived NegGrad+ objective, then select a fixed
+  candidate using only declared training and validation information before any test evaluation.
+scope:
+  dataset: fashion_mnist
+  dataset_role: development_only
+  dataset_config:
+    name: fashion_mnist
+    root: data/raw
+    validation_fraction: 0.1
+    split_seed: 1729
+    train_limit: 10000
+    test_limit: 2500
+  architecture: small_cnn_bn
+  hidden_dim: 64
+  deletion:
+    strategy: class
+    target_class: 0
+    fraction_within_class: 1.0
+  original_seeds: [4101, 4102, 4103]
+  unlearning_seed_rule: original_seed_plus_10000_plus_candidate_index
+original_training:
+  device: auto
+  optimizer: adamw
+  epochs: 4
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  deterministic: true
+stage_1_fixed_sanity:
+  source: Kurmanji et al. 2023 small-scale NegGrad+ setting
+  hyperparameters:
+    beta: 0.95
+    epochs: 10
+    optimizer: sgd
+    learning_rate: 0.01
+    weight_decay: 0.1
+    momentum: 0.9
+    batch_size: 128
+  acceptance_criteria:
+    - combined_objective_and_gradients_are_finite
+    - forget_cross_entropy_after_unlearning_exceeds_before_unlearning_in_every_seed
+    - all_three_declared_seeds_complete
+  interpretation: mechanism_sanity_only_not_published_result_reproduction
+stage_2_validation_only_tuning:
+  requires_stage_1_acceptance: true
+  grid:
+    beta: [0.95, 0.99, 0.999, 0.9999]
+    epochs: [5, 10]
+    optimizer: [sgd]
+    learning_rate: [0.01]
+    weight_decay: [0.1]
+    momentum: [0.9]
+    batch_size: [128]
+  candidate_count: 8
+  selection_data:
+    retain_training_split: permitted
+    matched_target_class_validation_split: permitted
+    full_validation_split: permitted
+    test_split: prohibited
+    exact_retraining_predictions_or_distances: prohibited
+  selection_rule:
+    utility_constraint: validation_accuracy_drop_from_original_at_most_0.05
+    primary_among_feasible: maximize_target_class_validation_cross_entropy
+    tie_breaks:
+      - fewer_epochs
+      - higher_beta
+      - lexicographic_candidate_id
+    no_feasible_candidate: record_failure_and_create_new_protocol_version
+  margin_status: fixed_engineering_constraint_not_equivalence_margin
+final_evaluation:
+  occurs_only_after_candidate_selection: true
+  test_evaluation_count_per_original_seed: 1
+  exact_counterfactual_comparison: deferred_to_separate_counterfactual_study
+  claims_permitted:
+    - objective_mechanism_sanity_pass_or_fail
+    - selected_hyperparameters_and_validation_rule
+  claims_prohibited:
+    - successful_unlearning
+    - equivalence_to_exact_retraining
+    - competitive_superiority
+    - privacy_guarantee
+compute_control:
+  planned_original_trainings: 3
+  planned_stage_1_unlearning_runs: 3
+  planned_stage_2_candidate_runs: 24
+  planned_final_evaluations: 3
+  planned_total_model_updates: 30
+  wall_time_estimate:
+    source_experiment: phase3-fmnist-class-conditioned-assay-pilot-v3
+    source_result: results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json
+    source_result_sha256: 2782863d7296f6a99611c14dbc64279714d0c92e4dc8d6d6a1577ab156a8ec4b
+    observed_training_seconds: {median: 1.2341777159999765, maximum: 1.8014103500026977}
+    three_original_training_lower_bound_seconds: 5.404231050008093
+    limitation: same dataset limit, epochs, device, and optimizer but non-BatchNorm source architecture
+  launch_requires_measured_estimate: true
+artifact_policy:
+  output_root: results/raw
+  stage_1_experiment_id: neggrad-plus-fmnist-sanity-v1
+  stage_2_experiment_id: neggrad-plus-fmnist-tuning-v1
+  exclusive_creation: true
+  append_only_failure_registry: true
+  protocol_hash_required: true
+  per_candidate_metrics_required: true
+  unfavorable_and_failed_candidates_preserved: true

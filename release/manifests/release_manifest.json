@@ -1,0 +1,63 @@
+{
+  "assigned_maturity": "0.5.0",
+  "benchmark_version": "0.5.0",
+  "counts": {
+    "architecture_entries": 5,
+    "available_datasets": 2,
+    "dataset_registry_entries": 6,
+    "deletion_manifests": 79,
+    "empirical_pilot_figures": 1,
+    "empirical_publication_figures": 0,
+    "gate_passing_records": 3,
+    "inconclusive_research_questions": 5,
+    "indexed_model_checkpoints": 64,
+    "method_entries": 6,
+    "presentation_slides": 12,
+    "publication_eligible_records": 0,
+    "raw_experiment_records": 10,
+    "research_questions": 5,
+    "verified_claims": 0
+  },
+  "doi": null,
+  "empirical_results_included": false,
+  "files": [
+    {
+      "path": "benchmark/benchmark_manifest.json",
+      "sha256": "eeafdfbaf1c9c17dfbc1a1e0d4ebc99f9381ebbc61c38579d34eb47fb8ac0813",
+      "size_bytes": 1116
+    },
+    {
+      "path": "release/metadata/repository_inventory.json",
+      "sha256": "f8f295ccd35537f27d099e22d96a5f53435924c47120ed95dc56c154dcf0a846",
+      "size_bytes": 4438
+    },
+    {
+      "path": "release/metadata/maturity_evaluation.json",
+      "sha256": "3d5e80fca2f448efbb9010a0d28ec97fef4c43697b4583de9abf06eee719f38a",
+      "size_bytes": 2923
+    },
+    {
+      "path": "research/experiment_ledger.csv",
+      "sha256": "318f28222f0768fe73688909494b44a7ffa5c6bcffb91657a9111baed499248c",
+      "size_bytes": 7915
+    },
+    {
+      "path": "model_zoo/model_manifest.csv",
+      "sha256": "845dab3eca3f7a7ad7146fff6401d9f0c3cbd6a2f3f9151908f867193df02736",
+      "size_bytes": 31465
+    },
+    {
+      "path": "EVIDENCE.md",
+      "sha256": "c7f059b4cdb9d05431f0f06edec14f81f0fcc20f80bc1fb320b18f69eec606c9",
+      "size_bytes": 632
+    },
+    {
+      "path": "PUBLICATION_READINESS.md",
+      "sha256": "12801b2edee8cd10bdd0f0a1aac1dc33ae5b599481cf4531691cbb7837ad350b",
+      "size_bytes": 799
+    }
+  ],
+  "generated_at_utc": "2026-09-02T15:08:03.100876+00:00",
+  "release_kind": "research_infrastructure_candidate",
+  "schema_version": 1
+}

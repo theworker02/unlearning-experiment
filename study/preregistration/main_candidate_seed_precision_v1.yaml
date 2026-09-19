@@ -1,0 +1,36 @@
+schema_version: 1
+protocol_id: main-candidate-seed-precision-v1
+status: PROSPECTIVE_DRAFT_NOT_LOCKED
+execution_authorized: false
+analysis_authorized: false
+purpose: >-
+  Determine per-method candidate replication using validation-only stochastic replicates,
+  without selecting or ranking methods from test outcomes.
+evidence_role: validation_only_not_publication_evidence
+input_artifact: results/validation/main_candidate_seed_precision_inputs_v1.json
+output_artifact: results/processed/main_candidate_seed_precision_v1.json
+groups:
+  - {group_id: fine-tune-class0-js, method: fine_tune, condition_id: r1-class0-f1p00, metric: js_divergence}
+  - {group_id: fine-tune-class5-js, method: fine_tune, condition_id: r1-class5-f1p00, metric: js_divergence}
+  - {group_id: neggrad-plus-class0-js, method: neggrad_plus, condition_id: r1-class0-f1p00, metric: js_divergence}
+  - {group_id: neggrad-plus-class5-js, method: neggrad_plus, condition_id: r1-class5-f1p00, metric: js_divergence}
+  - {group_id: scrub-class0-js, method: scrub, condition_id: r1-class0-f1p00, metric: js_divergence}
+  - {group_id: scrub-class5-js, method: scrub, condition_id: r1-class5-f1p00, metric: js_divergence}
+  - {group_id: ssd-class0-js, method: ssd, condition_id: r1-class0-f1p00, metric: js_divergence}
+  - {group_id: ssd-class5-js, method: ssd, condition_id: r1-class5-f1p00, metric: js_divergence}
+endpoint: per_candidate_seed_median_candidate_to_exact_validation_js
+resampling_unit: independently_initialized_candidate_unlearning_seed
+candidate_seed_counts: [5, 8, 10, 15, 20]
+confidence_level: 0.95
+maximum_relative_interval_half_width: 0.20
+bootstrap_repetitions: 5000
+bootstrap_seed: 84522
+selection_rule: first_candidate_passing_every_method_by_frozen_group
+minimum_available_pilot_seeds: 20
+forbidden_inputs: [test_split_metrics, method_rankings, winner_labels, confirmatory_outputs]
+failure_action: leave_candidate_seed_count_null
+freeze_requirements:
+  - every_method_passes_its_reproduction_and_provenance_gate
+  - endpoint_and_groups_human_reviewed
+  - input_seed_manifest_frozen
+  - protocol_status_changed_to_FROZEN_VALIDATION_ONLY_by_amendment

@@ -1,0 +1,17 @@
+schema_version: 1
+status: DRAFT_NOT_LOCKED
+splits: [forget, retain, test]
+functional: [js_divergence, prediction_disagreement, nll_delta, confidence_delta, margin_delta, ece_delta, brier_delta]
+privacy:
+  attacks: [loss, confidence, entropy, margin]
+  outputs: [roc_auc, attack_advantage, tpr_at_fpr_0p01]
+  interpretation: audit_component_not_proof
+representation:
+  primary: [layerwise_linear_cka_distance, layerwise_mmd]
+  exploratory: [linear_probe, information_residual]
+relearning:
+  status: exploratory
+  outputs: [steps_to_threshold, examples_to_threshold, loss_trajectory, gradient_norm_trajectory, accuracy_trajectory]
+utility: [accuracy, nll, ece, brier]
+reporting: multidimensional_no_global_score
+

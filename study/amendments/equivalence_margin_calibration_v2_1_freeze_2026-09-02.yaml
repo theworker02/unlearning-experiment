@@ -1,0 +1,33 @@
+schema_version: 1
+amendment_id: equivalence-margin-calibration-v2.1-freeze-2026-09-02
+status: LOCKED
+locked_at_utc: '2026-09-02T18:51:00Z'
+authorization_source: human-author instruction to decide and proceed in the current research session
+authorization_scope: validation_only_calibration_no_approximate_methods_no_test_predictions
+decision_record:
+  path: study/amendments/equivalence_margin_v2_1_sesoi_review.yaml
+  sha256: 9c8132833c915bf55ca1755845a87f69f45c0692cd5bbe81d67ba6bf8f242108
+source_protocol:
+  path: study/preregistration/equivalence_margin_calibration_v2_1.yaml
+  sha256: a9294142e2110e78a0c77ce562b597086b232deb16acffe6c74ce5196c78680a
+frozen_input_plan:
+  path: study/manifests/equivalence_margin_calibration_v2_1_frozen_plan.json
+  sha256: 39b9afb770b849f0c3a987f0150e0b3474c4411e0b5a2470e4f43923d2600dfd
+scientific_decision:
+  sesoi: one_percentage_point_class_balanced_top1_disagreement_on_frozen_validation_probe
+  positive_control: deterministic_top1_top2_probability_swap
+  domain_scope: Fashion-MNIST_small-CNN_calibration_only
+  nontransferability: true
+  does_not_authorize:
+    - approximate_unlearning_method_execution
+    - test_prediction_access
+    - main_study_execution
+    - equivalence_claim
+    - publication_claim
+execution_invariants:
+  - calibration_and_holdout_seed_sets_remain_disjoint
+  - validation_split_hash_matches_frozen_protocol
+  - every_heldout_checkpoint_and_prediction_is_new_and_append_only
+  - positive-control_selection_is_class_balanced_at_primary_fraction
+  - all_analyses_exclude_test_predictions_and_approximate_method_outputs
+failure_action: retain_all_artifacts_and_keep_main_profile_blocked_if_admissibility_fails

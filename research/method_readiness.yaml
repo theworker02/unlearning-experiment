@@ -1,0 +1,64 @@
+schema_version: 1
+policy:
+  readiness_is_profile_specific: true
+  unregistered_methods_block_launch: true
+  missing_provenance_blocks_launch: true
+  comparative_main_requires_frozen_tuning_and_reproduction: true
+methods:
+  fine_tune:
+    role: simple_engineering_baseline
+    registered: true
+    license_audit: research/method_license_audit.yaml
+    eligible_profiles: [pilot]
+    blockers_for_main:
+      - passing_fine_tune_tuning_artifact
+      - repository_release_review
+  naive_gradient_ascent:
+    role: simple_engineering_baseline_not_state_of_the_art
+    registered: true
+    license_audit: research/method_license_audit.yaml
+    eligible_profiles: [pilot]
+    blockers_for_main:
+      - not_selected_as_competitive_main_method
+  scrub:
+    role: literature_backed_clean_room_adaptation
+    registered: true
+    license_audit: research/method_license_audit.yaml
+    reproduction_audit: research/method_reproduction/scrub.yaml
+    eligible_profiles: []
+    blockers_for_pilot:
+      - passing_scrub_sanity_artifact
+      - human_clean_room_provenance_review
+    blockers_for_main:
+      - passing_scrub_sanity_artifact
+      - human_clean_room_provenance_review
+      - passing_scrub_tuning_artifact
+      - competitive_reproduction_check
+  neggrad_plus:
+    role: literature_baseline_candidate
+    registered: true
+    license_audit: research/method_license_audit.yaml
+    reproduction_audit: research/method_reproduction/neggrad_plus.yaml
+    eligible_profiles: []
+    blockers_for_main:
+      - passing_neggrad_plus_reproduction_artifacts
+      - human_provenance_review
+  scrub_rewind:
+    role: literature_backed_privacy_variant_candidate
+    registered: false
+    eligible_profiles: []
+    blockers_for_main:
+      - implementation_missing
+      - validation_distribution_and_checkpoint_selection_protocol_missing
+      - human_clean_room_provenance_review
+      - reproduction_check_missing
+  ssd:
+    role: literature_backed_selective_synaptic_dampening_candidate
+    registered: false
+    eligible_profiles: []
+    blockers_for_main:
+      - runtime_registration_intentionally_disabled
+      - upstream_attributed_code_without_explicit_licenses_and_unversioned_reference_environment
+      - passing_fisher_estimator_sensitivity_artifact
+      - human_clean_room_provenance_review
+      - passing_ssd_reproduction_artifacts

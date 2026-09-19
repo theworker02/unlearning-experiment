@@ -1,0 +1,23 @@
+schema_version: 1
+benchmark_version: 0.5.0
+datasets:
+  - id: sklearn_digits
+    role: ci
+    status: available
+    card: research/datasets/sklearn_digits.yaml
+  - id: fashion_mnist
+    role: pilot
+    status: available
+    card: research/datasets/fashion_mnist.yaml
+  - id: cifar10
+    role: primary_vision
+    status: planned
+  - id: cifar100
+    role: primary_vision_complexity
+    status: planned
+  - id: tabular_1
+    role: cross_modality
+    status: selection_pending_license_audit
+  - id: tabular_2
+    role: cross_modality
+    status: selection_pending_license_audit

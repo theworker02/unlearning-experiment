@@ -1,0 +1,49 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,hyperref}
+\title{Supplement to Auditable Empirical Evaluation of Machine Unlearning}
+\author{Matthew Looney (Magnexis)}
+\date{Research Release R001 --- P001}
+\begin{document}
+\maketitle
+\section{Scope}
+This supplement inventories the reproducibility contract for the retrospective P001 pilot.
+It is not evidence for C001 or for general unlearning effectiveness.
+\section{Model and optimization}
+The complete architecture, initialization, optimizer, learning rate, epoch count, batch
+size, and method configurations are preserved in the P001 configuration and raw record.
+The release verifier checks their hashes rather than restating them manually here.
+\section{Seeds and manifests}
+The exact-retraining seeds are 2001--2015. The release includes machine-readable deletion
+and retained indices and verifies that they are disjoint and jointly reconstruct the frozen
+training split.
+\section{Dataset integrity}
+The reduced pilot contains 9,000 training, 1,000 validation, and 2,500 test examples. The
+canonical post-scaling dataset SHA-256 is
+\texttt{1ad69a47dbce37a98443e5e5628a031b5910be879d3589e945a1519f805aa28c}.
+\section{Quality gates and storage}
+Schema, hashes, split integrity, deleted-set exclusion, finite metrics, checkpoint and
+prediction references, raw immutability, and figure provenance are checked automatically.
+Raw evidence and derived summaries remain separate.
+\section{Exact/exact and convergence calculations}
+Exact/exact distances characterize stochastic retraining variability. The frozen pilot
+diagnostic compares estimates based on the first ten and all fifteen exact seeds. Pairwise
+distances are not treated as independent experimental units in later power simulations.
+\section{Approximate methods}
+P001 executed fine-tuning, naïve gradient ascent, and SCRUB. The first two are simple
+engineering baselines. Because the deletion condition was retrospectively assay-insensitive,
+their output proximity is not interpreted as successful forgetting.
+\section{Runtime and environment}
+Runtime metadata records WSL2, Python 3.12.3, PyTorch 2.9.1 with ROCm 7.2, and the AMD RX
+7800 XT. Runtime numbers are configuration-specific descriptive measurements.
+\section{Failure and amendment records}
+The failure registry, corrections file, negative-result record NR001, decision log, and
+registration drafts are included or referenced by the release inventory.
+\section{Reproduction protocol}
+Run \texttt{python scripts/verify\_r001\_release.py} for Level A artifact verification.
+Level B retraining uses the frozen P001 configuration and must create a new output record;
+it must not overwrite the archived experiment.
+\section{Artifact inventory and timeline}
+The release checksum manifest is authoritative. HISTORY.md and research/PROJECT\_TIMELINE.md
+distinguish retrospective P001 work from the not-yet-executed prospective C001 study.
+\end{document}

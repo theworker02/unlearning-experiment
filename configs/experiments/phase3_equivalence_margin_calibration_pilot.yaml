@@ -1,0 +1,65 @@
+experiment_id: phase3-fmnist-equivalence-margin-calibration-pilot-v1
+maturity: PILOT
+dataset:
+  name: fashion_mnist
+  root: data/raw
+  validation_fraction: 0.1
+  split_seed: 1729
+  train_limit: 10000
+  test_limit: 2500
+model: {architecture: small_cnn, hidden_dim: 64}
+training:
+  device: auto
+  optimizer: adamw
+  epochs: 4
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  momentum: 0.9
+  deterministic: true
+original_seeds: [101, 102, 103, 104, 105]
+exact_seeds: [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015]
+conditions:
+  - strategy: class_conditioned
+    condition_id: margin-class0-f0p90
+    seed: 4201
+    fraction: 0.90
+    target_class: 0
+    manifest: deletion_manifests/phase3/fashion_mnist/margin-class0-f0.90-seed4201.json
+  - strategy: class_conditioned
+    condition_id: margin-class0-f0p95
+    seed: 4201
+    fraction: 0.95
+    target_class: 0
+    manifest: deletion_manifests/phase3/fashion_mnist/margin-class0-f0.95-seed4201.json
+  - strategy: class_conditioned
+    condition_id: margin-class0-f0p99
+    seed: 4201
+    fraction: 0.99
+    target_class: 0
+    manifest: deletion_manifests/phase3/fashion_mnist/margin-class0-f0.99-seed4201.json
+  - strategy: class_conditioned
+    condition_id: margin-class5-f0p90
+    seed: 4201
+    fraction: 0.90
+    target_class: 5
+    manifest: deletion_manifests/phase3/fashion_mnist/margin-class5-f0.90-seed4201.json
+  - strategy: class_conditioned
+    condition_id: margin-class5-f0p95
+    seed: 4201
+    fraction: 0.95
+    target_class: 5
+    manifest: deletion_manifests/phase3/fashion_mnist/margin-class5-f0.95-seed4201.json
+  - strategy: class_conditioned
+    condition_id: margin-class5-f0p99
+    seed: 4201
+    fraction: 0.99
+    target_class: 5
+    manifest: deletion_manifests/phase3/fashion_mnist/margin-class5-f0.99-seed4201.json
+statistics:
+  alpha: 0.05
+  target_power: 0.80
+  simulation_repetitions: 2000
+  simulation_seed: 73195
+  candidate_separation_ratios: {start: 1.0, stop: 4.0, step: 0.05}
+output_root: results/raw

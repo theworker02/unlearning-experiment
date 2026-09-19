@@ -1,0 +1,42 @@
+\section{Problem Formulation}
+Let the original training set be $D=D_r\cup D_f$, where $D_f$ is the requested deletion
+set, $D_r$ is the retained set, and $D_r\cap D_f=\varnothing$. Let $A$ denote a randomized
+training algorithm and $U$ an approximate unlearning operator. The original, exact, and
+approximately unlearned models are
+\begin{align}
+M_0 &= A(D;s_0),\\
+M_R^{(s)} &= A(D_r;s),\\
+M_U &= U(M_0,D_f,D_r;\eta),
+\end{align}
+where $s$ indexes training randomness and $\eta$ contains method-specific randomness and
+hyperparameters. The exact counterfactual is consequently the population
+\begin{equation}
+\mathcal{R}(D_f)=\{M_R^{(s)}:s\sim\mathcal{S}\},
+\end{equation}
+not a single model or parameter vector. P001 approximates this population with 15 fixed,
+independent seeds.
+
+For a probe set $X$ and discrepancy functional $d_j$, exact/exact variation is represented
+by
+\begin{equation}
+\mathcal{N}_j=\{d_j(M_R^{(a)},M_R^{(b)};X):a<b\}.
+\end{equation}
+This set is an empirical null reference, but its $\binom{k}{2}$ entries are not independent
+because each trained model appears in multiple pairs. Seed-level or manifest-level
+resampling is therefore required for inferential procedures.
+
+The original/exact distribution
+\begin{equation}
+\mathcal{O}_j=\{d_j(M_0,M_R^{(s)};X):s\in S\}
+\end{equation}
+tests whether deletion produces an observable signal relative to ordinary retraining
+variation. Only after this reference-sensitivity condition is met do we interpret the
+approximate/exact distribution
+\begin{equation}
+\mathcal{U}_j=\{d_j(M_U,M_R^{(s)};X):s\in S\}.
+\end{equation}
+
+Counterfactual fidelity is kept multidimensional. A claim can concern predictions,
+probability distributions, calibration, privacy attacks, intermediate representations,
+local neighborhoods, robustness under controlled corruptions, retained utility, or
+computational cost. Agreement on one coordinate does not imply agreement on another.

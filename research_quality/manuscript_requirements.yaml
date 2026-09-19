@@ -1,0 +1,10 @@
+schema_version: 1
+blockers:
+  - unverified_citation
+  - unsupported_claim
+  - missing_generated_macro
+  - missing_figure_or_table
+  - placeholder_or_todo
+  - undefined_reference
+  - unregistered_quantitative_claim
+language_audit_terms: [proves, guarantees, always, universally, definitive, unprecedented, state-of-the-art, first, significantly]

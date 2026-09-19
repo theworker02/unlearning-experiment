@@ -1,0 +1,12 @@
+{
+  "checkpoint_count": 30,
+  "condition_count": 2,
+  "plan_sha256": "56ba7173a75b741ec0e85e3f7ed52b7f41679f250d321df857637df785384198",
+  "protocol_sha256": "d976f2c258071f28b4d5bc72ab0e681fb1d64208b2f435ebad67308392d336c0",
+  "schema_version": 1,
+  "state_schema_sha256": "350d38644ba09608bb2f5a8c9dc6161e50455b6d3946317d1b11b1a128f7c393",
+  "status": "PASS",
+  "test_predictions_accessed": false,
+  "training_executed": false,
+  "validation_sample_count": 1000
+}

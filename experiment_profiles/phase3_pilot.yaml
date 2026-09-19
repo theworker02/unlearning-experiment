@@ -1,0 +1,12 @@
+schema_version: 1
+profile: phase3_assay_pilot
+maturity: EXPLORATORY
+purpose: validate schema-v3, separability, privacy, and representation machinery
+regimes:
+  R0: {fractions: [0.005, 0.02, 0.05, 0.10], manifests_per_fraction: 1}
+  R1: {classes: [0, 1], within_class_fractions: [0.25, 1.0], exact_k: 5}
+  R2: {ranking: original_model_loss, fractions: [0.005, 0.02], exact_k: 5}
+  R3: {status: generator_validation_only}
+exact_k_default: 5
+launch_authorized: false
+

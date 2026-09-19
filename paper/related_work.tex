@@ -1,0 +1,73 @@
+\section{Related Work}
+\subsection{Definitions and counterfactual targets}
+Certified removal formalizes a distributional relationship between an updated learning
+system and retraining \cite{guo2020certified}.  Stability-oriented work studies deletion
+bounds for particular objective classes \cite{neel2021descent}, while generalization-based
+formulations clarify that correct classification of a deleted IID example need not imply
+instance-specific memory \cite{sekhari2021remember}.  These distinctions motivate the
+present separation between procedural exclusion, empirical behavioral similarity, and a
+formal certificate.  This paper supplies the first two for a pilot and claims neither that
+the empirical envelope is a certificate nor that matching finite probes establishes erasure.
+
+\subsection{Efficient unlearning methods}
+SISA partitions training into shards and slices so that a deletion can trigger partial
+rather than complete retraining \cite{bourtoule2021machine}.  Gradient-based approaches
+instead update a trained model, with objectives that may increase loss on forgotten data,
+recover utility on retained data, or combine teacher and student signals.  SCRUB is a
+representative deep-network method evaluated in the unbounded-unlearning setting
+\cite{kurmanji2023unbounded}.  Selective Synaptic Dampening modifies parameters according
+to estimated importance \cite{foster2024ssd}.  The method classes make different structural
+assumptions and expose different cost profiles; consequently, a single forget-accuracy
+number is not a sufficient common target.
+
+The P001 implementation includes fine-tuning and naive gradient ascent as simple
+engineering baselines and a clean-room SCRUB implementation.  Their presence validates a
+common interface but does not establish competitive reproduction.  A method enters the
+confirmatory comparison only after its paper, implementation provenance, license,
+deviations, and at least one sanity-check behavior are recorded.
+
+\subsection{Privacy attacks and behavioral evidence}
+Membership inference tests whether an adversary can distinguish members from non-members
+using model behavior \cite{shokri2017membership}.  It is an important privacy diagnostic,
+but an attack result is conditional on the adversary, features, reference population, and
+training data.  Chance-level performance for one attack does not demonstrate that the
+unlearned model behaves like an exact retrain, just as prediction agreement does not rule
+out privacy leakage.  The proposed contradiction matrix therefore reports privacy beside,
+rather than as a substitute for, predictive, probabilistic, calibration, representation,
+and local endpoints.
+
+\subsection{Auditability and benchmark methodology}
+Auditable definitions motivate retaining the executed algorithm, deletion request, data
+lineage, and exclusion evidence rather than attempting to infer the entire procedure from
+outputs \cite{thudi2022auditable}.  Our artifact design follows this principle by coupling
+behavioral records with immutable manifests and checkpoint hashes.  Deep-unlearning
+benchmarks compare utility and forgetting objectives \cite{kurmanji2023unbounded}; the
+specific measurement question here is whether those surface criteria can disagree with a
+population of exact counterfactual models.  The contribution sought is therefore an
+evaluation design and empirical contradiction study, not another isolated method.
+
+Wichert and Sikdar show directly that random forget sets can make an unlearning method
+difficult to distinguish from retaining the original model, and recommend influential
+instances for more diagnostic evaluation \cite{wichert2024rethinking}.  MUSE broadens
+evaluation to six properties and repeated deletion requests for language models
+\cite{shi2025muse}.  Gao et al. demonstrate that favorable output behavior may coexist
+with recoverable forgotten information in internal representations
+\cite{gao2026illusion}.  These results substantially narrow the present contribution:
+neither metric disagreement, representation auditing, sequential evaluation, nor the
+weakness of random deletion is claimed as new.  Lanyon et al. further show that evaluation
+can depend materially on the original model training seed and that additional unlearning
+seeds do not generally compensate for a single-training-seed design
+\cite{lanyon2026seeds}.  Accordingly, varying original training seeds is a required control,
+not a contribution claimed by this study.  The unresolved question is whether a
+prespecified assay can calibrate approximate-model discrepancies against the natural
+distribution of independently exact-retrained models and identify contradictions without
+using approximate-method outcomes to choose the test.
+
+\subsection{Scope of the present evidence}
+Fashion-MNIST supplies a modest neural test bed \cite{xiao2017fashion}.  It is useful for
+exercising stochastic training and probability-level metrics but cannot establish
+cross-dataset or architecture-level generality.  Digits is reserved for deterministic CI.
+The staged program moves to stronger vision and tabular settings only after the reference
+assay and statistical rules are frozen.  The complete literature-review and citation-audit
+records are maintained separately so that unverified recollection cannot silently enter
+the bibliography.

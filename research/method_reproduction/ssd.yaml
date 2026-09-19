@@ -1,0 +1,112 @@
+schema_version: 1
+method: Selective Synaptic Dampening
+status: equation_4_core_implemented_and_unit_tested_registry_disabled
+paper:
+  citation_key: foster2024ssd
+  title: Fast Machine Unlearning without Retraining through Selective Synaptic Dampening
+  authors:
+    - Jack Foster
+    - Stefan Schoepf
+    - Alexandra Brintrup
+  venue: Proceedings of the AAAI Conference on Artificial Intelligence
+  year: 2024
+  canonical_url: https://ojs.aaai.org/index.php/AAAI/article/view/29092
+  arxiv_url: https://arxiv.org/abs/2308.07707
+  doi: 10.1609/aaai.v38i11.29092
+  verified_version: arXiv_v2_and_AAAI_2024_metadata
+official_implementation:
+  repository: https://github.com/if-loops/selective-synaptic-dampening
+  author_linked: true
+  version_pin: cdfdc0e35c1908e032a6e150d882b0fa17833f85
+  version_pin_date: 2024-09-11
+  license: https://raw.githubusercontent.com/if-loops/selective-synaptic-dampening/main/LICENSE
+  license_class: MIT
+  license_verified: true
+  source_comparison_performed: true
+  source_comparison_scope: static_SSD_core_and_dependency_inventory_no_upstream_execution
+  behavioral_comparison_performed: false
+  transitive_code_assets_checkpoints_and_dependencies_audited: false
+  inventory:
+    tracked_files: 30
+    submodules: 0
+    bundled_checkpoints: 0
+    dependency_lock: absent
+  static_comparison:
+    common_elements:
+      - strict_forget_importance_greater_than_alpha_times_full_importance_selection
+      - multiplicative_lambda_times_full_importance_divided_by_forget_importance
+      - upper_bound_of_one_on_the_multiplicative_factor
+    deliberate_local_deviations:
+      - >-
+        The pinned official code squares the gradient of each minibatch-mean loss and averages those
+        tensors over batches. The local implementation squares per-example log-likelihood gradients
+        before averaging, which follows the empirical expectation directly and avoids cross-terms.
+      - >-
+        The pinned official code exposes an exponent applied to the dampening ratio, although its
+        strategy wrappers set the exponent to one. The local implementation directly encodes
+        published Equation 4 and has no exponent option.
+      - >-
+        The local estimator explicitly uses evaluation mode and restores the prior model mode. The
+        paper does not prescribe BatchNorm/dropout mode, so this choice requires sensitivity testing.
+    equivalence_claim: prohibited_until_behavioral_comparison_and_estimator_sensitivity_analysis
+scope_boundary:
+  adaptive_extension_repository: https://github.com/if-loops/adaptive-selective-synaptic-dampening
+  adaptive_extension_status: separate_later_work_not_the_reference_for_original_SSD
+paper_algorithm:
+  stored_training_statistic: diagonal_Fisher_information_on_full_training_set_D
+  request_statistic: diagonal_Fisher_information_on_forget_set_D_f
+  selection_rule: select_parameter_i_when_F_D_f_i_is_greater_than_alpha_times_F_D_i
+  dampening_factor: beta_i_equals_minimum_of_lambda_times_F_D_i_divided_by_F_D_f_i_and_1
+  parameter_update: theta_i_prime_equals_beta_i_times_theta_i_for_selected_parameters
+  paper_hyperparameters:
+    resnet18_cifar:
+      alpha: 10
+      lambda: 1
+    reported_search_space:
+      alpha: closed_interval_0.1_to_100
+      lambda: closed_interval_0.1_to_5
+  caveats:
+    - the paper substitutes full-training Fisher information for retained-set Fisher information
+    - the stored full-training Fisher statistic is computed before deletion requests
+    - the paper describes SSD as deterministic after the trained model data and hyperparameters are fixed
+    - published headline behavior has not been reproduced in this repository
+local_implementation:
+  module: src/exact_unlearning/ssd.py
+  status: equation_4_core_and_per_example_empirical_fisher_unit_tested
+  third_party_source_included: false
+  implementation_strategy: declared_clean_room_from_published_equation_4
+  runtime_registry_status: intentionally_disabled
+  conformance:
+    - per_example_log_likelihood_gradient_squares_are_averaged_without_batch_cross_terms
+    - selection_uses_strict_forget_fisher_greater_than_alpha_times_full_fisher
+    - selected_parameters_are_multiplied_by_minimum_lambda_ratio_or_one
+    - jointly_zero_fisher_entries_are_not_selected
+    - full_training_fisher_is_supplied_as_a_precomputed_statistic
+    - original_model_is_not_mutated
+protocol:
+  path: study/preregistration/ssd_reproduction_v1.yaml
+  status: draft_not_locked_or_authorized
+  candidate_count: 9
+  candidate_runs: 27
+  selection_rule: validation_utility_constrained_forget_training_cross_entropy
+  artifact_validator: scripts/validate_ssd_artifacts.py
+  guarded_runner: scripts/run_ssd_reproduction.py
+  runner_status: complete_but_refuses_draft_or_unauthorized_protocol_before_reservation
+fisher_estimator_sensitivity:
+  protocol: study/preregistration/ssd_fisher_estimator_sensitivity_v1.yaml
+  status: draft_not_locked_or_authorized
+  purpose: quantify_official_minibatch_gradient_square_vs_local_per_example_gradient_square
+  required_before_behavioral_reproduction: true
+  guarded_runner: scripts/run_ssd_fisher_sensitivity.py
+  runner_status: complete_but_refuses_draft_or_unauthorized_protocol_before_reservation
+  artifact_validator: scripts/validate_ssd_fisher_sensitivity_artifact.py
+release_blockers:
+  - human_legal_review_of_upstream_attributions_without_explicit_licenses
+  - passing_independently_validated_fisher_estimator_sensitivity_artifact
+  - freeze_reference_environment_or_document_inability_to_reproduce_it
+  - audit_external_dataset_model_and_container_terms_before_reference_execution
+  - human_review_of_clean_room_implementation_strategy_and_equation_mapping
+  - register_only_after_all_method_readiness_gates_pass
+  - passing_independently_validated_sanity_and_validation_only_tuning_artifacts
+  - reproduce_a_declared_reference_behavior_without_test_set_tuning
+  - human_provenance_and_license_review

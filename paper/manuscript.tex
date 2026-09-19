@@ -1,0 +1,45 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref,xcolor}
+\input{macros}
+\title{Auditable Empirical Evaluation of Machine Unlearning:\\
+Immutable Deletion Manifests, Exact-Retraining Ensembles, and a Reproducible
+Fashion-MNIST Pilot}
+\author{Matthew Looney (Magnexis)}
+\date{Preprint v1.1 --- Research Release R001 --- September 2026}
+\begin{document}
+\input{generated/pilot_values}
+\input{generated/phase3_values}
+\input{generated/equivalence_v2_1_compute}
+\input{generated/equivalence_v2_1_values}
+\maketitle
+\begin{center}
+\fcolorbox{red!60!black}{red!4}{\parbox{0.91\linewidth}{\textbf{Pilot and methodology
+preprint.} This manuscript reports retrospective P001 infrastructure and exploratory
+observations. It establishes neither successful nor certified unlearning.}}
+\end{center}
+\input{abstract}
+\input{introduction}
+\input{related_work}
+\input{problem_formulation}
+\input{methodology}
+\input{evaluation_framework}
+\input{research_questions}
+\input{experimental_design}
+\input{statistical_protocol}
+\input{sequential_protocol}
+\input{metric_specification}
+\input{artifact_architecture}
+\input{results}
+\input{analysis}
+\input{discussion}
+\input{limitations}
+\input{reproducibility_statement}
+\input{artifact_availability}
+\input{transparency}
+\input{ethics}
+\input{conclusion}
+\input{appendix}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

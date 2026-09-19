@@ -1,0 +1,17 @@
+{
+  "fixture_count": 50,
+  "metrics": [
+    "accuracy",
+    "macro_f1",
+    "nll",
+    "brier",
+    "js_divergence",
+    "total_variation",
+    "linear_cka_distance"
+  ],
+  "production_module": "src/exact_unlearning/metrics.py",
+  "reference_module": "validation/reference_checks/metrics_reference.py",
+  "schema_version": 1,
+  "seed": 70419,
+  "status": "PASS"
+}

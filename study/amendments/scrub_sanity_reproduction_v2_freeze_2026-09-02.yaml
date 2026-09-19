@@ -1,0 +1,10 @@
+schema_version: 1
+amendment_id: scrub-sanity-reproduction-v2-freeze-2026-09-02
+status: LOCKED
+authorization_source: human_author_instruction_in_current_research_session
+authorization_text: "go"
+source_failure: results/failures/scrub-fmnist-bn-sanity-v1/failure-20260902T054932928551Z.json
+scope: >-
+  Executes only the corrected three-seed BatchNorm SCRUB mechanism-sanity protocol. It does not
+  authorize comparative experiments, hyperparameter tuning, equivalence claims, or publication.
+claims_permitted: development_method_reproduction_check_not_publication_evidence

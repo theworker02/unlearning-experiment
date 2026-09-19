@@ -1,0 +1,123 @@
+{
+  "claim_boundary": {
+    "supported": [
+      "P001 artifact and exclusion gates passed",
+      "The frozen k=10-to-15 convergence diagnostic passed for two output metrics",
+      "The tested IID deletion was retrospectively assay-insensitive under those metrics"
+    ],
+    "unsupported": [
+      "successful unlearning",
+      "certified removal",
+      "privacy equivalence",
+      "cross-dataset or cross-architecture generalization"
+    ]
+  },
+  "convergence": {
+    "disagreement_change": 0.031412317585951116,
+    "disagreement_pass": true,
+    "js_change": 0.04476579610988505,
+    "js_pass": true,
+    "threshold": 0.1
+  },
+  "dataset": {
+    "dataset_sha256": "1ad69a47dbce37a98443e5e5628a031b5910be879d3589e945a1519f805aa28c",
+    "name": "Fashion-MNIST",
+    "test_count": 2500,
+    "train_count": 9000,
+    "validation_count": 1000
+  },
+  "deletion": {
+    "count": 90,
+    "fraction": 0.01,
+    "manifest_sha256": "7da3cb273e0afbd6ea2c651c70b6a622c44f9f1741c028b3ebf5fad76f7b6dce"
+  },
+  "exact_reference": {
+    "count": 15,
+    "seeds": [
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015
+    ]
+  },
+  "experiment": "P001",
+  "methods": [
+    "fine_tune",
+    "naive_gradient_ascent",
+    "scrub"
+  ],
+  "release": "R001",
+  "runtime_environment": {
+    "cuda_version": null,
+    "determinism_environment": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "HIPBLAS_WORKSPACE_CONFIG": null,
+      "HSA_ENABLE_DXG_DETECTION": "1",
+      "PYTHONHASHSEED": null
+    },
+    "device": "cuda",
+    "git_dirty": null,
+    "logical_cpu_count": 32,
+    "numpy": "1.26.4",
+    "oracle_training_seconds": [
+      2.1205760510000005,
+      1.110405098000001,
+      1.1030999700000024,
+      1.1072036229999966,
+      1.0428327869999947,
+      1.0518603599999992,
+      1.1084492550000036,
+      1.1016334870000009,
+      1.101635293000001,
+      1.101476230000003,
+      1.0990659030000032,
+      1.0970334710000031,
+      1.0908101549999998,
+      1.1102415009999902,
+      1.1091471539999986
+    ],
+    "original_training_seconds": 9.593213073000001,
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.12.3",
+    "rocm_version": "7.2.53211-e1a6bc5663",
+    "sklearn": "1.9.0",
+    "torch": "2.9.1+rocm7.2.1.gitff65f5bc"
+  },
+  "runtime_reference_seconds": {
+    "approximate_total": 3.2864819379999943,
+    "exact_total": 17.455470337999998,
+    "original_training": 9.593213073000001
+  },
+  "schema_version": 1,
+  "separability": {
+    "classification": "U0_ASSAY_INSENSITIVE",
+    "disagreement_ratio": 0.5773896166909269,
+    "js_ratio": 0.4420861665517853
+  },
+  "source_artifacts": {
+    "convergence": {
+      "path": "results/processed/exact_seed_convergence_fashion_pilot.json",
+      "sha256": "0945a12c2c239c774216257b58c2a3522b5d9fca867563801a8be5a91b121b49"
+    },
+    "raw_result": {
+      "path": "results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json",
+      "sha256": "9415cd89cecaeaa8864a9a6919bd394db16cb452ab7d335fda4048343e94bebe"
+    },
+    "separability": {
+      "path": "results/processed/phase3/PILOT-FMNIST-IID-DELETE-001-v3-r2.json",
+      "sha256": "853b0c7fb5d18de96b4358bee1df8b1e97c09de5c115a6f33ef0a0f9c078522b"
+    }
+  }
+}

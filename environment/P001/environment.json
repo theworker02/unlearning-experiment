@@ -1,0 +1,49 @@
+{
+  "experiment": "P001",
+  "gpu_model": "AMD Radeon RX 7800 XT",
+  "gpu_model_source": "verified local hardware probe; see reports/hardware_validation.md",
+  "reproduction_classes": [
+    "R-BIT",
+    "R-NUM",
+    "R-STAT"
+  ],
+  "runtime": {
+    "cuda_version": null,
+    "determinism_environment": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "HIPBLAS_WORKSPACE_CONFIG": null,
+      "HSA_ENABLE_DXG_DETECTION": "1",
+      "PYTHONHASHSEED": null
+    },
+    "device": "cuda",
+    "git_dirty": null,
+    "logical_cpu_count": 32,
+    "numpy": "1.26.4",
+    "oracle_training_seconds": [
+      2.1205760510000005,
+      1.110405098000001,
+      1.1030999700000024,
+      1.1072036229999966,
+      1.0428327869999947,
+      1.0518603599999992,
+      1.1084492550000036,
+      1.1016334870000009,
+      1.101635293000001,
+      1.101476230000003,
+      1.0990659030000032,
+      1.0970334710000031,
+      1.0908101549999998,
+      1.1102415009999902,
+      1.1091471539999986
+    ],
+    "original_training_seconds": 9.593213073000001,
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.12.3",
+    "rocm_version": "7.2.53211-e1a6bc5663",
+    "sklearn": "1.9.0",
+    "torch": "2.9.1+rocm7.2.1.gitff65f5bc"
+  },
+  "schema_version": 1,
+  "source": "results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json"
+}

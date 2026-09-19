@@ -1,0 +1,24 @@
+schema_version: 1
+amendment_id: phase3-distinguishability-method-pilot-v1-freeze-2026-09-02
+status: LOCKED
+locked_at_utc: "2026-09-02T05:41:31.7711565Z"
+authorization_source: human_author_instruction_in_current_research_session
+authorization_text: "go"
+scope: >-
+  Executes only the existing exploratory method pilot: two preselected Fashion-MNIST
+  full-class deletion conditions, five archived original models, ten archived exact references,
+  and three registered methods. It does not authorize confirmatory experiments, equivalence
+  analysis, publication, or changes to the selected conditions, methods, seeds, or metrics.
+source_plan: study/preregistration/phase3_distinguishability_method_pilot_v1.yaml
+source_draft_sha256: dddaecd180b0c963aa659f27d56d537c631632de343b55ebae1d6f821e6fd804
+required_execution_invariants:
+  - source_hashes_match
+  - source_artifact_gate_passes
+  - source_conditions_are_js_assay_sensitive
+  - every_original_and_exact_seed_reference_exists
+  - split_complete_exact_predictions_exist_for_test_retain_and_forget
+  - deletion_manifest_hashes_match
+  - deleted_samples_absent_from_every_exact_partition
+  - methods_registered_with_provenance
+  - raw_outputs_written_under_new_immutable_experiment_id
+claims_permitted: exploratory_continuous_comparison_only

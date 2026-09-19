@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "release_blocked_when_any_used_reference_unverified": true,
+  "references": [
+    {
+      "key": "sekhari2021remember",
+      "title": "Remember What You Want to Forget: Algorithms for Machine Unlearning",
+      "authors": ["Ayush Sekhari", "Jayadev Acharya", "Gautam Kamath", "Ananda Theertha Suresh"],
+      "venue": "NeurIPS 2021",
+      "year": 2021,
+      "identifier": "https://proceedings.neurips.cc/paper/2021/hash/9627c45df543c816a3ddf2d8ea686a99-Abstract.html",
+      "claims_supported": ["rigorous generalization-oriented machine-unlearning research exists"],
+      "verification_status": "verified_primary_source_2026-08-31"
+    },
+    {
+      "key": "thudi2022auditable",
+      "title": "On the Necessity of Auditable Algorithmic Definitions for Machine Unlearning",
+      "authors": ["Anvith Thudi", "Hengrui Jia", "Ilia Shumailov", "Nicolas Papernot"],
+      "venue": "31st USENIX Security Symposium",
+      "year": 2022,
+      "identifier": "https://www.usenix.org/conference/usenixsecurity22/presentation/thudi",
+      "claims_supported": ["unlearning claims require auditable algorithmic definitions"],
+      "verification_status": "verified_primary_source_2026-08-31"
+    },
+    {
+      "key": "guo2020certified",
+      "title": "Certified Data Removal from Machine Learning Models",
+      "authors": ["Chuan Guo", "Tom Goldstein", "Awni Hannun", "Laurens van der Maaten"],
+      "venue": "ICML / PMLR 119",
+      "year": 2020,
+      "identifier": "https://proceedings.mlr.press/v119/guo20c.html",
+      "claims_supported": ["certified removal literature exists for learned systems"],
+      "verification_status": "verified_primary_source"
+    },
+    {
+      "key": "bourtoule2021machine",
+      "title": "Machine Unlearning",
+      "authors": ["Lucas Bourtoule", "Varun Chandrasekaran", "Christopher A. Choquette-Choo", "Hengrui Jia", "Adelin Travers", "Baiwu Zhang", "David Lie", "Nicolas Papernot"],
+      "venue": "IEEE Symposium on Security and Privacy",
+      "year": 2021,
+      "identifier": "https://arxiv.org/abs/1912.03817",
+      "claims_supported": ["SISA is a training-system approach to machine unlearning"],
+      "verification_status": "verified_author_preprint_and_doi_2026-08-31"
+    },
+    {
+      "key": "neel2021descent",
+      "title": "Descent-to-Delete: Gradient-Based Methods for Machine Unlearning",
+      "authors": ["Seth Neel", "Aaron Roth", "Saeed Sharifi-Malvajerdi"],
+      "venue": "ALT / PMLR 132",
+      "year": 2021,
+      "identifier": "https://proceedings.mlr.press/v132/neel21a.html",
+      "claims_supported": ["gradient-based deletion methods are studied theoretically"],
+      "verification_status": "verified_primary_source"
+    },
+    {
+      "key": "kurmanji2023unbounded",
+      "title": "Towards Unbounded Machine Unlearning",
+      "authors": ["Meghdad Kurmanji", "Peter Triantafillou", "Jamie Hayes", "Eleni Triantafillou"],
+      "venue": "NeurIPS 2023",
+      "year": 2023,
+      "identifier": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/062d711fb777322e2152435459e6e9d9-Abstract.html",
+      "claims_supported": [
+        "SCRUB uses teacher-student objectives for unlearning",
+        "NegGrad+ uses a beta-weighted retain-loss minus forget-loss objective"
+      ],
+      "verification_status": "verified_primary_source"
+    },
+    {
+      "key": "shokri2017membership",
+      "title": "Membership Inference Attacks Against Machine Learning Models",
+      "authors": ["Reza Shokri", "Marco Stronati", "Congzheng Song", "Vitaly Shmatikov"],
+      "venue": "IEEE Symposium on Security and Privacy",
+      "year": 2017,
+      "identifier": "https://www.ieee-security.org/TC/SP2017/papers/313.pdf",
+      "claims_supported": ["membership inference evaluates whether records were in training data"],
+      "verification_status": "verified_official_ieee_conference_copy_2026-08-31"
+    },
+    {
+      "key": "xiao2017fashion",
+      "title": "Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms",
+      "authors": ["Han Xiao", "Kashif Rasul", "Roland Vollgraf"],
+      "venue": "arXiv",
+      "year": 2017,
+      "identifier": "arXiv:1708.07747",
+      "claims_supported": ["Fashion-MNIST dataset provenance and intended benchmark role"],
+      "verification_status": "verified_primary_source"
+    },
+    {
+      "key": "foster2024ssd",
+      "title": "Fast Machine Unlearning without Retraining through Selective Synaptic Dampening",
+      "authors": ["Jack Foster", "Stefan Schoepf", "Alexandra Brintrup"],
+      "venue": "AAAI 2024",
+      "year": 2024,
+      "identifier": "10.1609/aaai.v38i11.29092",
+      "claims_supported": ["selective synaptic dampening is a retraining-free unlearning method"],
+      "verification_status": "verified_primary_source"
+    },
+    {
+      "key": "wichert2024rethinking",
+      "title": "Rethinking Evaluation Methods for Machine Unlearning",
+      "authors": ["Leon Wichert", "Sandipan Sikdar"],
+      "venue": "Findings of EMNLP 2024",
+      "year": 2024,
+      "identifier": "10.18653/v1/2024.findings-emnlp.271",
+      "claims_supported": ["random forget sets can yield misleading unlearning evaluation"],
+      "verification_status": "verified_acl_anthology_primary_source_2026-09-01"
+    },
+    {
+      "key": "shi2025muse",
+      "title": "MUSE: Machine Unlearning Six-Way Evaluation for Language Models",
+      "authors": ["Weijia Shi", "Jaechan Lee", "Yangsibo Huang", "Sadhika Malladi", "Jieyu Zhao", "Ari Holtzman", "Daogao Liu", "Luke Zettlemoyer", "Noah A. Smith", "Chiyuan Zhang"],
+      "venue": "ICLR 2025",
+      "year": 2025,
+      "identifier": "OpenReview:TArmA033BU",
+      "claims_supported": ["multidimensional and sequential unlearning evaluation exists for language models"],
+      "verification_status": "verified_openreview_and_google_research_2026-09-01"
+    },
+    {
+      "key": "gao2026illusion",
+      "title": "An Illusion of Unlearning? Assessing Machine Unlearning Through Internal Representations",
+      "authors": ["Yichen Gao", "Altay Unal", "Akshay Rangamani", "Zhihui Zhu"],
+      "venue": "AISTATS / PMLR 300",
+      "year": 2026,
+      "identifier": "https://proceedings.mlr.press/v300/gao26e.html",
+      "claims_supported": ["output-level forgetting can disagree with representation-level evidence"],
+      "verification_status": "verified_pmlr_primary_source_2026-09-01"
+    },
+    {
+      "key": "lanyon2026seeds",
+      "title": "On the importance of multiple training seeds for evaluating machine unlearning",
+      "authors": ["Jamie Lanyon", "Axel Finke", "Petros Andreou", "Georgina Cosma"],
+      "venue": "arXiv",
+      "year": 2026,
+      "identifier": "arXiv:2510.26714v5",
+      "claims_supported": [
+        "machine-unlearning evaluations can be sensitive to the original model training seed",
+        "multiple unlearning seeds do not generally substitute for multiple training seeds"
+      ],
+      "verification_status": "verified_arxiv_primary_source_v5_2026-09-01"
+    }
+  ]
+}

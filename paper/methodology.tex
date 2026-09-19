@@ -1,0 +1,93 @@
+\section{Methodology}
+\subsection{Audit unit and lineage}
+The experiment, rather than an individual scalar metric, is the audit unit. Each completed
+record contains an experiment identifier, configuration hash, dataset identity, explicit
+split IDs, deletion and retained IDs, architecture, seeds, training and unlearning
+hyperparameters, runtime environment, metric outputs, and checkpoint and prediction
+references. Derived artifacts retain hashes of their parents. The intended chain is
+\begin{center}
+source dataset $\rightarrow$ canonical split $\rightarrow$ deletion manifest
+$\rightarrow$ run configuration $\rightarrow$ checkpoint $\rightarrow$ predictions
+$\rightarrow$ metrics $\rightarrow$ statistics $\rightarrow$ table or figure
+$\rightarrow$ manuscript claim.
+\end{center}
+This chain makes accidental substitution detectable and permits a reader to work backward
+from a reported number to the inputs that produced it.
+
+The chain is deliberately more granular than a conventional experiment log. Dataset hashes
+alone do not identify a split; a split hash alone does not identify the deletion request; and a
+metric file alone does not establish which checkpoint generated it. The audit unit therefore
+stores both references and content hashes at every boundary where a mutable file could otherwise
+be substituted. A downstream analysis is required to name its upstream records explicitly.
+When an output is regenerated from unchanged inputs, the derived file may be reproduced; when
+an experiment is rerun, its raw record receives a new identifier rather than replacing an old
+one. This policy supports correction without rewriting history.
+
+\subsection{Deletion and exclusion invariants}
+The deletion manifest is generated before exact retraining and identifies stable dataset
+IDs rather than loader positions alone. The retained manifest must equal the complement of
+the deletion set within the frozen training split. The implementation asserts pairwise
+disjointness, complete reconstruction of the training split, and exclusion of every
+deleted ID from every exact-retraining dataset. A failed assertion invalidates the run; it
+is not treated as a statistical observation.
+
+These checks distinguish ``deleted from the current loader'' from ``absent from the
+counterfactual training population.'' The latter is the relevant property for exact retraining.
+For every requested deletion, the implementation forms a retained-position array as the set
+complement of forgotten positions in the already frozen training split. It then verifies that
+the two arrays are disjoint, that their sorted union reconstructs every training position once,
+and that their mapped stable IDs have the same properties. Exact-retraining calls receive the
+forgotten positions as an explicit forbidden set, providing a second boundary against accidental
+reintroduction. The redundant checks are intentional: they turn a severe scientific error into
+an observable failure rather than a silent assumption.
+
+\subsection{Reference construction}
+All exact replicas use the same retained data, architecture, training schedule, and
+evaluation probes while varying the declared training seed. The seed list is frozen in the
+experiment configuration. P001 uses seeds 2001--2015. Pairwise exact/exact comparisons
+describe natural stochastic variation. For analyses that require uncertainty, the model
+seed remains the independent unit; the 105 pairwise comparisons are not assigned an
+independent sample size of 105.
+
+The reference ensemble is not a claim that all stochasticity has been modeled. It conditions
+on a declared architecture, optimizer, data order policy, preprocessing pipeline, and hardware
+environment. Changing any of these may change the distribution. Its value is narrower and more
+practical: it makes the variability induced by the executed training procedure visible, and it
+prevents a single reference draw from acquiring unjustified authority. When the ensemble is
+small, the appropriate conclusion is imprecision, not a more confident comparison.
+
+\subsection{Metric calculations}
+Prediction disagreement is the fraction of probe examples on which two top-1 predictions
+differ. For class-probability vectors $p$ and $q$, Jensen--Shannon divergence is
+\begin{equation}
+\operatorname{JS}(p,q)=\tfrac12\operatorname{KL}(p\Vert m)
++\tfrac12\operatorname{KL}(q\Vert m),\qquad m=\tfrac12(p+q),
+\end{equation}
+averaged over the probe set. Task and calibration outputs include accuracy, balanced
+accuracy, macro-F1, negative log-likelihood, Brier score, and expected calibration error
+with 15 bins. P001 stores additional distances, but only JS divergence and top-1
+disagreement were covered by its frozen seed-count diagnostic.
+
+Metrics are computed separately on forgotten, retained, validation, and independent test
+partitions whenever those partitions are meaningful for a condition. This matters because a
+global test average can hide a localized disturbance near the deletion set, while a forget-set
+metric can be dominated by ordinary class-level generalization. Calibration measures are kept
+separate from accuracy because confidence can change without a top-1 change. Representation
+comparisons use fixed probes and symmetry-aware summaries; they are not interpreted as direct
+neuron-by-neuron correspondence. A metric is therefore a coordinate of fidelity, not a vote in
+a majority-rule definition of unlearning.
+
+\subsection{Raw immutability and failures}
+Completed raw experiment directories are append-only. A rerun receives a distinct
+identifier and may name a parent experiment. The failure registry retains configuration,
+environment, exception category, and remediation information, while failed runs are
+excluded from statistical samples. Derived summaries may be superseded by corrected
+versions, but their source records remain preserved and corrections are documented.
+
+The failure policy is equally important. An exception, an invalid method mechanism, a missing
+dependency, an artifact collision, or an unmet frozen acceptance criterion is recorded with its
+environment and remediation. These events do not become numerical observations, but neither are
+they deleted as inconvenient development traces. In particular, a method can pass an interface
+smoke test yet remain ineligible for comparison if its declared mechanism or validation rule
+fails. The current method-readiness gate makes that status machine-readable, so a blocked method
+cannot silently return to a launch profile merely because its code remains installed.

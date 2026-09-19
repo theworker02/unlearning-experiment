@@ -1,0 +1,33 @@
+\section{Analysis}
+\subsection{Dependence among exact/exact pairs}
+The pilot convergence analysis bootstraps independently trained exact replicas rather
+than assigning an independent sample size of $\binom{15}{2}$. Phase 3 power simulation
+likewise uses one summary per exact-model seed. P001 contains only one original-model
+seed, so its retrospective U0 classification motivates but cannot freeze the prospective
+assay threshold. All numerical values in the preceding section are generated from
+hash-bound JSON artifacts by the paper build.
+
+\subsection{Why the convergence and sensitivity questions differ}
+The convergence diagnostic asks whether adding five exact replicas materially changes two
+estimated reference summaries. The separability analysis asks whether deletion produces a
+signal that exceeds normal exact-retraining variability. A stable estimate can describe a
+small or uninformative signal precisely; convergence therefore does not imply assay
+sensitivity. P001 passed the former diagnostic and failed the latter retrospective test.
+
+\subsection{Interpretation of forget-set accuracy}
+For an IID classification deletion, the target label and class-level visual structure are
+shared across many retained examples. An exact model trained without a particular image
+can still classify that image correctly. Accordingly, the relevant comparison is between
+the distribution of $\operatorname{Acc}(M_U,D_f)$ and the distribution of
+$\operatorname{Acc}(M_R,D_f)$, not an expectation that forget accuracy approach zero.
+P001's exact replicas span 0.8222--0.9222 forget accuracy; the approximate values in
+Table~\ref{tab:methods} lie within that descriptive range. Because the output assay is U0,
+this observation supports neither successful nor failed removal.
+
+\subsection{Claim discipline}
+The result graph distinguishes measured facts from interpretations. Integrity-gate status,
+seed counts, metric values, and runtimes are experimental outputs. The U0 label is a
+retrospective analysis with an explicit one-original-seed limitation. The need for stronger
+regimes is a design inference. Certified deletion, privacy equivalence, generalization, and
+method superiority remain unsupported. This classification is encoded in the claim graph
+used by the paper gate.

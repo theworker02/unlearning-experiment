@@ -1,0 +1,38 @@
+\section{Counterfactual Evaluation Framework}
+\subsection{Reference sensitivity before method evaluation}
+Exact/exact comparisons define an empirical null envelope. Original/exact discrepancy is
+then compared with that envelope before any approximate-method decision. This ordering is
+essential: when deleting $D_f$ does not create a detectable shift under metric $j$, a low
+approximate/exact distance cannot identify whether $U$ removed influence or merely
+preserved behavior that was already compatible with retraining.
+
+The P001 retrospective analysis summarizes this relation with a separability ratio formed
+from the original/exact signal and the exact/exact reference scale. Power thresholds were
+simulated with seed-level summaries. Because this analysis was designed after P001, it is
+reported as exploratory and cannot retroactively establish a confirmatory threshold.
+
+\subsection{Fidelity dimensions}
+The full framework distinguishes the following coordinates:
+\begin{description}
+\item[Predictive fidelity.] Agreement, disagreement, and class-conditioned errors.
+\item[Probabilistic fidelity.] Distances between complete predictive distributions,
+including JS divergence and total variation.
+\item[Calibration fidelity.] NLL, Brier score, ECE, and reliability behavior on forgotten,
+retained, and independent test sets.
+\item[Privacy fidelity.] Difference between attacks against $M_U$ and attacks against the
+exact population, rather than comparison with chance alone.
+\item[Representation fidelity.] CKA or other symmetry-aware comparisons on a fixed probe
+set for compatible architectures.
+\item[Local and robustness fidelity.] Behavioral change near deleted observations and under
+controlled corruptions, without mislabeling corruption tests as adversarial robustness.
+\item[Utility and cost.] Retained/test performance, runtime, device, memory, and cost
+relative to exact retraining.
+\end{description}
+
+\subsection{Decision states}
+Composite rules and equivalence margins must be frozen before confirmatory experiments.
+The current vocabulary distinguishes assay-insensitive (U0), functional failure (U1),
+functional-only equivalence (U2), strong empirical equivalence (U3), and inconclusive
+(U4). U3 would remain an empirical, assay-bounded statement rather than certified removal
+or a legal claim. P001 is assigned U0 retrospectively for its two evaluated output probes;
+no method receives a confirmatory state.

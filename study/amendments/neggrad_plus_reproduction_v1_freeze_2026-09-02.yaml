@@ -1,0 +1,12 @@
+schema_version: 1
+amendment_id: neggrad-plus-reproduction-v1-freeze-2026-09-02
+status: LOCKED
+authorization_source: human_author_instruction_in_current_research_session
+authorization_text: "Fix all of the existing problems as best as you can to the best of your ability, please."
+source_protocol: study/preregistration/neggrad_plus_reproduction_v1.yaml
+source_draft_sha256: c6345727405b73249a858f97090dd22f136575d7cd733b41efd32e83d45067cf
+scope: >-
+  Execute only the declared three-seed NegGrad+ sanity and validation-only tuning protocol.
+  No exact-counterfactual outcomes or test predictions may influence candidate selection; no
+  publication, superiority, equivalence, or privacy claim is authorized.
+claims_permitted: mechanism_sanity_and_validation_selected_hyperparameters_only

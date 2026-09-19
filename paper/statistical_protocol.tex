@@ -1,0 +1,106 @@
+\section{Statistical Analysis Protocol}
+\subsection{Units of analysis and dependence}
+The model training run is the experimental unit.  Predictions on individual examples are
+repeated observations produced by that unit and are not treated as independent model
+replicates.  Likewise, the $\binom{k}{2}$ exact/exact pairs share models and therefore do
+not constitute $\binom{k}{2}$ independent samples.  Primary uncertainty calculations
+resample or aggregate at the model-seed level.  Example-level resampling may be used for a
+conditional prediction analysis, but it must not replace uncertainty over training runs.
+
+\subsection{Reference summaries}
+For scalar distance $d$, the empirical exact/exact distribution is summarized by its
+median, dispersion, and prespecified upper quantile.  Approximate/exact distances are
+computed against every valid exact replica.  The principal descriptive statistic is the
+difference between the approximate/exact median and the exact/exact median; a standardized
+effect and empirical percentile provide scale-relative views.  When sample size permits,
+bootstrap intervals resample exact models rather than treating dependent pairs as IID.
+
+\subsection{Prospective exact-seed precision rule}
+The number of exact replicas is selected by a deterministic precision analysis rather than
+by inspecting approximate-method rankings.  Candidate counts are $k\in\{5,10,15\}$.  For
+each primary metric, 5,000 repetitions sample whole exact-model seeds without replacement,
+recompute the induced pairwise-distance mean, and form a 95\% interval.  A candidate count
+passes when the interval half-width divided by its median is at most 0.20.  The selected
+count is the first candidate passing for every primary metric.  The simulation seed is
+73194. Ten exact seeds met the pilot rule for JS divergence in both calibrated full-class
+conditions. This is a condition-specific pilot result, not a confirmatory or cross-dataset
+seed-count guarantee.
+
+The publication-scale profile uses a separate fail-closed decision.  Its exact-retraining
+count cannot be smaller than 15, even when a pilot precision curve selects 10.  Original-model
+and approximate-candidate replication are selected independently from
+$\{5,8,10,15,20\}$ using validation-only, per-seed endpoint summaries.  Each count must satisfy
+the 20\% relative interval-half-width rule in every frozen method--condition group.  Test
+metrics, method rankings, winner labels, and confirmatory outputs are structurally forbidden
+inputs.  At present, the exact-retraining floor is the only supported partial recommendation;
+the other counts remain unset.  A hash-bound decision artifact must reproduce from its cited
+evidence before any numeric count can enter the main profile.
+
+\subsection{Equivalence and distinguishability}
+Difference testing and equivalence testing answer different questions.  A failure to reject
+equality does not establish equivalence.  For scalar endpoints with a scientifically
+defensible margin $\Delta$, two one-sided tests or a compatible confidence-interval rule
+will assess whether the entire interval lies in $[-\Delta,\Delta]$.  Margins must be frozen
+before confirmatory outcomes are observed and reported in natural units.  If no defensible
+margin exists, the analysis remains estimation-based and does not label models equivalent.
+
+Calibration v1 proposed the condition-matched exact/exact 95th percentile as an upper margin
+and zero as the lower bound.  Its prospectively fixed one-percent residual-class positive
+control exceeded that margin in only 1/15 class-0 replicas and 0/15 class-5 replicas.  The
+required rate was 80\%.  The v1 margins are therefore inadmissible.  This failure remains part
+of the evidence record and cannot be repaired post hoc by widening the bound.
+
+The unexecuted v2.1 design separates stochastic reference variability from the scientific
+meaning of a discrepancy.  Let $R_{c,s}$ denote exact model seed $s$ in condition $c$, let
+$\mathcal{R}_{c,-s}$ be its leave-one-out exact ensemble, and let $T_{\rho}$ swap the largest
+and second-largest predicted probabilities on a deterministic class-stratified fraction
+$\rho$ of a fixed validation probe.  For distance $d$, define the seed-level controlled excess
+\begin{equation}
+  \delta_{c,s,\rho} =
+  \operatorname{median}_{r\in\mathcal{R}_{c,-s}} d(T_{\rho}(R_{c,s}),r)
+  - \operatorname{median}_{r\in\mathcal{R}_{c,-s}} d(R_{c,s},r).
+\end{equation}
+The primary proposal uses $\rho=0.01$, which changes exactly 10 of 1,000 validation predictions
+and, on the balanced Fashion-MNIST probe, exactly one prediction per class.  Fractions 0.005
+and 0.02 are prespecified sensitivity anchors.  Fifteen calibration seeds estimate a candidate
+margin as the one-sided 95\% lower bootstrap bound of the mean primary-control excess JS.
+Ten disjoint holdout seeds must then yield at least 80\% primary effects above the margin, and
+the holdout medians must increase strictly across the three severities.  All inputs are
+validation-only; test predictions and approximate-method outputs are prohibited.
+
+V2.1 is a design proposal, not a measured result or an approved margin.  The choice that one
+percentage point of class-balanced top-1 disagreement is the smallest scientifically meaningful
+effect requires an explicit human decision.  Until that review and a separate freeze amendment
+exist, no equivalence test, equivalence label, or main-study launch is authorized.
+
+\subsection{Multiplicity, exclusions, and failures}
+No confirmatory family is currently active. The earlier proposed family containing JS
+divergence and top-1 disagreement is suspended because disagreement was assay-insensitive
+in the calibrated full-class conditions and the proposed equivalence margin failed. The
+exploratory method pilot reports continuous estimates without multiplicity-adjusted
+PASS/FAIL decisions. A later confirmatory family must be frozen prospectively; Holm or
+another named correction will then be applied within that frozen family.
+
+All planned seeds are retained unless a frozen quality rule excludes the run.
+Infrastructure failures, numerical failures, and integrity violations are recorded
+separately and are not statistical observations.  Exclusions must be determined without
+reference to whether a run supports the hypothesis.  Missing runs are reported with their
+configuration and remediation status.
+
+\subsection{Exploratory versus confirmatory analysis}
+P001 is retrospective and exploratory. Its seed-count convergence and identifiability
+diagnostics can inform, but cannot validate, thresholds for C001. The two subsequent
+calibration pilots are also non-confirmatory. The drafted full-class method pilot uses five
+original seeds as the resampling units, ten exact references per condition, and 5,000
+seed-level bootstrap repetitions. Exact/exact pairs are descriptive null values, not
+independent observations. No equivalence or contradiction decision is permitted. Before
+C001 begins, its hypotheses, endpoints, seed-generation procedure, correction family,
+stopping rule, and failed-run policy must be timestamped. Any later change is an amendment,
+and the affected result is labeled exploratory or post hoc.
+
+\subsection{Sensitivity analyses}
+Planned robustness checks vary the exact-envelope quantile, distance aggregation, seed
+subsets, and calibration binning while preserving the primary analysis.  A conclusion that
+depends on one arbitrary bin count or one exact replica is considered unstable.  For local
+analyses, neighborhood definitions are frozen independently of the unlearning outcome to
+avoid selecting regions that maximize observed discrepancy.

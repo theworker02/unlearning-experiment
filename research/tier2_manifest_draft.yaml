@@ -1,0 +1,50 @@
+stage: tier2_confirmatory
+status: draft_do_not_execute
+primary_endpoint: expected_test_js_approx_exact_minus_exact_exact
+co_primary_endpoint: evaluation_contradiction_rate
+datasets:
+  - {name: fashion_mnist, role: development_bridge, architectures: [mlp, small_cnn]}
+  - {name: cifar10, role: primary_vision, architectures: [small_cnn, resnet18]}
+  - {name: cifar100, role: complexity_replication, architectures: [resnet18]}
+  - name: uci_dry_bean
+    role: tabular_replication
+    architectures: [multinomial_logistic, mlp]
+    doi: 10.24432/C50S4B
+    license: CC-BY-4.0
+methods: [exact_retraining, fine_tune, neggrad_plus, scrub, scrub_rewind, ssd]
+scoped_training_system_baselines: [sisa]
+random_deletion_fractions: [0.001, 0.005, 0.01, 0.05, 0.10]
+structured_deletions:
+  - high_loss
+  - low_loss
+  - high_confidence
+  - low_confidence
+  - representation_cluster
+  - controlled_label_corruption
+sequential:
+  mandatory: true
+  cumulative_stage_fractions: [0.01, 0.02, 0.03, 0.04, 0.05]
+  exact_oracle_population_at_every_stage: true
+metrics:
+  predictive: [accuracy, balanced_accuracy, macro_f1]
+  agreement: [top1_disagreement, class_conditional_disagreement]
+  probabilistic: [js_divergence, total_variation]
+  calibration: [nll, brier, ece, reliability_curve]
+  privacy: [loss_attack, calibrated_loss_attack, lira]
+  representation: [linear_cka, linear_probe]
+  local: [input_neighbor_effect, representation_neighbor_effect]
+  corruption: [gaussian_noise, blur, brightness, occlusion]
+  cost: [wall_time, device_time, peak_host_memory, peak_device_memory]
+seeds:
+  development: separate_and_never_pooled_with_confirmatory
+  exact_retraining_count: pending_precision_analysis
+  candidate_count: pending_precision_analysis
+equivalence_margins: pending_controlled_perturbation_calibration
+multiple_comparisons:
+  status: drafted_not_frozen
+  method: holm
+  primary_scope: all_confirmatory_js_and_disagreement_tests_after_assay_gate
+  secondary_scopes: [utility, privacy, representation]
+  source: study/preregistration/decision_rules.yaml
+failure_policy: preserve_all_failures_and_exclude_only_by_frozen_rule
+hardware_gate: benchmark_complete_cifar10_resnet18_condition_before_freeze

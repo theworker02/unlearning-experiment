@@ -1,0 +1,50 @@
+stage: counterfactual_fidelity_pilot
+status: completed
+publication_evidence: false
+frozen: false
+rationale: >-
+  A method-development pilot on a deterministic Fashion-MNIST subset. It tests whether
+  exact-retraining envelopes and metric contradictions are measurable before Tier-2.
+dataset_provenance:
+  name: Fashion-MNIST
+  source: https://github.com/zalandoresearch/fashion-mnist
+  paper: https://arxiv.org/abs/1708.07747
+  license: MIT
+  official_train_size: 60000
+  official_test_size: 10000
+  pilot_train_pool: 10000
+  pilot_test_pool: 2500
+architecture: small_cnn
+original_seed: 11
+exact_retraining_seeds: [101, 202, 303, 404, 505]
+conditions:
+  - config: configs/experiments/fashion_cnn_random_01pct_pilot.yaml
+    deletion: {strategy: random, fraction: 0.01}
+  - config: configs/experiments/fashion_cnn_random_05pct_pilot.yaml
+    deletion: {strategy: random, fraction: 0.05}
+  - config: configs/experiments/fashion_cnn_high_loss_05pct_pilot.yaml
+    deletion: {strategy: high_loss, fraction: 0.05}
+methods:
+  - {name: fine_tune, class: simple_engineering_baseline}
+  - {name: naive_gradient_ascent, class: simple_engineering_baseline}
+  - name: scrub
+    class: literature_backed_pilot_adaptation
+    citation: Kurmanji et al., NeurIPS 2023, DOI 10.52202/075280-0095
+    deviations: Core max/min objective without privacy rewinding; pilot-tuned Fashion-MNIST hyperparameters.
+primary_diagnostics:
+  - test_js_divergence_to_exact_distribution
+  - test_top1_disagreement_to_exact_distribution
+  - test_linear_cka_distance_to_exact_distribution
+  - exact_exact_null_envelope
+secondary_diagnostics:
+  - retain_and_forget_accuracy
+  - nll_brier_ece
+  - loss_membership_auc_forget_vs_test
+  - wall_clock_and_speedup
+decision_rule: >-
+  Empirical 95th-percentile envelope flags are descriptive pilot diagnostics, not
+  preregistered equivalence tests or publication claims.
+hardware_class: CPU development host; accelerator-compatible runner
+artifacts:
+  processed: results/processed/counterfactual_fidelity_pilot.json
+  report: reports/counterfactual_fidelity_pilot.md

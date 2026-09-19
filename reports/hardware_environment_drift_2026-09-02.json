@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-09-02T02:23:52.6927585Z",
+  "status": "BLOCKED_ENVIRONMENT_DRIFT",
+  "scope": "current_default_WSL_user_environment",
+  "distribution": "Ubuntu-24.04",
+  "python_executable": "/usr/bin/python3",
+  "torch_import": {
+    "available": false,
+    "exception": "ModuleNotFoundError: No module named 'torch'"
+  },
+  "user_environment_search": {
+    "roots": ["/home/mloon25"],
+    "maximum_depth": 7,
+    "pyvenv_cfg_found": [],
+    "torch_package_directories_found": []
+  },
+  "attempted_operation": "equivalence_v2_1_validation_inference_benchmark_preflight",
+  "training_executed": false,
+  "predictions_generated": false,
+  "scientific_artifacts_modified": false,
+  "interpretation": "The historical ROCm run remains valid, but its Python environment is not currently discoverable from the default WSL user environment.",
+  "remediation": "Restore a documented ROCm PyTorch environment, rerun the dependency and GPU smoke checks, then execute the non-training benchmark under a new immutable benchmark ID."
+}

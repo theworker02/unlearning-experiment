@@ -1,0 +1,29 @@
+schema_version: 1
+method: NegGrad+
+paper:
+  citation_key: kurmanji2023unbounded
+  equation: 4
+  canonical_url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/062d711fb777322e2152435459e6e9d9-Abstract.html
+  doi: 10.52202/075280-0095
+implementation:
+  module: src/exact_unlearning/unlearning.py
+  callable: neggrad_plus
+  status: objective_conformance_unit_tested_behavioral_reproduction_pending
+  third_party_source_included: false
+protocol:
+  path: study/preregistration/neggrad_plus_reproduction_v1.yaml
+  status: draft_not_locked_or_authorized
+  tuning_rule: validation_only_with_fixed_utility_constraint
+conformance:
+  objective: beta times mean retain cross_entropy minus one_minus_beta times mean forget cross_entropy
+  optimizer: SGD with explicit learning_rate momentum and weight_decay
+  beta_domain: closed_interval_0_1
+  status: implemented_and_unit_tested
+documented_deviations:
+  - no claim that Fashion-MNIST hyperparameters reproduce the paper settings
+  - minibatches pair retain batches with cycling forget batches
+  - no behavioral or headline-result reproduction has been executed
+release_blockers:
+  - frozen_validation_only_tuning_budget
+  - behavioral_reproduction_check
+  - human_provenance_review

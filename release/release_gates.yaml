@@ -1,0 +1,51 @@
+schema_version: 1
+versions:
+  "0.5.0":
+    label: Research Infrastructure Candidate
+    required:
+      - benchmark_manifest_valid
+      - experiment_registry_exists
+      - immutable_result_writer_tested
+      - dataset_abstraction_exists
+      - deletion_manifests_exist
+      - exact_retraining_supported
+      - metric_reference_checks_pass
+      - pilot_capability_exists
+  "1.0.0":
+    label: Reproducible Benchmark Release
+    required:
+      - benchmark_specification_stable
+      - two_validated_non_digits_datasets
+      - standardized_model_interface
+      - standardized_method_interface
+      - canonical_deletion_scenarios
+      - exact_retraining_population_validated
+      - model_cards_complete
+      - meaningful_experiment_reproduced_by_clean_checkout
+      - citation_metadata_complete
+      - release_tag_exists
+  "2.0.0":
+    label: Publication Research Corpus
+    required:
+      - multi_dataset_publication_benchmark
+      - exact_retraining_corpus
+      - unlearning_corpus
+      - sequential_deletion_corpus
+      - confirmatory_statistics_complete
+      - publication_figures_and_tables
+      - verified_claim_evidence_graph
+      - manuscript_draft_from_evidence
+      - clean_reproducibility_audit
+  "2.3.0":
+    label: Researcher-Facing Scholarly Release
+    required:
+      - all_2_0_gates_pass
+      - visual_provenance_complete
+      - evidence_explorer_complete
+      - verified_multidimensional_result_catalog
+      - paper_data_package
+      - full_results_package
+      - external_reproduction_package_passed
+      - generated_scholarly_site
+      - release_checksum_manifest_passed
+      - correction_and_deprecation_policies

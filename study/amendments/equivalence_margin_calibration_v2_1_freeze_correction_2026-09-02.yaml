@@ -1,0 +1,12 @@
+schema_version: 1
+record_type: freeze_context_correction
+applies_to: study/amendments/equivalence_margin_calibration_v2_1_freeze_2026-09-02.yaml
+finding: >-
+  The first frozen input plan incorrectly set its own execution_authorized field to true,
+  conflicting with the validation exporter’s fail-closed requirement that an input plan is
+  never an execution authority.
+impact: no training, prediction export, analysis, or method comparison occurred under the affected plan
+remediation: >-
+  Preserve the first amendment and plan unchanged; bind the protocol to a v2 frozen input
+  plan whose execution_authorized field remains false, then issue a new freeze amendment.
+scientific_interpretation: operational manifest correction, not an experimental result or protocol outcome

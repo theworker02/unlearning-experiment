@@ -1,0 +1,10 @@
+work,dataset_scope,model_scope,unlearning_type,retraining_reference,sequential,privacy,representation,statistical_treatment,verification
+Guo et al. 2020,convex/nonconvex examples,varied,certified removal,method-specific,no,no,no,theoretical guarantees,primary source verified
+Bourtoule et al. 2021,vision and tabular,varied,SISA,full retraining comparator,yes,yes,no,empirical,author preprint and DOI verified
+Neel et al. 2021,convex learning,linear/convex,gradient-based deletion,theoretical retraining target,yes,no,no,theoretical bounds,primary source verified
+Kurmanji et al. 2023,vision,neural networks,teacher-student SCRUB and NegGrad+ baseline,retraining baseline,unbounded requests,yes,no,empirical,primary source verified
+Foster et al. 2024,vision,neural networks,selective synaptic dampening,retraining baseline,no,yes,no,empirical,primary source verified
+Wichert and Sikdar 2024,text classification,transformers and classifiers,evaluation study,single retrained comparator,no,no,no,influence-selected deletion and empirical comparison,ACL Anthology primary source verified
+Shi et al. 2025,language models,7B language models,six-way evaluation,retraining discussed,yes,yes,no,multidimensional benchmark,ICLR OpenReview and Google Research records verified
+Gao et al. 2026,vision,neural networks,representation audit,retraining baseline,no,no,yes,output-representation contradiction analysis,PMLR primary source verified
+Lanyon et al. 2026,vision; federated learning-to-rank; language models,varied,evaluation study,varied,no,no,no,multiple training-seed sensitivity and seed-count guidance,arXiv v5 primary source verified

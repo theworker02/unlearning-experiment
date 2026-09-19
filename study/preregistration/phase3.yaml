@@ -1,0 +1,35 @@
+schema_version: 1
+study_id: PHASE3-FMNIST-IDENTIFIABILITY
+status: DRAFT_NOT_LOCKED
+study_phase: 3
+scope: Fashion-MNIST assay validation before cross-dataset escalation
+parent_pilot: research/pilots/PILOT-FMNIST-IID-DELETE-001.yaml
+primary_question: >-
+  Can the assay distinguish removal-induced change from exact-retraining variability,
+  and what continuous discrepancy remains between approximate methods and retraining across
+  functional, privacy, representation, and utility layers when that assay is sensitive?
+regimes:
+  R0: {name: IID, fractions: [0.005, 0.01, 0.02, 0.05, 0.10], manifests_per_fraction: 5}
+  R1: {name: class_conditioned, within_class_fractions: [0.25, 0.50, 1.0], classes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+  R2: {name: hard_example, ranking: original_model_loss, fractions: [0.005, 0.01, 0.02]}
+  R3: {name: controlled_memorization, fractions: [0.001, 0.0025, 0.005, 0.01], separate_dataset: FMNIST-MEM}
+controls: [original_no_unlearning, exact_retraining]
+exact_retraining:
+  confirmatory_k: null
+  pilot_selected_k:
+    conditions: [r1-class0-f1p00, r1-class5-f1p00]
+    metric: js_divergence
+    k: 10
+    scope: pilot_only
+  convergence_prefixes: [5, 10, 15]
+  policy: each new primary metric must independently converge
+confirmatory_subset_rule: >-
+  Select conditions by the frozen assay-separability rule and regime coverage, never by
+  approximate-method performance.
+analysis_blinding: approximate method identities are mapped to METHOD_A...METHOD_D
+execution_state: no_confirmatory_run_started
+pilot_calibration_outcomes:
+  full_class_js_assay_sensitive: [r1-class0-f1p00, r1-class5-f1p00]
+  exact_exact_q95_equivalence_margin: inadmissible
+  confirmatory_equivalence_claim_permitted: false
+  exploratory_method_plan: study/preregistration/phase3_distinguishability_method_pilot_v1.yaml

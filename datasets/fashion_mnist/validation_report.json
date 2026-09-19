@@ -1,0 +1,23 @@
+{
+  "leakage_checks": {
+    "content_overlap": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "dataset": "fashion_mnist",
+    "id_overlap": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "within_split_duplicate_content": {
+      "test": 0,
+      "train": 0,
+      "validation": 0
+    }
+  },
+  "process_level_test_tuning": "NOT_AUDITED",
+  "schema_version": 1,
+  "status": "PASS"
+}

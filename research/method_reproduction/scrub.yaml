@@ -1,0 +1,78 @@
+schema_version: 1
+method: SCRUB
+paper:
+  citation_key: kurmanji2023unbounded
+  title: Towards Unbounded Machine Unlearning
+  canonical_url: https://proceedings.neurips.cc/paper_files/paper/2023/hash/062d711fb777322e2152435459e6e9d9-Abstract.html
+  doi: 10.52202/075280-0095
+  verified_version: NeurIPS 2023 proceedings paper and appendix
+implementation:
+  module: src/exact_unlearning/scrub.py
+  status: objective_conformance_verified_local_small_cnn_applicability_failed
+  third_party_source_included: false
+  declared_basis:
+    - paper_equations_1_to_3
+    - paper_algorithms_1_to_3
+conformance:
+  - paper_element: d(x; w_u) = KL(teacher || student)
+    local_element: _teacher_student_kl
+    status: implemented_and_unit_tested
+  - paper_element: Algorithm 2 maximizes forget-set KL
+    local_element: _forget_objective minimizes negative KL
+    status: implemented_and_unit_tested
+  - paper_element: Algorithm 3 minimizes alpha times retain KL plus gamma times cross_entropy
+    local_element: _retain_objective
+    status: implemented_and_unit_tested
+  - paper_element: student initialization from teacher and frozen teacher
+    local_element: scrub deep-copies the original model for both roles and freezes teacher parameters
+    status: implemented_and_unit_tested
+  - paper_element: alternating max epochs followed by min epochs, then remaining min-only epochs
+    local_element: max_steps within total steps
+    status: implemented
+documented_deviations:
+  - no SCRUB+R privacy rewinding
+  - no paper-specific validation-based stopping rule
+  - no paper learning-rate decay schedule
+  - Fashion-MNIST small-CNN setting does not reproduce the paper CIFAR/Lacuna architectures
+  - pilot hyperparameters are development choices rather than reproduced paper settings
+  - no claim of reproducing published headline results
+applicability_finding:
+  affected_architecture: small_cnn
+  condition: deterministic student and teacher produce identical initial logits
+  consequence: >-
+    The initial KL max-step has no model-derived gradient signal at equality. Floating-point
+    residuals amplified by an adaptive optimizer are not accepted as evidence that the published
+    forgetting mechanism executed.
+  historical_scope: >-
+    P001 SCRUB outputs remain immutable interface-smoke artifacts but are invalid as method
+    reproduction or competitive method evidence.
+  runtime_policy: future SCRUB runs fail closed when the first max-step logits are identical
+remediation:
+  candidate_architecture: small_cnn_bn
+  static_train_eval_signal_test: passed
+  protocol: study/preregistration/scrub_sanity_reproduction_v1.yaml
+  protocol_status: draft_not_locked_or_authorized
+  comparative_profile_gate: >-
+    pilot and main profiles require a passing artifact with matching protocol hash, recomputed
+    per-seed mechanism criteria, declared seeds, and verified checkpoint hashes
+tuning_protocol:
+  path: study/preregistration/scrub_tuning_v1.yaml
+  status: draft_not_locked_or_authorized
+  prerequisite: passing_scrub_sanity_reproduction_v1_artifact
+  candidate_count: 8
+  candidate_runs: 24
+  guarded_runner: scripts/run_scrub_tuning.py
+  artifact_validator: scripts/validate_scrub_tuning_artifact.py
+  selection_rule: mechanism_valid_and_validation_utility_constrained_forget_cross_entropy
+official_implementation:
+  repository: https://github.com/meghdadk/SCRUB
+  license: https://github.com/meghdadk/SCRUB/blob/main/License.md
+  license_class: noncommercial_academic_software_license
+  source_comparison_performed: false
+  behavioral_comparison_performed: false
+release_blockers:
+  - human_clean_room_provenance_review
+  - resolve_and_validate_architecture_specific_initial_max_step_signal
+  - reproduce_a_declared_reference_behavior_without_test_set_tuning
+  - passing_validation_only_tuning_artifact
+  - confirm_no_official_source_or_assets_are_present_in_release

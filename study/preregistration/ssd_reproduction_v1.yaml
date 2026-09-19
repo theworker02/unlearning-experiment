@@ -1,0 +1,105 @@
+schema_version: 1
+status: DRAFT_NOT_LOCKED
+execution_authorized: false
+study_class: development_method_reproduction_and_tuning_not_publication_evidence
+experiment_family: ssd-fmnist-reproduction-v1
+objective: >-
+  Verify that the paper-derived SSD core selects and dampens parameters as declared, then select
+  one fixed candidate using only forget-training and validation information before test evaluation.
+scope:
+  dataset: fashion_mnist
+  dataset_role: development_only
+  dataset_config:
+    name: fashion_mnist
+    root: data/raw
+    validation_fraction: 0.1
+    split_seed: 1729
+    train_limit: 10000
+    test_limit: 2500
+  architecture: small_cnn_bn
+  hidden_dim: 64
+  deletion:
+    strategy: class
+    target_class: 0
+    fraction_within_class: 1.0
+  original_seeds: [4201, 4202, 4203]
+original_training:
+  device: auto
+  optimizer: adamw
+  epochs: 4
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  deterministic: true
+fisher_estimation:
+  estimator: mean_per_example_squared_log_likelihood_gradient
+  model_mode: evaluation
+  full_training_statistic_computed_before_deletion: true
+  batch_size: 128
+  batch_size_does_not_change_per_example_estimator: true
+stage_1_fixed_sanity:
+  source: Foster et al. 2024 reported ResNet18 CIFAR defaults
+  transfer_status: mechanism_sanity_setting_not_claimed_as_fashion_mnist_optimum
+  hyperparameters:
+    alpha: 10.0
+    dampening_constant: 1.0
+  acceptance_criteria:
+    - all_fisher_values_are_finite_and_nonnegative
+    - selected_parameter_count_is_positive
+    - selected_parameter_fraction_is_strictly_between_zero_and_one
+    - changed_parameter_l2_is_finite_and_positive
+    - all_three_declared_seeds_complete
+  interpretation: equation_mechanism_sanity_only_not_published_result_reproduction
+stage_2_validation_only_tuning:
+  requires_stage_1_acceptance: true
+  grid:
+    alpha: [5.0, 10.0, 25.0]
+    dampening_constant: [0.5, 1.0, 2.0]
+  candidate_count: 9
+  selection_data:
+    forget_training_split: permitted
+    full_validation_split: permitted
+    target_class_validation_split: permitted
+    test_split: prohibited
+    exact_retraining_predictions_or_distances: prohibited
+  selection_rule:
+    utility_constraint: validation_accuracy_drop_from_original_at_most_0.05
+    primary_among_feasible: maximize_forget_training_cross_entropy
+    tie_breaks:
+      - lower_selected_parameter_fraction
+      - higher_alpha
+      - lower_dampening_constant
+      - lexicographic_candidate_id
+    no_feasible_candidate: record_failure_and_create_new_protocol_version
+  margin_status: fixed_engineering_constraint_not_equivalence_margin
+final_evaluation:
+  occurs_only_after_candidate_selection: true
+  test_evaluation_count_per_original_seed: 1
+  exact_counterfactual_comparison: deferred_to_separate_counterfactual_study
+  claims_permitted:
+    - equation_mechanism_sanity_pass_or_fail
+    - selected_hyperparameters_and_validation_rule
+  claims_prohibited:
+    - successful_unlearning
+    - equivalence_to_exact_retraining
+    - competitive_superiority
+    - privacy_guarantee
+compute_control:
+  planned_original_trainings: 3
+  planned_stage_1_unlearning_runs: 3
+  planned_stage_2_candidate_runs: 27
+  planned_final_evaluations: 3
+  planned_total_model_updates: 33
+  wall_time_estimate: pending_one_seed_dry_run
+  launch_requires_measured_estimate: true
+artifact_policy:
+  output_root: results/raw
+  stage_1_experiment_id: ssd-fmnist-sanity-v1
+  stage_2_experiment_id: ssd-fmnist-tuning-v1
+  exclusive_creation: true
+  append_only_failure_registry: true
+  protocol_hash_required: true
+  original_checkpoint_hash_required: true
+  full_fisher_hash_required: true
+  per_candidate_metrics_and_checkpoint_hashes_required: true
+  unfavorable_and_failed_candidates_preserved: true

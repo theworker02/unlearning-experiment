@@ -1,0 +1,135 @@
+\section{Pilot Results}
+\subsection{Integrity outcome}
+P001 completed all ten recorded integrity checks. Table~\ref{tab:integrity} is generated
+from the immutable raw record; the overall gate passed while the record remains marked
+pilot and not publication-eligible.
+
+This outcome is procedural rather than substantive. It establishes that the recorded run
+contains the required manifests, integrity checks, metadata, and metric outputs in a form
+that can be traced through the analysis pipeline. It does not validate the sensitivity of a
+particular deletion assay, the competitive quality of an approximate method, or a
+counterfactual-equivalence claim. Keeping these interpretations separate is essential: an
+auditable run can still be scientifically uninformative for the question it was intended to
+test.
+\begin{table}[ht]
+\centering
+\caption{P001 integrity-gate outcomes generated from the raw experiment record.}
+\label{tab:integrity}
+\small
+\input{tables/integrity_gates}
+\end{table}
+
+\subsection{Exact-retraining population}
+The 15 exact replicas exhibit nonzero variability on all reported splits. Table
+~\ref{tab:exact-ranges} reports per-seed ranges and means. Forget-set accuracy ranges from
+0.8222 to 0.9222, while test accuracy ranges from 0.8096 to 0.8504. These ranges illustrate
+why neither one exact model nor one absolute forget-set value is an adequate target.
+
+The displayed ranges are descriptive summaries of this finite ensemble, not confidence
+intervals for a population of all possible trainings. Their main role is to make the
+comparison target explicit. An approximate model should be considered in relation to the
+dispersion among models trained on the retained dataset, rather than treated as successful
+or unsuccessful simply because it differs from one selected retraining seed. Later studies
+will need to report uncertainty for the envelope itself and assess whether its estimates
+are stable under additional seeds and independent original models.
+\begin{table}[ht]
+\centering
+\caption{Metric ranges across 15 independently exact-retrained models. NLL is negative
+log-likelihood and ECE uses 15 bins.}
+\label{tab:exact-ranges}
+\small
+\input{tables/exact_metric_ranges}
+\end{table}
+
+\subsection{Frozen seed-count diagnostic}
+The frozen $k=10\rightarrow15$ diagnostics changed by \PilotJSConvergence{} for mean
+Jensen--Shannon divergence and \PilotDisagreementConvergence{} for prediction disagreement.
+Both values fall below the predefined 10\% pilot threshold. The ensemble therefore passed
+the stated pilot convergence diagnostic for these two metrics. This does not establish
+that 15 seeds are sufficient for other datasets, architectures, deletion regimes, or
+metrics, and the threshold is not an equivalence margin.
+
+The diagnostic was intentionally limited to two inexpensive predictive distances. It asks
+whether enlarging the finite reference ensemble changed those descriptive means by less
+than a predeclared pilot tolerance; it does not demonstrate convergence of all fidelity
+dimensions. In particular, calibration, local behavior, membership-inference outcomes,
+and representation measures may require different seed counts. The procedure also did not
+adaptively stop once favorable values were observed, which preserves its role as a fixed
+engineering check rather than an outcome-driven sample-size decision.
+
+\subsection{Approximate-method descriptives}
+Table~\ref{tab:methods} records the executed method runtimes and accuracies. The values
+confirm that the common method and metric interfaces executed, but they are not a ranking.
+In particular, high accuracy on the IID forget set does not demonstrate that the deleted
+records remain memorized: exact models that never trained on those records also achieve
+substantial forget-set accuracy.
+
+This distinction is especially consequential for semantically ordinary IID examples. A
+counterfactual model can classify a deleted garment correctly because it learned related
+structure from retained examples, while an unlearned model can reduce accuracy through
+collateral damage rather than faithful removal of the deleted example's influence. The
+descriptive table should therefore be read as evidence that the baseline interfaces ran and
+produced comparable artifacts, not as evidence that one baseline is more effective than
+another.
+\begin{table}[ht]
+\centering
+\caption{Descriptive P001 outputs for approximate methods. These values are not interpreted
+as confirmatory unlearning outcomes because the deletion assay was retrospectively U0.}
+\label{tab:methods}
+\small
+\input{tables/method_descriptives}
+\end{table}
+
+\subsection{Retrospective identifiability analysis}
+A retrospective separability analysis compared the original model with the exact
+ensemble. The separability ratios were \PilotJSSeparability{} for JS divergence and
+\PilotDisagreementSeparability{} for prediction disagreement. Both were below their
+exploratory power-derived thresholds, yielding U0 (assay-insensitive). Consequently, the
+pilot does not determine whether any approximate method forgot the IID-deleted examples.
+No confirmatory method result is reported.
+
+U0 is an assay statement, not a statement that deleted examples had no effect on training.
+It means that, under the archived perturbation construction and selected distances, the
+original-versus-exact contrast was not sufficiently separated to support the intended
+decision. A stronger deletion regime, a different probe distribution, a longer training
+schedule, or a different architecture may yield a measurable contrast; those are
+hypotheses for prospectively specified studies rather than explanations that can rescue the
+current pilot.
+
+\input{generated/phase3_calibration}
+
+\subsection{Prospective v2.1 calibration}
+The replacement class-stratified calibration was frozen before the holdout exact models were
+trained. It uses a validation-only positive control that swaps the top two probabilities on
+one example in each class of the fixed 1,000-example probe. Fifteen calibration seeds estimate
+each condition's one-sided lower-bound excess-JS margin; ten disjoint heldout seeds test the
+predeclared 80\% exceedance and monotonic-severity requirements. Both class-deletion conditions
+passed: the candidate margins were \VTwoOneClassZeroMargin{} for class 0 and
+\VTwoOneClassFiveMargin{} for class 5, with a heldout primary exceedance rate of
+\VTwoOneHoldoutRate{} and strictly increasing median effects at 0.5\%, 1\%, and 2\% severity.
+
+This is validation-only evidence that the selected JS assay can detect and calibrate an
+interpretable, class-balanced synthetic perturbation in this Fashion-MNIST/small-CNN setting.
+It does not show that any approximate method falls within either margin, establish a general
+equivalence threshold, rescue the failed v1 calibration, or support a certified-removal claim.
+The margin may be used only by a separately frozen method comparison that preserves this
+dataset, architecture, probe, and endpoint scope.
+
+\subsection{Runtime}
+Table~\ref{tab:runtime} separates original training, aggregate exact retraining, and the
+aggregate approximate-method execution. Runtime values characterize this software and
+hardware configuration and are not universal performance measurements. Speed alone has no
+scientific meaning without an interpretable fidelity comparison.
+
+The recorded timing is deliberately narrow: it measures the wall-clock scope defined by the
+runner on one ROCm environment. It is not an estimate of energy consumption, peak memory,
+cloud cost, or accelerator-independent throughput. A later compute--fidelity frontier must
+standardize timing boundaries, preserve device and driver metadata, and report both the
+cost of the approximate update and the cost of constructing the exact-retraining reference
+population needed to evaluate it.
+\begin{table}[ht]
+\centering
+\caption{Recorded P001 runtime on the RX 7800 XT/ROCm environment.}
+\label{tab:runtime}
+\input{tables/runtime}
+\end{table}

@@ -1,0 +1,84 @@
+schema_version: 1
+status: DRAFT_NOT_LOCKED
+execution_authorized: false
+study_class: development_simple_baseline_tuning_not_publication_evidence
+experiment_id: fine-tune-fmnist-tuning-v1
+objective: >-
+  Select one retained-data fine-tuning setting using only forget-training and validation data before
+  any test evaluation, while preserving fine-tuning's status as a simple engineering baseline.
+scope:
+  dataset: fashion_mnist
+  dataset_role: development_only
+  dataset_config:
+    name: fashion_mnist
+    root: data/raw
+    validation_fraction: 0.1
+    split_seed: 1729
+    train_limit: 10000
+    test_limit: 2500
+  architecture: small_cnn_bn
+  hidden_dim: 64
+  deletion:
+    strategy: class
+    target_class: 0
+    fraction_within_class: 1.0
+  original_seeds: [4301, 4302, 4303]
+  unlearning_seed_rule: original_seed_plus_10000_plus_candidate_index
+original_training:
+  device: auto
+  optimizer: adamw
+  epochs: 4
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  deterministic: true
+validation_only_tuning:
+  grid:
+    epochs: [1, 3, 5]
+    learning_rate: [0.0001, 0.0005, 0.001]
+    batch_size: [128]
+    optimizer: [adamw]
+    weight_decay: [0.0]
+  candidate_count: 9
+  selection_data:
+    retain_training_split: permitted
+    forget_training_split: permitted_for_evaluation_only
+    full_validation_split: permitted
+    test_split: prohibited
+    exact_retraining_predictions_or_distances: prohibited
+  selection_rule:
+    utility_constraint: validation_accuracy_drop_from_original_at_most_0.05
+    primary_among_feasible: maximize_forget_training_cross_entropy
+    tie_breaks:
+      - fewer_epochs
+      - lower_learning_rate
+      - lexicographic_candidate_id
+    no_feasible_candidate: record_failure_and_create_new_protocol_version
+  margin_status: fixed_engineering_constraint_not_equivalence_margin
+final_evaluation:
+  occurs_only_after_candidate_selection: true
+  test_evaluation_count_per_original_seed: 1
+  exact_counterfactual_comparison: deferred_to_separate_counterfactual_study
+  claims_permitted:
+    - selected_simple_baseline_hyperparameters_and_validation_rule
+  claims_prohibited:
+    - successful_unlearning
+    - equivalence_to_exact_retraining
+    - competitive_superiority
+    - state_of_the_art_status
+    - privacy_guarantee
+compute_control:
+  planned_original_trainings: 3
+  planned_candidate_runs: 27
+  planned_final_evaluations: 3
+  planned_total_model_updates: 30
+  wall_time_estimate: pending_one_seed_dry_run
+  launch_requires_measured_estimate: true
+artifact_policy:
+  output_root: results/raw
+  exclusive_creation: true
+  protocol_hash_required: true
+  original_checkpoint_hashes_required: true
+  per_candidate_metrics_and_checkpoint_hashes_required: true
+  append_only_failure_registry: true
+  unfavorable_and_failed_candidates_preserved: true

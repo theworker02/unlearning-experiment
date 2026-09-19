@@ -1,0 +1,24 @@
+title: >-
+  Auditable Empirical Evaluation of Machine Unlearning: Immutable Deletion Manifests,
+  Exact-Retraining Ensembles, and a Reproducible Fashion-MNIST Pilot
+version: "1.0"
+study_release: R001
+experiment_coverage: [P001]
+schema_coverage: [2]
+status: pilot_methodological_report
+language: en
+authors:
+  - name: Matthew Looney
+    affiliation: Magnexis
+    verification_required_before_submission: true
+keywords:
+  - machine unlearning
+  - reproducibility
+  - exact retraining
+  - counterfactual fidelity
+  - Fashion-MNIST
+license: CC-BY-4.0
+identifiers:
+  osf_registration_doi: null
+  zenodo_release_doi: null
+  preprint: null

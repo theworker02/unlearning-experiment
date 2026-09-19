@@ -1,0 +1,92 @@
+schema_version: 1
+status: DRAFT_NOT_LOCKED
+execution_authorized: false
+study_class: development_method_tuning_not_publication_evidence
+experiment_id: scrub-fmnist-tuning-v1
+objective: >-
+  Select one SCRUB core setting using mechanism-valid runs and validation-only utility constraints
+  after, and only after, the independent fixed-setting SCRUB sanity protocol passes.
+prerequisite:
+  protocol: study/preregistration/scrub_sanity_reproduction_v1.yaml
+  required_artifact: results/raw/scrub-fmnist-bn-sanity-v1/result.json
+  required_outcome: overall_acceptance_true_with_matching_protocol_hash_and_checkpoint_hashes
+  reuse_verified_original_checkpoints: true
+scope:
+  dataset: fashion_mnist
+  dataset_role: development_only
+  dataset_config:
+    name: fashion_mnist
+    root: data/raw
+    validation_fraction: 0.1
+    split_seed: 1729
+    train_limit: 10000
+    test_limit: 2500
+  architecture: small_cnn_bn
+  hidden_dim: 64
+  deletion:
+    strategy: class
+    target_class: 0
+    fraction_within_class: 1.0
+  original_seeds: [3101, 3102, 3103]
+  unlearning_seed_rule: original_seed_plus_20000_plus_candidate_index
+validation_only_tuning:
+  grid:
+    learning_rate: [0.0001, 0.0005]
+    alpha: [0.1, 0.5]
+    gamma: [1.0]
+    temperature: [1.0]
+    max_steps: [1, 2]
+    steps: [3]
+    optimizer: [adam]
+    weight_decay: [0.0005]
+    forget_batch_size: [512]
+    retain_batch_size: [128]
+    batch_size: [128]
+  candidate_count: 8
+  candidate_acceptance:
+    mechanism_trace_recomputed_with: scripts.scrub_sanity_rules.evaluate_mechanism
+    all_mechanism_criteria_required_in_every_seed: true
+  selection_data:
+    retain_training_split: permitted
+    forget_training_split: permitted_for_evaluation_only
+    full_validation_split: permitted
+    test_split: prohibited
+    exact_retraining_predictions_or_distances: prohibited
+  selection_rule:
+    feasibility:
+      - mechanism_valid_in_every_seed
+      - mean_validation_accuracy_drop_from_original_at_most_0.05
+    primary_among_feasible: maximize_forget_training_cross_entropy
+    tie_breaks:
+      - fewer_max_steps
+      - lower_learning_rate
+      - higher_alpha
+      - lexicographic_candidate_id
+    no_feasible_candidate: record_failure_and_create_new_protocol_version
+  margin_status: fixed_engineering_constraint_not_equivalence_margin
+final_evaluation:
+  occurs_only_after_candidate_selection: true
+  test_evaluation_count_per_original_seed: 1
+  exact_counterfactual_comparison: deferred_to_separate_counterfactual_study
+  claims_permitted:
+    - mechanism_valid_candidate_selection_and_validation_rule
+  claims_prohibited:
+    - successful_unlearning
+    - equivalence_to_exact_retraining
+    - competitive_superiority
+    - privacy_guarantee
+compute_control:
+  planned_original_trainings: 0
+  planned_candidate_runs: 24
+  planned_final_evaluations: 3
+  planned_total_model_updates: 24
+  wall_time_estimate: pending_one_seed_dry_run
+  launch_requires_measured_estimate: true
+artifact_policy:
+  output_root: results/raw
+  exclusive_creation: true
+  protocol_hash_required: true
+  prerequisite_hash_required: true
+  per_candidate_trace_metrics_and_checkpoint_hashes_required: true
+  append_only_failure_registry: true
+  unfavorable_failed_and_mechanism_invalid_candidates_preserved: true

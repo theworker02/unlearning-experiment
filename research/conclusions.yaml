@@ -1,0 +1,75 @@
+schema_version: 1
+benchmark_version: 0.5.0
+conclusions:
+- id: CONC-001
+  question: RQ1
+  statement: Insufficient eligible evidence to support or reject the hypothesis.
+  status: inconclusive
+  observation: One schema-v2 Fashion-MNIST pilot passes the artifact gate, but one
+    deletion condition and original seed cannot establish general behavior.
+  statistical_inference: null
+  interpretation: No empirical conclusion is permitted.
+  evidence:
+  - fashion-cnn-random-01pct-schema2-rocm-pilot-v1
+  effect_size: null
+  uncertainty: Not estimable from eligible evidence.
+  limitations:
+  - The eligible pilot varies exact-retraining seeds but not original-model seeds
+  - datasets
+  - architectures
+  - or deletion regimes.
+- id: CONC-002
+  question: RQ2
+  statement: Insufficient eligible evidence to support or reject the hypothesis.
+  status: inconclusive
+  observation: The schema-v2 pilot contains conventional and counterfactual metrics,
+    but no pass/fail criteria were frozen and no contradiction matrix is validated.
+  statistical_inference: null
+  interpretation: No empirical conclusion is permitted.
+  evidence:
+  - fashion-cnn-random-01pct-schema2-rocm-pilot-v1
+  effect_size: null
+  uncertainty: Not estimable from eligible evidence.
+  limitations:
+  - Current membership score is a limited audit and cannot establish privacy equivalence.
+- id: CONC-003
+  question: RQ3
+  statement: Insufficient eligible evidence to support or reject the hypothesis.
+  status: inconclusive
+  observation: Sequential deletion has interfaces and tests but no eligible empirical
+    trajectory.
+  statistical_inference: null
+  interpretation: No empirical conclusion is permitted.
+  evidence: []
+  effect_size: null
+  uncertainty: Not estimable from eligible evidence.
+  limitations:
+  - No sequential research corpus exists.
+- id: CONC-004
+  question: RQ4
+  statement: Insufficient eligible evidence to support or reject the hypothesis.
+  status: inconclusive
+  observation: One eligible random 1% pilot exists, but no factorial comparison across
+    size or composition exists.
+  statistical_inference: null
+  interpretation: No empirical conclusion is permitted.
+  evidence:
+  - fashion-cnn-random-01pct-schema2-rocm-pilot-v1
+  effect_size: null
+  uncertainty: Not estimable from eligible evidence.
+  limitations:
+  - Only random pilot deletion sets are predeclared independently of legacy runs.
+- id: CONC-005
+  question: RQ5
+  statement: Insufficient eligible evidence to support or reject the hypothesis.
+  status: inconclusive
+  observation: One pilot records device-specific runtime and fidelity distances, but
+    it cannot establish a general frontier.
+  statistical_inference: null
+  interpretation: No empirical conclusion is permitted.
+  evidence:
+  - fashion-cnn-random-01pct-schema2-rocm-pilot-v1
+  effect_size: null
+  uncertainty: Not estimable from eligible evidence.
+  limitations:
+  - Legacy runtimes are not sufficient for publication comparisons.

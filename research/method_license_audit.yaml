@@ -1,0 +1,102 @@
+schema_version: 1
+status: PARTIAL_RELEASE_BLOCKING_AUDIT
+methods:
+  exact_retraining:
+    implementation: local
+    third_party_source_included: false
+    release_status: eligible_subject_to_repository_review
+  fine_tune:
+    implementation: local_simple_baseline
+    reproduction_audit: research/method_reproduction/fine_tune.yaml
+    third_party_source_included: false
+    release_status: eligible_subject_to_repository_review
+  naive_gradient_ascent:
+    implementation: local_simple_baseline
+    third_party_source_included: false
+    release_status: eligible_subject_to_repository_review
+  neggrad_plus:
+    paper: https://proceedings.neurips.cc/paper_files/paper/2023/hash/062d711fb777322e2152435459e6e9d9-Abstract.html
+    implementation: local_clean_room_from_published_equation_4
+    third_party_source_included: false
+    unresolved:
+      - frozen_validation_only_tuning_budget
+      - behavioral_reproduction_check
+      - human_provenance_review
+    release_status: blocked_pending_tuning_reproduction_and_provenance_review
+  scrub:
+    paper: https://proceedings.neurips.cc/paper_files/paper/2023/hash/062d711fb777322e2152435459e6e9d9-Abstract.html
+    official_repository: https://github.com/meghdadk/SCRUB
+    official_license: https://github.com/meghdadk/SCRUB/blob/main/License.md
+    verification_date: 2026-08-31
+    official_license_class: noncommercial_academic_software_license
+    implementation: local_clean_room_from_published_algorithm
+    reproduction_audit: research/method_reproduction/scrub.yaml
+    third_party_source_included: false
+    unresolved:
+      - human_clean_room_provenance_review
+      - reproduction_against_declared_reference_behavior
+      - confirm_no_official_source_or_assets_in_release
+    release_status: blocked_pending_provenance_and_reproduction_review
+  ssd:
+    paper: https://ojs.aaai.org/index.php/AAAI/article/view/29092
+    paper_doi: 10.1609/aaai.v38i11.29092
+    official_repository: https://github.com/if-loops/selective-synaptic-dampening
+    official_repository_revision: cdfdc0e35c1908e032a6e150d882b0fa17833f85
+    official_repository_revision_date: 2024-09-11
+    official_license: https://raw.githubusercontent.com/if-loops/selective-synaptic-dampening/main/LICENSE
+    verification_date: 2026-09-01
+    official_license_class: MIT
+    official_license_copyright: Copyright (c) 2023 Stefan Schoepf
+    implementation: local_clean_room_equation_4_core_registry_disabled
+    reproduction_audit: research/method_reproduction/ssd.yaml
+    third_party_source_included: false
+    upstream_inventory:
+      tracked_files: 30
+      git_submodules: 0
+      bundled_model_checkpoints: 0
+      dependency_manifest_or_lockfile: absent
+      dependency_versions: not_pinned
+      external_runtime_and_assets:
+        - tensorflow_latest_gpu_py3_jupyter_container_digest_named_in_readme
+        - google_vit_base_patch16_224_hugging_face_pretrained_model
+        - torchvision_CIFAR10_and_CIFAR100_downloads
+        - manually_supplied_PinsFaceRecognition_dataset
+        - wandb_account_and_logging
+    upstream_attribution_findings:
+      avalanche:
+        use: Fisher_importance_helpers_marked_taken_or_adapted
+        license_class: MIT
+        license_verified: true
+      bad_teaching_unlearning:
+        use: datasets_models_metrics_utils_and_baseline_code_marked_from_repository
+        license_class: MIT
+        license_verified: true
+      fast_machine_unlearning:
+        use: UNSIR_and_unlearning_code_marked_from_repository
+        repository: https://github.com/vikram2000b/Fast-Machine-Unlearning
+        audited_revision: 252bc9287a511774ab857d1f682845f28584eb25
+        audited_revision_date: 2021-11-24
+        license_class: no_license_file_found_at_audited_revision
+        license_verified: true
+        redistribution_status: blocked_absent_explicit_license
+      pytorch_cifar100:
+        use: model_training_and_augmentation_code_marked_based_on_repository
+        repository: https://github.com/weiaicunzai/pytorch-cifar100
+        audited_revision: 11d8418f415b261e4ae3cb1ffe20d06ec95b98e4
+        audited_revision_date: 2022-03-27
+        license_class: no_license_file_found_at_audited_revision
+        license_verified: true
+        redistribution_status: blocked_absent_explicit_license
+    unresolved:
+      - human_legal_review_of_upstream_code_attributed_to_repositories_without_licenses
+      - pin_or_replace_unversioned_upstream_dependencies_for_reference_execution
+      - audit_external_dataset_model_and_container_terms_before_reference_execution
+      - human_review_of_clean_room_implementation_strategy
+      - behavioral_reproduction_check
+      - frozen_validation_only_tuning_budget
+      - human_provenance_and_license_review
+    release_status: blocked_pending_registry_provenance_tuning_and_reproduction_review
+policy:
+  official_repository_code_must_not_be_redistributed_under_project_mit_license: true
+  every_competitive_method_requires_verified_license_and_provenance: true
+  license_audit_does_not_replace_legal_review: true

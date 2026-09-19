@@ -1,0 +1,10 @@
+schema_version: 1
+required:
+  - all_publication_gates_pass
+  - flagship_reproduction_pass
+  - citation_audit_pass
+  - claim_graph_pass
+  - clean_environment_reproduction_pass
+  - sha256_manifest_generated
+  - human_review_required
+release_label_forbidden_while_any_critical_gate_fails: true

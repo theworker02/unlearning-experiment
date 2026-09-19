@@ -1,0 +1,88 @@
+schema_version: 1
+status: LOCKED
+source_draft_sha256: dddaecd180b0c963aa659f27d56d537c631632de343b55ebae1d6f821e6fd804
+freeze_amendment: study/amendments/phase3_distinguishability_method_pilot_v1_freeze_2026-09-02.yaml
+study_type: exploratory_method_pilot
+experiment_id: phase3-fmnist-full-class-method-pilot-v1
+purpose: >-
+  Estimate continuous approximate-to-exact discrepancies in assay-sensitive full-class
+  conditions after the proposed equivalence margin failed. This pilot cannot establish
+  equivalence and cannot supply confirmatory error control.
+source_ensemble:
+  experiment_id: phase3-fmnist-class-conditioned-assay-pilot-v3
+  result: results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json
+  result_sha256: 2782863d7296f6a99611c14dbc64279714d0c92e4dc8d6d6a1577ab156a8ec4b
+  config: configs/experiments/phase3_class_conditioned_assay_pilot.yaml
+  config_sha256: 0c3043cdc3de9b3303e7efe47f5c4fa544214053acd418523ccc3729e218c085
+  original_seeds: [101, 102, 103, 104, 105]
+  exact_seeds: [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]
+conditions:
+  - condition_id: r1-class0-f1p00
+    target_class: 0
+    deletion_manifest: deletion_manifests/phase3/fashion_mnist/r1-class0-f1.00-seed3201.json
+    deletion_manifest_sha256: e70b321593f3f5bd5fb5b62743ee94f41a82f915857b3d564e6c6b7238903b7b
+  - condition_id: r1-class5-f1p00
+    target_class: 5
+    deletion_manifest: deletion_manifests/phase3/fashion_mnist/r1-class5-f1.00-seed3201.json
+    deletion_manifest_sha256: 74d7b5dcfb23c925eeb5add886acffd7b7bab501c51a5a0c97423a71a3ca7e69
+methods:
+  - name: fine_tune
+    role: simple_engineering_baseline
+  - name: naive_gradient_ascent
+    role: simple_engineering_baseline_not_state_of_the_art
+  - name: scrub
+    role: literature_backed_clean_room_pilot_implementation
+unlearning:
+  epochs: 1
+  learning_rate: 0.0002
+  retain_weight: 1.0
+  forget_weight: 0.1
+  optimizer: adam
+  weight_decay: 0.0001
+  alpha: 0.5
+  gamma: 1.0
+  temperature: 1.0
+  max_steps: 1
+  steps: 2
+  forget_batch_size: 64
+  retain_batch_size: 128
+  seed_rule: original_seed_plus_10000_plus_method_index
+analysis:
+  primary_endpoint: test_js_divergence_to_exact_ensemble
+  reporting_unit: original_model_seed
+  reference_summary: median_distance_to_ten_exact_replicas
+  uncertainty: model_seed_bootstrap_95_percent_interval
+  exact_null: condition_matched_exact_to_exact_distribution
+  conventional_metrics:
+    - test_accuracy
+    - retain_accuracy
+    - forget_accuracy
+    - test_nll
+    - test_brier
+    - test_ece
+    - loss_membership_auc
+  representation_metrics:
+    - final_feature_cka_distance
+    - final_feature_mmd
+  decision_semantics:
+    equivalence_claim_permitted: false
+    confirmatory_pass_fail_permitted: false
+    metric_contradictions: exploratory_continuous_comparison_only
+quality_gates:
+  - source_hashes_match
+  - source_artifact_gate_passes
+  - source_conditions_are_js_assay_sensitive
+  - every_original_and_exact_seed_reference_exists
+  - split_complete_exact_predictions_exist_for_test_retain_and_forget
+  - deletion_manifest_hashes_match
+  - deleted_samples_absent_from_every_exact_partition
+  - methods_registered_with_provenance
+  - raw_outputs_written_under_new_immutable_experiment_id
+execution:
+  authorized: true
+  output_root: results/raw
+  planned_unlearning_runs: 30
+  new_original_trainings: 0
+  new_exact_trainings: 0
+  new_exact_evaluation_artifacts: 20
+  note: execution requires explicit authorization after this draft is reviewed and locked

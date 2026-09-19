@@ -1,0 +1,131 @@
+{
+  "assigned_maturity": "0.5.0",
+  "benchmark_version": "0.5.0",
+  "capabilities": {
+    "confirmatory_results": false,
+    "dataset_reconstruction": true,
+    "exact_retraining_population_runner": true,
+    "external_reproduction": false,
+    "immutable_result_registry": true,
+    "literature_backed_method_pilot": true,
+    "paper_data_release": false,
+    "sequential_runner": "stage_matched_orchestration_and_integration_tests"
+  },
+  "counts": {
+    "architecture_entries": 5,
+    "available_datasets": 2,
+    "dataset_registry_entries": 6,
+    "deletion_manifests": 79,
+    "empirical_pilot_figures": 1,
+    "empirical_publication_figures": 0,
+    "gate_passing_records": 3,
+    "inconclusive_research_questions": 5,
+    "indexed_model_checkpoints": 64,
+    "method_entries": 6,
+    "presentation_slides": 12,
+    "publication_eligible_records": 0,
+    "raw_experiment_records": 10,
+    "research_questions": 5,
+    "verified_claims": 0
+  },
+  "maturity_label": "Research Infrastructure Candidate",
+  "raw_records": [
+    {
+      "artifact": "results/raw/digits-mlp-high-loss-05pct-smoke-v1/result.json",
+      "experiment_id": "digits-mlp-high-loss-05pct-smoke-v1",
+      "failures": [
+        "recognized_maturity",
+        "raw_predictions_and_labels_present",
+        "multiple_exact_seeds"
+      ],
+      "gate_passed": false,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/digits-mlp-random-05pct-smoke-v1/result.json",
+      "experiment_id": "digits-mlp-random-05pct-smoke-v1",
+      "failures": [
+        "recognized_maturity",
+        "raw_predictions_and_labels_present",
+        "multiple_exact_seeds"
+      ],
+      "gate_passed": false,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/digits-mlp-rocm-random-01pct-smoke-v1/result.json",
+      "experiment_id": "digits-mlp-rocm-random-01pct-smoke-v1",
+      "failures": [
+        "recognized_maturity",
+        "raw_predictions_and_labels_present"
+      ],
+      "gate_passed": false,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/fashion-cnn-high-loss-05pct-pilot-v1/result.json",
+      "experiment_id": "fashion-cnn-high-loss-05pct-pilot-v1",
+      "failures": [
+        "recognized_maturity",
+        "raw_predictions_and_labels_present",
+        "multiple_exact_seeds"
+      ],
+      "gate_passed": false,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/fashion-cnn-random-01pct-pilot-v1/result.json",
+      "experiment_id": "fashion-cnn-random-01pct-pilot-v1",
+      "failures": [
+        "recognized_maturity",
+        "raw_predictions_and_labels_present",
+        "multiple_exact_seeds"
+      ],
+      "gate_passed": false,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json",
+      "experiment_id": "fashion-cnn-random-01pct-schema2-rocm-pilot-v1",
+      "failures": [],
+      "gate_passed": true,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/fashion-cnn-random-05pct-pilot-v1/result.json",
+      "experiment_id": "fashion-cnn-random-05pct-pilot-v1",
+      "failures": [
+        "recognized_maturity",
+        "raw_predictions_and_labels_present",
+        "multiple_exact_seeds"
+      ],
+      "gate_passed": false,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json",
+      "experiment_id": "phase3-fmnist-class-conditioned-assay-pilot-v3",
+      "failures": [],
+      "gate_passed": true,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/phase3-fmnist-equivalence-margin-calibration-pilot-v1/result.json",
+      "experiment_id": "phase3-fmnist-equivalence-margin-calibration-pilot-v1",
+      "failures": [],
+      "gate_passed": true,
+      "publication_eligible": false
+    },
+    {
+      "artifact": "results/raw/phase3-fmnist-multi-original-assay-pilot-v1/result.json",
+      "experiment_id": "phase3-fmnist-multi-original-assay-pilot-v1",
+      "failures": [
+        "partition_lineage_complete",
+        "raw_predictions_and_labels_present"
+      ],
+      "gate_passed": false,
+      "publication_eligible": false
+    }
+  ],
+  "schema_version": 1
+}

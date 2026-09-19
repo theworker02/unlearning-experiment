@@ -1,0 +1,64 @@
+\appendix
+\section{Reproducibility Appendix}
+P001 is identified by `fashion-cnn-random-01pct-schema2-rocm-pilot-v1`; its exact seeds are
+2001--2015 and its deletion manifest is archived under `experiments/P001`. Original
+training took \PilotOriginalSeconds{} seconds and all exact retrainings took
+\PilotExactSeconds{} seconds on the recorded RX 7800 XT/ROCm environment. These device
+measurements are not general performance estimates. The repository stores complete
+configurations, failures, environment metadata, prediction/checkpoint hashes, and figure
+source provenance.
+
+\subsection{Frozen identifiers}
+The original training seed is 11, split seed is 1729, and deletion seed is 1009. Exact
+training uses seeds 2001 through 2015. The deletion manifest contains 90 IDs and the
+retained complement 8,910 IDs. Their full SHA-256 values are stored in
+\texttt{reproduction.yaml} and the R001 checksum inventory rather than manually duplicated
+throughout the prose.
+
+\subsection{Optimization details}
+Original and exact training use AdamW for four epochs with batch size 128, learning rate
+$10^{-3}$, and weight decay $10^{-4}$. The unlearning interface uses Adam, learning rate
+$2\times10^{-4}$, one epoch, retain batch size 128, and forget batch size 64. The raw
+configuration remains authoritative for method-specific alpha, gamma, loss weights,
+temperature, step limits, and any future correction.
+
+\subsection{Quality-gate semantics}
+A PASS means the corresponding property was checked for the archived execution. It does
+not mean the model successfully unlearned. Publication eligibility is separately encoded
+and is false for P001. Failed experiments are metadata but are not included as statistical
+observations.
+
+\subsection{Paper generation}
+The build reads the immutable raw result and processed convergence and separability records,
+writes \texttt{results/publication/paper-results.json}, generates tables and LaTeX commands,
+validates citations and claim links, builds the manuscript and supplement, and records
+hashes in \texttt{paper/provenance.json}. The R001 release builder copies these outputs,
+creates a source archive, computes SHA-256 for each payload, and refuses to overwrite an
+existing release directory.
+
+\subsection{Prospective boundary}
+C001 is not authorized to run. Two local calibration pilots were completed before C001:
+the 50-model class-conditioned assay and the 95-model controlled-contamination margin test.
+Both remain pilot evidence. Before the first confirmatory training job, a public prospective
+registration must freeze its hypotheses, experimental units, datasets, deletion regimes,
+manifest generation, training and exact seed counts, primary and secondary metrics,
+distinguishability rules, correction family, exclusions, failure policy, and stopping rule.
+Any equivalence claim requires a new admissible margin. Changes after registration must be
+timestamped and labeled exploratory or confirmatory-impacting.
+
+\subsection{Prospective margin-calibration artifacts}
+The failed v1 calibration, the unexecuted global-selection v2 draft, and the class-stratified
+v2.1 alternative are retained as distinct versioned objects.  The v2.1 package contains a
+machine-readable protocol, a checksummed input plan, exact calibration and holdout seed lists,
+hashes for 30 reusable checkpoints, planned identifiers for 20 new exact trainings, a guarded
+validation-prediction exporter, and a checkpoint preflight report.  The preflight verifies
+checkpoint hashes, finite tensor state, strict SmallCNN schema compatibility, and the frozen
+1,000-example validation split; it does not access test predictions or train models.  The human
+SESOI review record remains null and therefore blocks the freeze.
+
+The \VTwoOneNewTrainingJobs{} planned new exact trainings also have a hardware-specific planning
+estimate generated from the 30 condition-matched pilot runtimes: a serial median of
+\VTwoOneTrainingMedianSeconds{} seconds with a 95\% bootstrap interval of
+\VTwoOneTrainingLowSeconds{}--\VTwoOneTrainingHighSeconds{} seconds.  This is not a fresh
+benchmark and excludes validation inference, startup, scheduling, memory, and transfer to any
+other environment; it therefore does not estimate total calibration runtime.

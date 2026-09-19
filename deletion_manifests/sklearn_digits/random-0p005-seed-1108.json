@@ -1,0 +1,22 @@
+{
+  "benchmark_version": "0.5.0",
+  "count_rule": "max_one_round_half_to_even",
+  "dataset": "sklearn_digits",
+  "dataset_sha256": "8b3b6ae90863430bdef06a3f7d1ec2f6a905a53d3375655b18cf63780ad98772",
+  "fraction": 0.005,
+  "manifest_hash": "4c8ce324f958d3d0d8247db1ecdfca3ad6dad3a56f1e91c68c114edf4f9339fa",
+  "sample_ids": [
+    69,
+    540,
+    907,
+    1388,
+    1442,
+    1512
+  ],
+  "sample_ids_sha256": "bcd6c2cb742899e6f2381c60baa552bac641a5faa74f6ece8964d030ac1b6892",
+  "scenario": "random",
+  "schema_version": 1,
+  "seed": 1108,
+  "split_hash": "b82a9b2802fbea6b5a966773ae4e6238515d0beed4c4811b5c2a5cfc96010732",
+  "status": "pilot_frozen"
+}

@@ -1,0 +1,19 @@
+name: Reproduction discrepancy
+description: Report a benchmark reproduction that differs from its declared tolerance.
+body:
+  - type: input
+    id: version
+    attributes: {label: Benchmark version}
+    validations: {required: true}
+  - type: textarea
+    id: experiments
+    attributes: {label: Experiment IDs and configuration hashes}
+    validations: {required: true}
+  - type: textarea
+    id: environment
+    attributes: {label: Environment and hardware}
+    validations: {required: true}
+  - type: textarea
+    id: observed
+    attributes: {label: Expected range, observed result, and artifact links}
+    validations: {required: true}

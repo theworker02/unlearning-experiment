@@ -1,0 +1,49 @@
+schema_version: 1
+status: FROZEN_BEFORE_EXECUTION
+frozen_at_utc: '2026-09-01T05:20:28.7750100Z'
+purpose: >-
+  Determine whether the exact/exact q95 candidate JS-divergence margin can detect a
+  controlled violation of full-class deletion without inspecting any approximate-method output.
+assay_source:
+  experiment_id: phase3-fmnist-class-conditioned-assay-pilot-v3
+  result: results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json
+endpoint:
+  metric: js_divergence
+  candidate_margin: condition_matched_exact_exact_q95
+  lower_bound: 0.0
+conditions:
+  reference:
+    - {condition_id: r1-class0-f1p00, target_class: 0, deleted_fraction: 1.0}
+    - {condition_id: r1-class5-f1p00, target_class: 5, deleted_fraction: 1.0}
+  controlled_perturbations:
+    primary:
+      residual_forget_class_fraction: 0.01
+      deleted_fraction: 0.99
+      interpretation: >-
+        One percent of the forbidden class remains in the exact-training dataset. This is the
+        smallest prospectively designated operational violation in this pilot.
+    diagnostics:
+      residual_forget_class_fractions: [0.05, 0.10]
+      interpretation: sensitivity curve only; diagnostics cannot rescue a failed primary calibration
+replicas:
+  seeds: [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015]
+  resampling_unit: independently_trained_model_seed
+decision:
+  per_replica_statistic: median_distance_to_condition_matched_full_deletion_exact_ensemble
+  detection_rule: per_replica_statistic_strictly_exceeds_candidate_margin
+  minimum_detection_probability: 0.80
+  joint_admissibility: primary_perturbation_must_pass_for_both_target_classes
+  failure_action: >-
+    Keep the JS equivalence margin unfrozen and block confirmatory method evaluation; do not
+    replace the primary perturbation with a larger diagnostic after observing results.
+execution:
+  config: configs/experiments/phase3_equivalence_margin_calibration_pilot.yaml
+  config_sha256: 8e098d4d6cd9a8d3a8dcf5f4055ca3278ebe9754a79d8cf588d6b87fe0503037
+  manifest_inventory:
+    margin-class0-f0.90-seed4201.json: fe461bab1a81d095dc3f9aa17c1f5024fafff2941c610c529aaf95c9955371c7
+    margin-class0-f0.95-seed4201.json: 3a6500f8072b81ffebb23f8f251c01199f577b6945499172b0e09a31e5014ad4
+    margin-class0-f0.99-seed4201.json: 4f34faa6521cd977340e9178fae075253a242dc8e2de19d8cb3513bcc9852db8
+    margin-class5-f0.90-seed4201.json: 83d0b51a3ddb15401b227af934d68e4af732a2e2d117bd5130f6949b8b3265d5
+    margin-class5-f0.95-seed4201.json: 9517f9dec8d030f3209ca1d0efd3e3c270517cb05f906be0a8d3b383b6581f20
+    margin-class5-f0.99-seed4201.json: e98af5578b01805536e8e935e495a252eb0179ba5c33a1ee10ca8c35676ec7ea
+  approximate_method_outputs_permitted: false

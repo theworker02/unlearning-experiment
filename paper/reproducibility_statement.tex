@@ -1,0 +1,28 @@
+\section{Reproducibility Statement}
+Research Release \StudyRelease{} provides source code, dataset acquisition and validation
+procedures, dataset and split hashes, the immutable deletion and retained manifests, all 15
+exact seeds, model and method configurations, environment metadata, checkpoint and
+prediction references, raw and processed metrics, quality-gate output, F002 source data and
+generation code, and artifact checksums. Level A reproduction (predictions to metrics,
+tables, figures, and paper values) is supported. Level B reproduction (dataset acquisition
+through training and analysis) is the target of the R001 package and remains hardware- and
+software-sensitive. Level C independent reimplementation has not been demonstrated.
+
+\paragraph{Level A: analysis reproduction.}
+Starting from archived predictions, a researcher can recompute metrics and seed summaries,
+regenerate validated tables and F002, regenerate LaTeX commands, and rebuild the manuscript.
+The release checksum manifest verifies every included payload before analysis.
+
+\paragraph{Level B: experiment reproduction.}
+Starting from Fashion-MNIST, the configuration specifies acquisition, split seed, limits,
+deletion manifest, model, training schedule, original seed, exact seeds, approximate
+methods, and evaluation parameters. A reproduction creates a new immutable experiment
+record; it must not overwrite P001. Runtime and floating-point results may vary across
+drivers and accelerators, so acceptance depends on declared tolerances and invariant
+checks rather than exact wall-clock or bitwise identity.
+
+\paragraph{Level C: independent replication.}
+An independent group would implement the written protocol without relying on hidden local
+state and assess whether the methodological conclusion persists. No such replication has
+been completed. The manuscript consequently distinguishes reproducibility infrastructure
+from independently reproduced evidence.

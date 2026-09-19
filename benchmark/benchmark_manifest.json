@@ -1,0 +1,35 @@
+{
+  "benchmark_version": "0.5.0",
+  "files": [
+    {
+      "path": "benchmark/SPECIFICATION.md",
+      "sha256": "0dbe5b85018860deb49b03ffabdce56abf39865efc7b5b7a3e3fead291258076"
+    },
+    {
+      "path": "benchmark/datasets.yaml",
+      "sha256": "2d3e8491bc815963e1ba69eedc9fc532c83c5d49e36a73a4a70396344dbdf76d"
+    },
+    {
+      "path": "benchmark/architectures.yaml",
+      "sha256": "26599608851497bdb94c405413f0efa71d0ceaca49b68726a07cf4cec3615b52"
+    },
+    {
+      "path": "benchmark/methods.yaml",
+      "sha256": "90e2830fa062d3c7cfc39885dd173252e01ac71b3345b17117b12a5803e90cf1"
+    },
+    {
+      "path": "benchmark/deletion_regimes.yaml",
+      "sha256": "e018782b790fcffa7d87f28c83fab5b18381af2ef0b7b83294125ba244064d19"
+    },
+    {
+      "path": "benchmark/metrics.yaml",
+      "sha256": "480e2c8fa0e217e3fc32d0e7035512742a4a3bc7bacca7cb9d69235ffa6a0ac6"
+    },
+    {
+      "path": "benchmark/statistical_protocol.yaml",
+      "sha256": "d8f6430e5bdb87fbc4379f4fe883450da4b8666c051fe8698bafab4d323aa5b4"
+    }
+  ],
+  "schema_version": 1,
+  "status": "pilot"
+}

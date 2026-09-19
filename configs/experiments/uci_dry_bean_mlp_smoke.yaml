@@ -1,0 +1,37 @@
+experiment_id: uci-dry-bean-mlp-smoke-v1
+maturity: VALIDATION
+dataset:
+  name: uci_dry_bean
+  root: data/raw
+  test_fraction: 0.2
+  validation_fraction: 0.1
+  split_seed: 1729
+model:
+  architecture: mlp
+  hidden_dim: 64
+training:
+  device: auto
+  optimizer: adamw
+  epochs: 2
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  momentum: 0.9
+  deterministic: true
+original_seed: 701
+oracle_seeds: [1701, 1702]
+deletion:
+  strategy: random
+  fraction: 0.01
+  seed: 2701
+unlearning:
+  methods: [fine_tune, naive_gradient_ascent]
+  epochs: 1
+  learning_rate: 0.0002
+  retain_weight: 1.0
+  forget_weight: 0.1
+  optimizer: adam
+  weight_decay: 0.0001
+evaluation:
+  ece_bins: 10
+output_root: results/raw

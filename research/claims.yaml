@@ -1,0 +1,143 @@
+schema_version: 1
+claims:
+  - claim_id: P001-C01
+    text: P001 passed its immutable artifact integrity gate.
+    classification: EXPERIMENTAL
+    manuscript_location: Pilot Results
+    verification_status: verified
+    experiment_ids: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    result_artifacts: [results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json]
+    analysis_script: scripts/build_preprint_values.py
+    uncertainty: Infrastructure observation; not an unlearning-performance inference.
+    evidence:
+      result_files: [results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json]
+      statistical_analysis: [results/processed/exact_seed_convergence_fashion_pilot.json]
+  - claim_id: P001-C02
+    text: Retrospective output-metric analysis classified the P001 deletion assay as U0.
+    classification: EXPERIMENTAL
+    manuscript_location: Pilot Results
+    verification_status: verified
+    experiment_ids: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    result_artifacts: [results/processed/phase3/PILOT-FMNIST-IID-DELETE-001-v3-r2.json]
+    analysis_script: scripts/analyze_phase3_reference_separability.py
+    uncertainty: One original seed; retrospective pilot classification only.
+    evidence:
+      result_files: [results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json]
+      statistical_analysis: [results/processed/phase3/PILOT-FMNIST-IID-DELETE-001-v3-r2.json]
+  - claim_id: P001-C03
+    text: Every P001 exact-retraining run excluded all 90 indices in the frozen deletion manifest.
+    classification: EXPERIMENTAL
+    manuscript_location: Reproducibility Statement
+    verification_status: verified
+    experiment_ids: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    result_artifacts: [results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json]
+    analysis_script: scripts/verify_p001_archive.py
+    uncertainty: Verifies dataset construction and recorded run integrity, not removal from an approximate model.
+    evidence:
+      result_files: [results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json]
+      statistical_analysis: [results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json]
+  - claim_id: P001-C04
+    text: The frozen k=10-to-15 JS and prediction-disagreement diagnostics changed by 4.48% and 3.14%, respectively, and passed the 10% pilot rule.
+    classification: EXPERIMENTAL
+    manuscript_location: Pilot Results
+    verification_status: verified
+    experiment_ids: [fashion-cnn-random-01pct-schema2-rocm-pilot-v1]
+    result_artifacts: [results/processed/exact_seed_convergence_fashion_pilot.json]
+    analysis_script: scripts/analyze_exact_seed_convergence.py
+    uncertainty: A pilot seed-count diagnostic for two metrics; not universal evidence that 15 seeds suffice.
+    evidence:
+      result_files: [results/raw/fashion-cnn-random-01pct-schema2-rocm-pilot-v1/result.json]
+      statistical_analysis: [results/processed/exact_seed_convergence_fashion_pilot.json]
+  - claim_id: A001-C01
+    text: Full deletion of Fashion-MNIST classes 0 and 5 was assay-sensitive under JS divergence in the prospective class-conditioned pilot.
+    classification: EXPERIMENTAL
+    manuscript_location: Prospective class-conditioned assay calibration
+    verification_status: verified
+    experiment_ids: [phase3-fmnist-class-conditioned-assay-pilot-v3]
+    result_artifacts: [results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json]
+    analysis_script: scripts/analyze_phase3_class_conditioned_assay.py
+    uncertainty: Pilot evidence from two classes, one reduced CNN recipe, and one dataset.
+    evidence:
+      result_files: [results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json]
+      statistical_analysis: [results/processed/phase3_class_conditioned_assay_pilot.json]
+  - claim_id: A001-C02
+    text: Ten exact seeds met the frozen 20% model-level precision rule for JS divergence in both assay-sensitive full-class conditions.
+    classification: EXPERIMENTAL
+    manuscript_location: Prospective class-conditioned assay calibration
+    verification_status: verified
+    experiment_ids: [phase3-fmnist-class-conditioned-assay-pilot-v3]
+    result_artifacts: [results/processed/phase3_class_conditioned_assay_pilot.json]
+    analysis_script: scripts/analyze_phase3_class_conditioned_assay.py
+    uncertainty: Finite-ensemble pilot precision diagnostic; not a universal seed-count result.
+    evidence:
+      result_files: [results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json]
+      statistical_analysis: [results/processed/phase3_class_conditioned_assay_pilot.json]
+  - claim_id: M001-C01
+    text: The prospectively frozen 1% residual-class perturbation failed the 80% detection rule for both tested classes, so the candidate exact/exact q95 margins are inadmissible.
+    classification: EXPERIMENTAL
+    manuscript_location: Prospective equivalence-margin calibration
+    verification_status: verified
+    experiment_ids: [phase3-fmnist-equivalence-margin-calibration-pilot-v1]
+    result_artifacts: [results/raw/phase3-fmnist-equivalence-margin-calibration-pilot-v1/result.json]
+    analysis_script: scripts/analyze_equivalence_margin_calibration.py
+    uncertainty: Pilot-specific negative calibration; it does not establish that no useful equivalence margin exists.
+    evidence:
+      result_files: [results/raw/phase3-fmnist-equivalence-margin-calibration-pilot-v1/result.json]
+      statistical_analysis: [results/processed/equivalence_margin_calibration_v1.json]
+  - claim_id: D002-C01
+    text: The unexecuted v2.1 design reuses 30 exact checkpoints for calibration inference, plans 20 new holdout exact trainings, and binds a 1,000-example validation probe.
+    classification: PROSPECTIVE_DESIGN
+    manuscript_location: Statistical Analysis Protocol and Reproducibility Appendix
+    verification_status: verified
+    experiment_ids: []
+    result_artifacts:
+      - study/manifests/equivalence_margin_calibration_v2_1_plan.json
+      - reports/equivalence_v2_1_checkpoint_preflight.json
+    analysis_script: scripts/build_equivalence_v2_1_plan.py
+    uncertainty: This verifies an unexecuted design and checkpoint preflight, not an experimental result or runtime estimate.
+    evidence:
+      result_files:
+        - study/manifests/equivalence_margin_calibration_v2_1_plan.json
+        - study/preregistration/equivalence_margin_calibration_v2_1.yaml
+      statistical_analysis: [reports/equivalence_v2_1_checkpoint_preflight.json]
+      sha256:
+        study/manifests/equivalence_margin_calibration_v2_1_plan.json: 2ba886bcad48f68fcc74c862306291184769a4e8796b1fa0bd8f31ff306bd853
+        study/preregistration/equivalence_margin_calibration_v2_1.yaml: 4ddee5ff5cda0d48db910380ae654744a72f3bb0d0b294ff9403cd394997603b
+        reports/equivalence_v2_1_checkpoint_preflight.json: fb178bcda1c116990cd0f02ff7ac817757b638afee5264b2cd0192ccef56ccf3
+  - claim_id: D002-C02
+    text: The v2.1 SESOI review is awaiting a human decision and cannot authorize a freeze or training.
+    classification: PROCESS_STATE
+    manuscript_location: Statistical Analysis Protocol and Reproducibility Appendix
+    verification_status: verified
+    experiment_ids: []
+    result_artifacts: [study/amendments/equivalence_margin_v2_1_sesoi_review.yaml]
+    analysis_script: scripts/validate_equivalence_v2_sesoi_review.py
+    uncertainty: This is a repository governance state, not scientific evidence about unlearning.
+    evidence:
+      result_files: [study/amendments/equivalence_margin_v2_1_sesoi_review.yaml]
+      statistical_analysis: [reports/equivalence_v2_1_checkpoint_preflight.json]
+      sha256:
+        study/amendments/equivalence_margin_v2_1_sesoi_review.yaml: 7cdfbda8dc9a773b194c4f5d7ac101030b3d8ceb304265eeddee52c3cd9e6f3c
+        reports/equivalence_v2_1_checkpoint_preflight.json: fb178bcda1c116990cd0f02ff7ac817757b638afee5264b2cd0192ccef56ccf3
+  - claim_id: D002-C03
+    text: Resampling 30 condition-matched pilot runtimes projects a 22.53-second serial median and 22.19--22.94-second 95% bootstrap interval for the 20 planned new exact trainings on the recorded WSL/ROCm environment.
+    classification: EMPIRICAL_PLANNING_ESTIMATE
+    manuscript_location: Reproducibility Appendix
+    verification_status: verified
+    experiment_ids: [phase3-fmnist-class-conditioned-assay-pilot-v3]
+    result_artifacts: [results/processed/equivalence_v2_1_compute_estimate.json]
+    analysis_script: scripts/estimate_equivalence_v2_1_compute.py
+    uncertainty: Excludes validation inference, startup, scheduling, peak memory, and every other hardware or software environment; it is not a fresh benchmark or total-runtime estimate.
+    evidence:
+      result_files:
+        - results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json
+        - study/manifests/equivalence_margin_calibration_v2_1_plan.json
+      statistical_analysis:
+        - results/processed/equivalence_v2_1_compute_estimate.json
+        - paper/generated/equivalence_v2_1_compute.tex
+      sha256:
+        results/raw/phase3-fmnist-class-conditioned-assay-pilot-v3/result.json: 2782863d7296f6a99611c14dbc64279714d0c92e4dc8d6d6a1577ab156a8ec4b
+        study/manifests/equivalence_margin_calibration_v2_1_plan.json: 2ba886bcad48f68fcc74c862306291184769a4e8796b1fa0bd8f31ff306bd853
+        results/processed/equivalence_v2_1_compute_estimate.json: d5f5b54222d53ff6610c3499a5559e8e20668db7bc9dd476eb827e5990b2dbc2
+        paper/generated/equivalence_v2_1_compute.tex: fc2e7f0c3eced6d6a21834b8247500bacbb1e3f8733164e80ee0808c32b5d59e
+note: Claims are limited to measured pilot evidence and explicitly labeled prospective process facts.

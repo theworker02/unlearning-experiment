@@ -1,0 +1,94 @@
+\section{Metric Specification and Contradiction Matrix}
+\subsection{Task utility}
+Accuracy is reported on retained, forgotten, validation, and test partitions with the
+partition identity explicit.  Balanced accuracy and macro-F1 are added when class balance
+or deletion policy makes ordinary accuracy misleading.  Utility is always compared with
+the exact-retraining population: retaining the original model's accuracy is not sufficient
+if exact retraining induces a materially different decision function.
+
+\subsection{Predictive and probabilistic fidelity}
+For probe set $S$, prediction agreement between models $a$ and $b$ is
+\begin{equation}
+ A_S(a,b)=|S|^{-1}\sum_{x\in S}\mathbf{1}
+ \{\arg\max_c p_a(c\mid x)=\arg\max_c p_b(c\mid x)\}.
+\end{equation}
+Agreement discards confidence information, so it is paired with per-example
+Jensen--Shannon divergence.  Class-conditional summaries detect discrepancies hidden by
+majority classes.  The study retains the distribution of example-level values and the
+model-level aggregate; only the latter supplies independent training-run replication.
+
+Distance direction also matters. A low divergence from the original model is not generally
+a fidelity objective, because the original model did train on the forgotten data. The
+relevant comparison is approximate-to-exact relative to exact-to-exact variation. Reporting
+both agreement and divergence avoids a false sense of consistency when labels agree but
+confidence changes substantially, while retaining class-conditioned summaries makes a
+single aggregate less likely to be dominated by easy classes.
+
+\subsection{Calibration fidelity}
+Negative log likelihood evaluates probability assigned to the observed class, and the
+Brier score measures squared probability error over all classes.  Expected calibration
+error is included with binning fixed in the protocol, accompanied by reliability curves so
+that one scalar does not conceal the direction of miscalibration.  These quantities are
+computed separately on forgotten, retained, and independent test data.  Calibration
+fidelity means proximity to the exact population, not merely a lower calibration error
+than the original model.
+
+\subsection{Forgotten and local behavior}
+Forget-set accuracy is descriptive for IID deletion and is not interpreted as direct proof
+of removal.  Local analysis evaluates changes among neighbors of forgotten examples in
+input or frozen representation space.  Distance bands, same-class restrictions, probe
+checkpoint, and tie handling are specified before outcome inspection.  The resulting
+curve asks whether the intervention creates collateral behavioral disturbance that decays
+with distance from the deletion request.
+
+Local probes require particular care because the chosen neighborhood can itself determine
+the apparent result. Input-space distance may be poorly aligned with visual similarity,
+whereas representation-space distance depends on a checkpoint whose training data and
+layer must be declared. The protocol therefore treats neighborhood construction as part of
+the experimental condition. Exploratory visualizations can generate hypotheses, but they
+cannot be promoted to confirmatory evidence after the radius, embedding, or examples have
+been selected by inspecting the observed effect.
+
+\subsection{Privacy fidelity}
+Membership inference is evaluated relative to exact retraining under the same attacker and
+data construction.  Reported quantities include attack AUROC, advantage, and calibration
+where applicable.  An approximate model is not credited merely because one attack is near
+chance; its privacy behavior must be considered against both exact replicas and alternative
+attacks.  P001 does not contain a validated privacy result, so no privacy conclusion is
+drawn from it.
+
+\subsection{Representation fidelity}
+Compatible architectures are compared on a fixed probe set using centered kernel alignment
+or another symmetry-aware method.  Layer correspondence is declared in advance.  Direct
+neuron-by-neuron comparison is avoided because hidden-unit permutations can preserve the
+function.  Linear probes may characterize class separability but do not by themselves
+establish representational equivalence.
+
+\subsection{Robustness fidelity}
+Controlled corruptions test whether approximate and exact models respond similarly away
+from the clean empirical distribution.  Candidate transformations include Gaussian noise,
+blur, brightness change, and occlusion with frozen severity levels.  These are corruption
+tests, not adversarial-robustness claims.  Clean and corrupted outcomes are linked to the
+same model run so that uncertainty is propagated at the seed level.
+
+\subsection{Contradiction matrix}
+For every condition, the processed record contains separate decisions for forget behavior,
+retained utility, privacy, calibration, prediction distribution, representation, and exact
+counterfactual consistency.  Each cell is \texttt{pass}, \texttt{fail},
+\texttt{inconclusive}, or \texttt{not assessed}; missing evidence is never converted to a
+pass.  A contradiction is counted only when the conventional criteria and counterfactual
+criterion were frozen, evaluable, and integrity-valid.  The matrix preserves component
+values so that later aggregation cannot hide conflicting dimensions.
+
+The matrix is not a composite score. Its purpose is diagnostic: it reveals whether a method
+that satisfies one operational objective is nevertheless outside the counterfactual
+reference envelope on another observable. Any future aggregate would need a defensible
+utility model, sensitivity analysis, and a demonstration that it does not conceal these
+conflicts. Until then, an \texttt{inconclusive} cell is scientifically preferable to a
+forced binary success label.
+
+The next full-class method pilot does not meet those prerequisites. It therefore emits a
+continuous exploratory comparison rather than a contradiction count: every original-seed
+method result retains its conventional metrics, median distance to the exact ensemble, and
+location within the dependent exact/exact null. No cell is converted to pass or fail, and no
+method is labeled equivalent.

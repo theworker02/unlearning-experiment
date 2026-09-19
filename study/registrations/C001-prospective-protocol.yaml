@@ -1,0 +1,47 @@
+schema_version: 1
+study_id: C001
+title: Deletion Sensitivity and Strong-Unlearning Validation Study
+status: frozen_local_draft_not_publicly_registered
+execution_authorized: false
+gate: public_registration_identifier_required_before_first_training_run
+hypotheses:
+  primary:
+    - id: C001-H1
+      statement: At least one prospectively specified stronger deletion regime is distinguishable from exact-retraining variability on a primary fidelity metric.
+    - id: C001-H2
+      statement: Conditional on assay sensitivity, at least one approximate method falls outside a prospectively frozen exact-retraining envelope.
+  secondary:
+    - id: C001-H3
+      statement: Conventional forgetting criteria and counterfactual-fidelity criteria can disagree under at least one sensitive condition.
+experimental_units:
+  primary: independently trained model seed
+  deletion_manifest_replication: required
+datasets: [fashion_mnist]
+deletion_regimes:
+  - class_conditioned
+  - high_influence
+  - controlled_memorization
+  - random_iid_reference
+metrics:
+  primary: [js_divergence, prediction_disagreement]
+  secondary: [calibration, privacy_attack_delta, representation_cka, retained_utility, relearning]
+statistics:
+  confidence_level: 0.95
+  multiplicity: holm
+  exact_seed_count_minimum: 15
+  original_seed_count_minimum: 5
+  equivalence_rule: confidence_interval_entirely_inside_prospectively_frozen_margin
+  separability_rule: original_exact_signal_must_exceed_power_calibrated_exact_exact_threshold
+  pairwise_exact_distances_independent: false
+quality_gates:
+  - dataset_and_split_hashes
+  - deletion_retained_disjointness
+  - exact_retraining_exclusion
+  - checkpoint_and_prediction_hashes
+  - finite_metrics
+  - immutable_configuration
+  - complete_failure_registry
+stopping:
+  no_optional_stopping_on_observed_effect
+  terminate_batch_only_for_predeclared_integrity_or_resource_failure
+amendments: Any post-registration change must be timestamped, justified, and labeled confirmatory-impacting or exploratory.

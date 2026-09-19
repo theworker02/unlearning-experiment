@@ -1,0 +1,34 @@
+schema_version: 1
+review_id: equivalence-margin-v2-sesoi-review
+status: AWAITING_HUMAN_DECISION
+reviewed_protocol:
+  path: study/preregistration/equivalence_margin_calibration_v2.yaml
+  sha256: 4471e2d7d736b9ad5f112cb3ecdf3ea64cfec1ce87a1f2bf4320ea9cff54d6ea
+reviewed_input_plan:
+  path: study/manifests/equivalence_margin_calibration_v2_plan.json
+  sha256: 1ad527b17ffd11e0b37b2f3b0254d20e099857a8727640626637dab58118a13a
+preflight_report: reports/equivalence_v2_checkpoint_preflight.json
+proposed_sesoi:
+  primary_swap_fraction: 0.01
+  primary_changed_predictions: 10
+  validation_probe_size: 1000
+  sensitivity_changed_predictions: {0.005: 5, 0.01: 10, 0.02: 20}
+  interpretation: one_percentage_point_aggregate_top1_disagreement
+decision_options:
+  - APPROVE_AS_SPECIFIED
+  - REVISE_BEFORE_FREEZE
+  - REJECT_EQUIVALENCE_ENDPOINT
+decision: null
+reviewer: null
+reviewed_at_utc: null
+rationale: null
+required_checks:
+  aggregate_one_percentage_point_change_is_scientifically_meaningful: null
+  global_hash_selection_is_acceptable_without_class_stratification: null
+  top2_swap_is_an_acceptable_positive_control_not_a_failure_model: null
+  fashion_mnist_margin_will_not_be_transferred_to_other_domains: null
+  failed_v1_result_remains_reported: null
+  confirmatory_outputs_have_not_been_inspected: null
+approval_effect: >-
+  Approval permits a separate timestamped freeze amendment and regenerated frozen input plan.
+  It does not itself authorize training, analysis, publication, or a successful-equivalence claim.

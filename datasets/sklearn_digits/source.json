@@ -1,0 +1,9 @@
+{
+  "access_date": "2026-08-30",
+  "citation": "scikit-learn dataset documentation",
+  "dataset": "sklearn_digits",
+  "license": "See scikit-learn and UCI dataset records",
+  "schema_version": 1,
+  "source": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html",
+  "version": "1.9.0"
+}

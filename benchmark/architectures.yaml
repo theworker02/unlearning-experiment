@@ -1,0 +1,7 @@
+schema_version: 1
+architectures:
+  - {id: linear, family: linear, status: validation}
+  - {id: mlp, family: neural, status: available}
+  - {id: small_cnn, family: convolutional, status: available}
+  - {id: resnet18, family: residual_convolutional, status: planned}
+  - {id: small_vit, family: transformer, status: optional_compute_review}

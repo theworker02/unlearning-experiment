@@ -1,0 +1,84 @@
+schema_version: 1
+status: DRAFT_NOT_LOCKED
+separability:
+  statistic: median_original_exact_over_exact_exact_q95
+  threshold_selection: preregistered_seed_level_power_simulation
+  alpha: 0.05
+  minimum_power: 0.80
+  threshold: null
+  note: threshold must be frozen without approximate-method results
+reference_precision:
+  estimand: mean_exact_exact_distance
+  resampling_unit: independently_trained_model_seed
+  candidate_seed_counts: [5, 10, 15]
+  confidence_level: 0.95
+  maximum_relative_interval_half_width: 0.20
+  repetitions: 5000
+  simulation_seed: 73194
+  selection_rule: first_candidate_meeting_precision_for_every_primary_metric
+  calibration_evidence:
+    source_experiment: phase3-fmnist-class-conditioned-assay-pilot-v3
+    source_analysis: results/processed/phase3_class_conditioned_assay_pilot.json
+    interpretation: >-
+      Model-level precision is measured for the class-conditioned pilot, but the global
+      seed count remains unfrozen until the admissible primary endpoint and equivalence
+      margin are resolved.
+  selected_seed_count: null
+  note: selection remains blocked pending metric-specific equivalence-margin calibration
+equivalence:
+  method: seed_level_bootstrap_equivalence
+  confidence_level: 0.90
+  bounds_source: controlled_perturbation_calibration_without_approximate_method_outputs
+  calibration:
+    candidate_upper_bound: exact_exact_q95
+    lower_bound_for_distances: 0.0
+    smallest_meaningful_perturbation: metric_specific_and_frozen_before_generation
+    minimum_detection_probability: 0.80
+    admissibility_rule: >-
+      The exact-exact q95 margin is usable only when at least 80 percent of independently
+      generated smallest-meaningful controlled perturbations exceed it.
+    failure_action: metric_cannot_support_confirmatory_equivalence_until_recalibrated
+  bounds: null
+  calibration_status:
+    source_experiment: phase3-fmnist-class-conditioned-assay-pilot-v3
+    calibration_experiment: phase3-fmnist-equivalence-margin-calibration-pilot-v1
+    calibration_analysis: results/processed/equivalence_margin_calibration_v1.json
+    assay_sensitive_conditions:
+      - condition_id: r1-class0-f1p00
+        metric: js_divergence
+      - condition_id: r1-class5-f1p00
+        metric: js_divergence
+    primary_calibration_result: FAILED
+    joint_primary_admissible: false
+    numerical_margin_status: NOT_ADMISSIBLE
+    next_action: >-
+      Retain JS as a distinguishability endpoint, report condition-specific uncertainty bounds,
+      and redesign any equivalence claim before confirmatory method evaluation.
+    confirmatory_method_matrix: BLOCKED
+multiple_testing:
+  method: holm
+  active: false
+  status: SUSPENDED_PENDING_REVISED_CONFIRMATORY_FAMILY
+  family_definition:
+    primary_family: >-
+      NOT FROZEN. The former JS-divergence and top-1-disagreement family is suspended because
+      disagreement was assay-insensitive in the calibrated full-class conditions and the
+      proposed exact/exact-q95 equivalence margin was inadmissible.
+    secondary_families:
+      utility: [accuracy, nll, ece, brier]
+      privacy: [loss, confidence, entropy, margin]
+      representation: [layerwise_linear_cka_distance, layerwise_mmd]
+    correction_scope: paper_level_within_each_named_family
+    gatekeeping: >-
+      A condition-metric enters method evaluation only if its frozen original-versus-exact
+      assay-sensitivity rule passes; insensitive conditions receive U0 and no method claim.
+    reporting: >-
+      The exploratory method pilot reports continuous estimates without multiplicity-adjusted
+      decisions. Raw and Holm-adjusted p-values apply only after a new family is frozen.
+    exploratory_metrics: excluded_from_confirmatory_families_and_labeled_exploratory
+outcomes:
+  U0_ASSAY_INSENSITIVE: original versus exact does not pass separability
+  U1_FORGETTING_FAILURE: assay sensitive and functional equivalence fails
+  U2_FUNCTIONAL_ONLY: functional equivalence passes but privacy or representation fails
+  U3_STRONG_EMPIRICAL_EQUIVALENCE: functional, privacy, representation, and utility pass
+  U4_INCONCLUSIVE: convergence, precision, quality, or metric consistency is insufficient

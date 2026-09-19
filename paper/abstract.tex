@@ -1,0 +1,31 @@
+\begin{abstract}
+Machine-unlearning evaluations often compare an approximate intervention with a single
+retrained model, despite stochastic training producing a population of counterfactual
+models. This practice can obscure both natural training variability and a more basic
+identifiability problem: a deletion request may not measurably change the learned function
+under the selected assay. We present an evidence-traceable evaluation workflow that binds
+deletion requests, retained sets, seeds, configurations, checkpoints, predictions, metrics,
+and derived figures to hash-verified experiment records. The workflow represents exact
+retraining with an ensemble and separates reference-assay sensitivity from subsequent
+method evaluation.
+
+We validate the workflow in P001, a retrospective pilot using a reduced Fashion-MNIST
+split, one frozen one-percent IID deletion manifest, a small convolutional network, one
+original training seed, and 15 independent exact-retraining seeds. The predefined
+$k=10\rightarrow15$ seed-count diagnostic changed by \PilotJSConvergence{} for mean
+Jensen--Shannon divergence and \PilotDisagreementConvergence{} for prediction
+disagreement, below the frozen 10\% pilot threshold. Although three approximate methods
+were executed, retrospective analysis found that the deletion itself was not separable
+from exact-retraining variability under these two output metrics. Method proximity to the
+exact ensemble therefore cannot be interpreted as evidence of successful removal in this
+condition. High accuracy on IID-deleted examples is likewise not direct evidence of
+memorization because held-out examples may remain classifiable from shared class structure.
+
+P001 validates infrastructure integrity and initial reference-ensemble stability, not
+certified unlearning, privacy equivalence, or generalization. A subsequent prospective
+calibration found that JS divergence could identify full deletion of two tested classes,
+but a candidate exact/exact-percentile equivalence margin failed to detect the frozen
+one-percent residual-class violation. The evidence therefore supports distinguishability
+analysis but not an equivalence claim. The resulting archive keeps the confirmatory method
+matrix blocked until its decision rule is defensible.
+\end{abstract}

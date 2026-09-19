@@ -1,0 +1,48 @@
+\section{Sequential Deletion and Scaling Protocol}
+\subsection{Stateful deletion process}
+Sequential unlearning is modeled as a trajectory rather than a collection of unrelated
+single deletions.  Starting from $M^{(0)}$, request $F_t$ produces approximate state
+$M_u^{(t)}=U(M_u^{(t-1)},F_t)$.  Its counterfactual reference population is independently
+trained on
+\begin{equation}
+  D_r^{(t)} = D \setminus \bigcup_{s=1}^{t} F_s.
+\end{equation}
+The cumulative deletion manifest is immutable at every step, and all previous forgotten
+identifiers remain excluded.  Exact models are not initialized from the approximate state.
+
+\subsection{Trajectory endpoints}
+At each step the study records utility, probability divergence, calibration, privacy,
+representation, local behavior, and cost.  Drift is analyzed both absolutely and relative
+to the contemporaneous exact envelope.  Candidate patterns include monotone accumulation,
+nonlinear failure, plateau, and recovery, but none is assumed.  The area above the exact
+envelope may be reported as a descriptive trajectory summary only after its weighting and
+normalization are fixed.
+
+\subsection{Deletion regimes}
+The architecture supports random, high-loss, class-specific, rare-example,
+representation-clustered, mislabeled, influence-selected, and sequential selections.
+Selection is performed from frozen eligible indices and produces a hashed manifest before
+unlearning.  High-loss and influence-based policies must calculate their scores from an
+explicit model checkpoint and may not use test labels.  Corruption experiments preserve
+both clean and corrupted labels so that removal of harmful data is distinguishable from
+ordinary IID deletion.
+
+\subsection{Compute--fidelity frontier}
+Cost is measured jointly with fidelity rather than presented as an unconditional speedup.
+For method $a$, retraining-relative cost is
+\begin{equation}
+  \rho_a = \frac{T_a}{\operatorname{median}_i T(M_{r_i})},
+\end{equation}
+with hardware, device, synchronization policy, peak memory, and measurement boundary
+recorded.  Pareto comparisons identify methods for which no alternative is both cheaper
+and more faithful.  Wall-clock results remain environment-specific and are not extrapolated
+across accelerators without measurement.
+
+\subsection{Escalation across datasets and architectures}
+Digits remains a deterministic infrastructure test.  Fashion-MNIST provides a low-cost
+neural pilot.  CIFAR-10 is intended to test stronger convolutional architectures,
+CIFAR-100 increases class granularity, and a tabular dataset tests whether observations
+depend on vision-specific representations.  Dataset inclusion is tied to a generalization
+question, not to benchmark count.  The same manifests, method interface, raw schema, and
+analysis pipeline are retained across CPU, CUDA, ROCm, Apple accelerators, and remote
+hardware; only device adapters and environment records vary.

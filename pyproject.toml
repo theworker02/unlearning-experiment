@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "exact-unlearning-study"
+version = "0.5.0"
+description = "Reproducible evaluation of approximate machine unlearning against exact-retraining distributions"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "MIT"
+dependencies = [
+  # AMD's validated ROCm 7.2.1 PyTorch wheels require the NumPy 1.x ABI.
+  # Keeping this bound in the project metadata prevents an editable install
+  # from silently replacing the validated ROCm environment with NumPy 2.x.
+  "numpy>=1.26,<2",
+  "pandas>=2.2,<3",
+  "PyYAML>=6,<7",
+  "scikit-learn>=1.5,<2",
+  "scipy>=1.13,<2",
+  "torch>=2.4,<3",
+]
+
+[project.optional-dependencies]
+dev = ["hypothesis>=6,<7", "matplotlib>=3.9,<4", "pytest>=8,<9", "ruff>=0.9,<1"]
+
+[project.scripts]
+unlearning-experiment = "exact_unlearning.cli:main"
+unlearn-bench = "exact_unlearning.benchmark_cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+# Keep transient test state out of the OneDrive-backed repository.  A local
+# basetemp caused otherwise-correct test runs to fail when OneDrive retained a
+# handle or ACL on a previous run directory.
+addopts = "-q -p no:cacheprovider"
+testpaths = ["tests"]
+pythonpath = [".", "src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

@@ -1,0 +1,16 @@
+schema_version: 1
+status: DRAFT_NOT_DEPOSITED
+upload_type: software
+title: Measuring Counterfactual Fidelity in Machine Unlearning — Research Release R001
+creators: [{name: "Looney, Matthew", affiliation: Magnexis}]
+version: 0.5.0-research-r001
+publication_date: null
+doi: null
+concept_doi: null
+license: MIT
+keywords: [machine unlearning, counterfactual fidelity, exact retraining, reproducibility, Fashion-MNIST]
+description: >-
+  Immutable schema-v2 Fashion-MNIST pilot with a frozen one-percent IID deletion
+  manifest, fifteen exact-retraining seeds, approximate-method evaluations, prediction
+  artifacts, convergence diagnostics, and reproducible Figure F002. This release does
+  not establish successful machine unlearning.

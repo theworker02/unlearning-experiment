@@ -1,0 +1,51 @@
+schema_version: 1
+profile: publication_main
+status: DRAFT_BLOCKED_PENDING_PREREGISTRATION_AND_PRECISION
+datasets:
+  - {name: fashion_mnist, architectures: [small_cnn]}
+  - {name: cifar10, architectures: [small_cnn, resnet18]}
+  - {name: cifar100, architectures: [resnet18]}
+  - {name: uci_dry_bean, architectures: [multinomial_logistic, mlp]}
+original_seed_count: null
+deletion_conditions:
+  random_fractions: [0.001, 0.005, 0.01, 0.05, 0.10]
+  structured: [high_loss, class_specific, representation_cluster, controlled_label_corruption]
+exact_retraining_seed_count: null
+approximate_methods: [fine_tune, neggrad_plus, scrub, scrub_rewind, ssd]
+method_requirements:
+  fine_tune:
+    protocol: study/preregistration/fine_tune_tuning_v1.yaml
+    required_artifact: results/raw/fine-tune-fmnist-tuning-v1/result.json
+    required_outcome: validation_selected_candidate_with_matching_protocol_hash
+  neggrad_plus:
+    protocol: study/preregistration/neggrad_plus_reproduction_v1.yaml
+    required_artifacts:
+      - results/raw/neggrad-plus-fmnist-sanity-v1/result.json
+      - results/raw/neggrad-plus-fmnist-tuning-v1/result.json
+    required_outcome: sanity_pass_and_validation_selected_candidate_with_matching_protocol_hash
+  scrub:
+    protocol: study/preregistration/scrub_sanity_reproduction_v1.yaml
+    required_artifact: results/raw/scrub-fmnist-bn-sanity-v1/result.json
+    required_outcome: overall_acceptance_true_with_matching_protocol_hash
+    tuning_protocol: study/preregistration/scrub_tuning_v1.yaml
+    required_tuning_artifact: results/raw/scrub-fmnist-tuning-v1/result.json
+    required_tuning_outcome: mechanism_valid_validation_selected_candidate_with_matching_hashes
+  ssd:
+    sensitivity_protocol: study/preregistration/ssd_fisher_estimator_sensitivity_v1.yaml
+    required_sensitivity_artifact: results/raw/ssd-fisher-estimator-sensitivity-v1/result.json
+    sensitivity_outcome: independently_recomputed_complete_estimator_sensitivity_artifact
+    reproduction_protocol: study/preregistration/ssd_reproduction_v1.yaml
+    required_reproduction_artifacts:
+      - results/raw/ssd-fmnist-sanity-v1/result.json
+      - results/raw/ssd-fmnist-tuning-v1/result.json
+    reproduction_outcome: sanity_pass_and_validation_selected_candidate_with_matching_hashes
+candidate_seed_count: null
+count_decision_requirement:
+  protocol: study/preregistration/main_count_decision_v1.yaml
+  required_artifact: results/processed/main_count_decision_v1.json
+  required_status: READY_FOR_FREEZE
+metrics_source: study/preregistration/metrics.yaml
+sequential:
+  enabled: true
+  cumulative_stage_fractions: [0.01, 0.02, 0.03, 0.04, 0.05]
+launch_authorized: false

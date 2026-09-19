@@ -1,0 +1,62 @@
+\section{Discussion}
+\subsection{What P001 establishes}
+P001 establishes that the repository can freeze a deletion request, construct an exact
+retained complement, prevent deleted observations from entering exact retraining, execute
+multiple independent replicas, store raw predictions and checkpoints with hashes, derive
+reference statistics, and generate manuscript values from those artifacts. It also shows
+that stochastic variation is empirically visible even in a small deterministic pilot.
+These are infrastructure and measurement findings, not evidence that an approximate
+method satisfies a general definition of unlearning.
+
+\subsection{Identifiability before equivalence}
+The pilot exposes an identifiability problem rather than a method ranking. Ordinary IID
+deletions may leave the trained function almost unchanged relative to ordinary retraining
+variation. In such a regime, approximate/exact proximity is compatible both with genuine
+removal and with doing essentially nothing. Stronger class-conditioned, influential, and
+controlled-memorization regimes are therefore required. This interpretation remains
+restricted to assay design and does not establish the behavior of any unlearning method.
+
+This ordering matters for equivalence testing. An equivalence interval contained within a
+margin can support similarity only for the measured endpoint and only if the endpoint is
+capable of detecting the relevant intervention. Otherwise scientifically different
+procedures may satisfy the same surface criterion. C001 therefore requires both a
+reference-sensitivity gate and prospectively frozen equivalence margins.
+
+The class-conditioned calibration makes this distinction concrete. JS divergence detected
+the original-versus-full-deletion intervention for two classes, yet the exact/exact 95th
+percentile did not detect the prospectively frozen one-percent residual-class violation.
+Identifiability of a large intervention is therefore not sufficient to validate a tight
+equivalence margin. The failed margin is retained as a negative design result rather than
+widened after observing the calibration.
+
+\subsection{Why multiple exact replicas matter}
+Across the 15 exact seeds, test accuracy varies by more than four percentage points and
+forget accuracy by ten percentage points. Selecting one replica can therefore change the
+apparent distance or utility cost assigned to an approximate method. An ensemble exposes
+this dependence and supports empirical percentiles, bootstrap intervals, or equivalence
+tests at the model-seed level. It does not make the finite ensemble identical to the full
+training distribution, but it makes uncertainty visible.
+
+\subsection{Auditability as a methodological property}
+Output similarity alone cannot reveal which data were used or whether the declared
+algorithm was actually executed. The repository therefore couples behavioral evidence
+with procedural evidence: immutable manifests, exclusion assertions, configuration and
+artifact hashes, append-only raw records, failure metadata, and claim-to-artifact links.
+This does not solve every auditing problem, but it narrows the gap between a reported result
+and the executable process that produced it.
+
+\subsection{Efficiency conditional on fidelity}
+The aggregate approximate-method runtime is smaller than aggregate exact retraining in
+P001, but the comparison is a small hardware-specific observation. Computational savings
+become scientifically meaningful only after an assay can distinguish the relevant
+counterfactual and a method's fidelity is characterized. The planned compute--fidelity
+frontier therefore reports cost jointly with multiple fidelity dimensions rather than as a
+standalone speedup claim.
+
+\subsection{Implications for C001}
+The next study should retain class-conditioned deletion as a distinguishability stress
+regime while treating equivalence as unresolved. Influence-selected observations,
+controlled memorization, and corrupted-label removal remain candidate regimes. Multiple
+original seeds are needed to estimate original/exact variation rather than conditioning on
+one original model. Metric selection, uncertainty reporting, multiplicity control,
+exclusions, and stopping rules must be registered before confirmatory training begins.

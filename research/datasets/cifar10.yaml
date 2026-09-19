@@ -1,0 +1,22 @@
+schema_version: 1
+dataset_id: cifar10
+status: PLANNED_PROVENANCE_VERIFIED_LICENSE_UNRESOLVED
+publication_role: primary_vision
+canonical_source: https://www.cs.toronto.edu/~kriz/cifar.html
+source_mirror_used: null
+provenance_verification_date: 2026-08-31
+reported_structure:
+  train_samples: 50000
+  test_samples: 10000
+  classes: 10
+  image_shape: [3, 32, 32]
+license:
+  status: not_stated_on_canonical_dataset_page
+  release_action: block_redistribution_until_terms_are_verified
+acquisition:
+  status: not_acquired
+  expected_archive_hashes: pending_verified_download
+limitations:
+  - derived from labeled subsets of the 80 Million Tiny Images collection
+  - canonical page does not state an explicit dataset license
+

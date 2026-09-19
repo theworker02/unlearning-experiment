@@ -1,0 +1,91 @@
+\section{Limitations and Threats to Validity}
+\subsection{External validity}
+The current evidence covers one reduced Fashion-MNIST split, one small CNN, one IID
+deletion manifest, and one original-model seed in P001. It does not establish behavior on
+the full Fashion-MNIST training set, CIFAR, tabular data, larger architectures, sequential
+requests, structured deletions, or different optimization regimes. The multi-original
+and controlled-contamination assays are separate pilots rather than confirmatory evidence.
+Their full-class results cover only classes 0 and 5.
+
+\subsection{Construct validity}
+The frozen convergence rule covers JS divergence and prediction disagreement only. It does
+not validate calibration, privacy, representation, local, relearning, or corruption probes.
+Representation and parameter similarity do not uniquely determine functional influence.
+Membership attacks are incomplete adversaries whose outcomes depend on threat model,
+features, and attack training data. No aggregate score has been justified.
+
+\subsection{Statistical validity}
+P001 contains 15 exact seeds but only one original seed and one deletion manifest. The
+retrospective separability analysis was not preregistered and cannot supply confirmatory
+error control. Pairwise exact distances are dependent. The frozen 10\% convergence
+threshold is an engineering diagnostic, not a power guarantee or equivalence margin.
+The class-conditioned precision simulation selected ten exact seeds for JS, but only under
+the observed finite ensemble and frozen pilot rule. The controlled one-percent contamination
+calibration rejected the proposed exact/exact-percentile equivalence margins. No claim is
+made that 10 or 15 seeds, or any numerical margin, transfers beyond these pilot conditions.
+
+\subsection{Implementation validity}
+Fine-tuning and naive gradient ascent are simple engineering baselines. Although SCRUB is
+literature-backed, P001 is not a full reproduction or competitive hyperparameter study.
+Post-pilot objective auditing found an architecture-specific validity failure: the deterministic
+small CNN gives the identically initialized student and teacher identical logits at SCRUB's first
+max-step. The KL term therefore supplies no model-derived ascent signal at that point; numerical
+residuals amplified by Adam are not accepted as evidence of the published forgetting mechanism.
+The archived SCRUB output is retained as an immutable interface smoke test but is invalid as method
+reproduction or competitive evidence. New runs fail closed unless the initial max-step signal is
+validated.
+The environment records a single AMD/ROCm/WSL2 execution; bitwise cross-hardware
+reproducibility and independent laboratory replication have not been demonstrated.
+
+\subsection{Privacy and legal scope}
+Approximate unlearning does not by itself establish legal compliance or demonstrate the
+absence of private information. Empirical proximity to a finite exact-retraining ensemble
+is not a certificate of erasure. Fashion-MNIST is non-sensitive benchmark data; conclusions
+about operational deletion requests involving personal information would require a
+separate threat model, governance process, and privacy analysis.
+
+\subsection{Measurement and selection threats}
+The meaning of a fidelity result depends on the probe distribution and the deletion rule.
+Aggregate test metrics can be insensitive to a localized change near forgotten examples,
+while a forget-set metric can be confounded by ordinary class generalization. Likewise,
+high-loss, class-conditioned, clustered, or corrupted-label selections may create a
+substantially different counterfactual target than IID selection. The current work does not
+claim that a single collection of metrics is sufficient. It supplies a framework for
+reporting disagreement among metric families and requires future studies to preserve the
+selection algorithm, its seed, and its provenance alongside the deletion IDs.
+
+Finite probe sets also limit what can be observed. Prediction agreement and JS divergence
+are computed on enumerated partitions; two models can agree on those points and differ
+elsewhere. Conversely, finite exact ensembles can make an approximate output appear
+unusual because the reference distribution is itself estimated imprecisely. Bootstrap,
+permutation, and equivalence procedures in a confirmatory protocol must account for this
+estimation problem, dependent pairwise comparisons, and the multiplicity introduced by
+methods, datasets, deletion regimes, and metric families.
+
+\subsection{Temporal scope and method readiness}
+This manuscript reports the completed P001 pilot and its associated calibration material.
+It is not a retrospective container for every later development run in the repository.
+Mechanism-validation failures and tuning failures are retained in the failure registry so
+that they cannot disappear from the scientific record, but a failed development method is
+not converted into a statistical observation or a headline result. Before a literature-backed
+method enters a comparative claim, its provenance, license, implementation deviations,
+mechanism checks, and prospectively declared tuning policy must be reviewed.
+
+The same restriction applies to the planned main study. A multi-original-seed assay,
+stronger deletion stressors, sequential trajectories, and additional datasets are necessary
+to distinguish a pilot measurement issue from a reproducible phenomenon. Until those
+conditions are frozen and executed, language about evaluation contradictions remains a
+research question rather than an empirical conclusion.
+
+\subsection{Publication status}
+R001 is a locally verified release candidate. At the time of writing it has no public OSF,
+Zenodo, GitHub release, or preprint identifier, and the author metadata still requires
+human verification. These omissions are recorded rather than filled with invented
+identifiers.
+
+Publication readiness is therefore a release gate, not a document-length judgment. It
+requires verified citations, a claims--evidence graph for every substantive quantitative
+statement, complete primary experiments under a frozen plan, documented failures, and a
+clean-environment reproduction of at least one flagship result. The absence of a public
+identifier is not a temporary formatting defect: no DOI, registration number, or archival
+URL should be inserted until the corresponding external action has actually occurred.

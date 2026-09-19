@@ -1,0 +1,78 @@
+\section{Introduction}
+Approximate machine unlearning is intended to remove selected training influence without
+the cost of complete retraining. The relevant counterfactual is a model trained on the
+retained data, but stochastic optimization produces a distribution of such models. This
+observation changes the evaluation problem. A single retrained network is one draw from a
+random training procedure, not a unique parameter-space target. Differences caused by
+initialization, minibatch order, optimization, and augmentation can be comparable to or
+larger than those caused by deleting a small set of observations.
+
+Many empirical evaluations emphasize retained-set utility, decreased performance on a
+forget set, or membership-inference behavior. Each measurement can be useful, but none is
+identical to the counterfactual question: would the observable and latent behavior of the
+post-unlearning model be statistically consistent with models trained without the deleted
+records? A model can preserve test accuracy while changing its confidence distribution; an
+attack can approach chance while the model remains behaviorally unlike retraining; and an
+IID-deleted example can remain correctly classified even when it was never used for
+training. These possibilities motivate a multidimensional target rather than a single
+forgetting score.
+
+This study separates two questions that are often combined. First, is the deletion request
+itself empirically identifiable under the selected model, data, and metrics? Second,
+conditional on such sensitivity, does an approximate method reproduce the distribution of
+exactly retrained models? If the original model cannot be distinguished from the reference
+population, approximate/exact proximity is compatible both with genuine removal and with a
+procedure that leaves the original function essentially unchanged. In that setting the
+assay cannot support a positive or negative method claim.
+
+The present manuscript reports a bounded retrospective pilot, P001, and the infrastructure
+used to preserve it. P001 uses one reduced Fashion-MNIST split, one frozen IID deletion
+manifest, one original seed, and 15 exact-retraining seeds. Its purpose is methodological:
+to validate exclusion, lineage, immutable evidence, reference-ensemble estimation, and
+paper generation. The analysis then asks whether P001 was an informative deletion assay.
+It makes no novelty or successful-unlearning claim.
+
+The distinction between an experimental target and an evaluation convenience is important in
+this setting. Let $D$ be a training set, $F\subset D$ a requested deletion set, $A$ a
+stochastic training procedure, and $U$ an approximate update procedure. The usual objects are
+an original model $M_0=A(D)$, an updated model $M_U=U(M_0,F)$, and one retrained model
+$M_R=A(D\setminus F)$. The latter is often used as though it were a fixed oracle. It is not.
+For a fixed retained dataset, $A(D\setminus F)$ induces a distribution over functions,
+probabilities, calibration states, and representations. A scientifically cautious comparison
+therefore asks whether $M_U$ is compatible with that distribution on prespecified probes. It
+does not ask whether $M_U$ happens to resemble one convenient retraining draw.
+
+This perspective also clarifies why a favorable conventional outcome can be ambiguous. A
+reduction in forget-set accuracy may reflect meaningful removal, ordinary class confusion, or
+collateral degradation. Stable retained accuracy may coexist with changed confidence or local
+behavior. A weak membership attack may be weak because of its threat model rather than because
+the model is counterfactually faithful. None of these observations is useless; each answers a
+different question. The manuscript therefore treats their agreement and disagreement as an
+object of measurement, while declining to collapse them into one unsupported success score.
+
+The project is intentionally staged. Tier-0 and Tier-1 work establishes deterministic data
+handling, artifact contracts, and deletion invariants. The current P001 release is a bridge
+between those engineering checks and a future publication-scale study. It is designed to make
+the transition auditable: what was measured, what was merely designed, what failed, and what
+remains unmeasured are all separated in the repository and in the text. That separation is less
+dramatic than a method leaderboard, but it is necessary if later empirical claims are to be
+interpretable under skeptical review.
+
+The contributions of this release are therefore deliberately narrow:
+\begin{enumerate}
+\item an operational counterfactual evaluation model in which exact retraining is an
+ensemble rather than one arbitrarily selected network;
+\item an audit pipeline that cryptographically binds dataset, split, deletion, training,
+prediction, metric, figure, and manuscript artifacts;
+\item a reproducible P001 case study demonstrating seed-count diagnostics and the need to
+test deletion identifiability before interpreting method proximity; and
+\item a claim boundary and prospective C001 gate that prevent exploratory pilot outcomes
+from being presented as confirmatory evidence.
+\end{enumerate}
+
+The remainder of the paper first positions this scope relative to unlearning, auditing, and
+evaluation work. It then specifies the counterfactual target, evidence lineage, measurement
+layers, and statistical boundaries. The results section reports only the completed pilot and
+its negative assay-identifiability finding. Later sections describe the implications, failure
+records, limitations, and the conditions that must be met before a publication-grade
+confirmatory study is allowed to start.

@@ -1,0 +1,108 @@
+schema_version: 1
+status: DRAFT_NOT_LOCKED
+execution_authorized: false
+study_class: development_estimator_sensitivity_not_publication_evidence
+experiment_id: ssd-fisher-estimator-sensitivity-v1
+objective: >-
+  Quantify how SSD parameter selection and downstream behavior change when Fisher importance is
+  estimated from squared per-example gradients versus squared minibatch-mean gradients.
+estimators:
+  common_execution:
+    model_mode: evaluation
+    dataloader_shuffle: false
+  paper_aligned_per_example:
+    definition: mean_over_examples_of_squared_log_likelihood_gradient
+    implementation: exact_unlearning.ssd.estimate_diagonal_fisher
+    loader_batch_sizes: [1, 32, 128]
+    expected_invariance: loader_batch_size_changes_only_iteration_grouping
+  pinned_official_style_minibatch:
+    definition: mean_over_batches_of_squared_gradient_of_mean_cross_entropy
+    source_revision: cdfdc0e35c1908e032a6e150d882b0fa17833f85
+    batch_sizes: [1, 32, 128]
+    expected_invariance: none
+scope:
+  synthetic_analytic_case:
+    model: two_input_two_class_linear_no_bias
+    sample_count: 2
+    purpose: demonstrate_cross_terms_when_per_example_gradients_are_not_identical
+  dataset: fashion_mnist
+  dataset_role: development_only
+  dataset_config:
+    name: fashion_mnist
+    root: data/raw
+    validation_fraction: 0.1
+    split_seed: 1729
+    train_limit: 10000
+    test_limit: 2500
+  architecture: small_cnn_bn
+  hidden_dim: 64
+  original_seeds: [4201, 4202, 4203]
+  deletion:
+    strategy: class
+    target_class: 0
+    fraction_within_class: 1.0
+  ssd_hyperparameters:
+    alpha: 10.0
+    dampening_constant: 1.0
+original_training:
+  device: auto
+  optimizer: adamw
+  epochs: 4
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  deterministic: true
+data_access:
+  full_training_split: permitted_for_full_fisher
+  forget_training_split: permitted_for_forget_fisher
+  validation_split: permitted_for_behavioral_sensitivity
+  test_split: prohibited
+  exact_retraining_predictions_or_distances: prohibited
+fixed_comparisons:
+  fisher_tensor:
+    - cosine_similarity
+    - relative_l1_difference
+    - relative_l2_difference
+  selected_parameters:
+    - selected_count
+    - selected_fraction
+    - selected_set_jaccard
+  model_update:
+    - parameter_change_l2
+    - pairwise_updated_parameter_l2
+  validation_behavior:
+    - prediction_agreement
+    - mean_jensen_shannon_divergence
+    - accuracy_difference
+completion_criteria:
+  - synthetic_case_matches_independently_derived_expected_tensors
+  - every_declared_seed_estimator_and_batch_size_completes
+  - all_fisher_and_behavioral_metrics_are_finite
+  - per_example_estimates_match_across_loader_batch_sizes_within_declared_tolerance
+  - all_observed_official_style_batch_size_dependence_is_reported_without_exclusion
+interpretation_policy:
+  materiality_thresholds: exploratory_not_frozen_for_claims
+  permitted_claims:
+    - estimator_implementations_agree_or_disagree_on_declared_development_cases
+    - magnitude_and_direction_of_observed_sensitivity
+  prohibited_claims:
+    - either_estimator_achieves_successful_unlearning
+    - equivalence_to_exact_retraining
+    - competitive_superiority
+    - publication_dataset_generalization
+compute_control:
+  planned_original_trainings: 3
+  planned_full_fisher_estimates: 18
+  planned_forget_fisher_estimates: 18
+  planned_ssd_updates: 18
+  planned_test_evaluations: 0
+  wall_time_estimate: pending_one_seed_dry_run
+  launch_requires_measured_estimate: true
+artifact_policy:
+  output_root: results/raw
+  exclusive_creation: true
+  protocol_hash_required: true
+  checkpoint_hashes_required: true
+  fisher_tensor_hashes_required: true
+  append_only_failure_registry: true
+  unfavorable_results_preserved: true

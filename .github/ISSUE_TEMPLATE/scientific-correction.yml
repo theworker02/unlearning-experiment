@@ -1,0 +1,17 @@
+name: Scientific correction
+description: Report a metadata, analysis, result, or methodological error.
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options: [Metadata, Analysis, Result-changing bug, Methodological flaw, Citation]
+    validations: {required: true}
+  - type: textarea
+    id: scope
+    attributes: {label: Affected versions, experiments, figures, tables, or claims}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Evidence and proposed verification}
+    validations: {required: true}

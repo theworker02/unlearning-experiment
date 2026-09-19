@@ -1,0 +1,11 @@
+{
+  "canonical_manifest_paths": [
+    "deletion_manifests/fashion_mnist/random-0p001-seed-1007.json",
+    "deletion_manifests/fashion_mnist/random-0p005-seed-1008.json",
+    "deletion_manifests/fashion_mnist/random-0p010-seed-1009.json",
+    "deletion_manifests/fashion_mnist/random-0p020-seed-1010.json",
+    "deletion_manifests/fashion_mnist/random-0p050-seed-1011.json",
+    "deletion_manifests/fashion_mnist/random-0p100-seed-1012.json"
+  ],
+  "schema_version": 1
+}

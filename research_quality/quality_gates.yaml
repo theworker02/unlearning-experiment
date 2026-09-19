@@ -1,0 +1,35 @@
+schema_version: 1
+fail_closed: true
+gates:
+  preconditions: {policy: experiment_requirements.yaml, required_for: [CONFIRMATORY]}
+  postconditions: {policy: experiment_requirements.yaml, required_for: [PUBLICATION, REPRODUCED]}
+  dataset: {policy: dataset_requirements.yaml, required_for: [CONFIRMATORY, PUBLICATION, REPRODUCED]}
+  statistics: {policy: statistical_requirements.yaml, required_for: [CONFIRMATORY, PUBLICATION, REPRODUCED]}
+  claims: {policy: claim_requirements.yaml, required_for: [PUBLICATION, REPRODUCED]}
+  manuscript: {policy: manuscript_requirements.yaml, required_for: [PUBLICATION, REPRODUCED]}
+  release: {policy: release_requirements.yaml, required_for: [REPRODUCED]}
+phase3_run_gates:
+  Q01: dataset_hash
+  Q02: deletion_manifest_hash
+  Q03: retained_set_complement
+  Q04: deleted_example_exclusion
+  Q05: seed_verification
+  Q06: initialization_verification
+  Q07: optimizer_and_config_verification
+  Q08: checkpoint_hash
+  Q09: prediction_hash
+  Q10: metric_artifact_hash
+  Q11: finite_values
+  Q12: class_counts
+  Q13: exact_retraining_convergence
+  Q14: metric_specific_convergence
+  Q15: provenance_complete
+  Q16: preregistration_consistency
+  Q17: no_deletion_overlap
+  Q18: no_train_test_contamination
+  Q19: deterministic_manifest_reproduction
+  Q20: figure_source_provenance
+  Q21:
+    name: reference_separability
+    failure_effect: ASSAY_INSENSITIVE
+    note: Q21 changes interpretation and does not invalidate an otherwise valid run

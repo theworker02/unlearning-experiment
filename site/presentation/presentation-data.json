@@ -1,0 +1,128 @@
+{
+  "benchmark_version": "0.5.0",
+  "contains_empirical_results": false,
+  "schema_version": 1,
+  "slides": [
+    {
+      "body": "<p class='lead'>Counterfactual fidelity research program</p><p>Benchmark 0.5.0 \u00b7 Research Infrastructure Candidate</p><p class='warning'>No empirical conclusion is currently eligible.</p>",
+      "evidence": "/evidence/",
+      "limitations": "The confirmatory and publication-eligible empirical sample is empty.",
+      "method": "Artifact-generated status from the repository inventory.",
+      "notes": "Open by separating the scientific question from the repository maturity. Do not describe development pilot outputs as findings.",
+      "reviewer": "Why present now? To make the protocol and blockers inspectable before expensive experiments.",
+      "statistics": "No inferential statistic is presented.",
+      "title": "Evaluating Machine Unlearning Against Exact-Retraining Distributions"
+    },
+    {
+      "body": "<p>Successful forgetting should approximate what training would have produced if forgotten samples had never been present.</p><p>Surface utility or one privacy attack may not establish that counterfactual.</p>",
+      "evidence": "/methodology/",
+      "limitations": "The construct requires empirical validation across modalities and methods.",
+      "method": "Define the counterfactual target before selecting evaluation criteria.",
+      "notes": "This is the motivation and hypothesis, not an observed disagreement.",
+      "reviewer": "Could existing evaluation already capture this? The literature and novelty audit remain incomplete.",
+      "statistics": "Not applicable.",
+      "title": "Research problem"
+    },
+    {
+      "body": "<img src='/figures/F001_framework.svg' alt='Conceptual evaluation framework'><p>Approximate unlearning is compared with independently retrained models trained only on D \\ F.</p>",
+      "evidence": "/figures/",
+      "limitations": "The adequate number of exact replicas remains unknown.",
+      "method": "Exact replicas use independently controlled seeds and identical retained IDs.",
+      "notes": "F001 is conceptual and contains no empirical values.",
+      "reviewer": "Could optimizer mismatch dominate? Training parity must be audited.",
+      "statistics": "Exact/exact distances form an empirical reference distribution.",
+      "title": "Counterfactual comparison"
+    },
+    {
+      "body": "<div class='metrics'><div><b>2</b> available datasets</div><div><b>18</b> deletion manifests</div><div><b>64</b> indexed checkpoints</div><div><b>7</b> historical raw records</div></div>",
+      "evidence": "/benchmark/",
+      "limitations": "Only Digits and Fashion-MNIST are available; neither establishes primary-benchmark generalization.",
+      "method": "Counts are generated from registries and manifests.",
+      "notes": "Counts describe artifacts, not strength of evidence. Digits is CI-only and all models are legacy development artifacts.",
+      "reviewer": "Why count models that fail gates? They remain scientific provenance and are labeled ineligible.",
+      "statistics": "No uncertainty applies to inventory counts.",
+      "title": "Benchmark 0.5 inventory"
+    },
+    {
+      "body": "<ul><li>Predictive and probability fidelity</li><li>Calibration</li><li>Privacy behavior</li><li>Representation similarity</li><li>Robustness</li><li>Computational cost</li></ul><p>No composite score is defined.</p>",
+      "evidence": "/benchmark/",
+      "limitations": "Metric construct validity is not established merely by implementation tests.",
+      "method": "Each metric requires definition, synthetic checks, and reference validation.",
+      "notes": "Explain why an aggregate may conceal conflicting behavior.",
+      "reviewer": "How will multiplicity be controlled? The confirmatory plan must freeze this.",
+      "statistics": "Dimensions will be analyzed separately before any aggregation study.",
+      "title": "Counterfactual fidelity is multidimensional"
+    },
+    {
+      "body": "<ol><li><strong>RQ1</strong> Do approximate unlearning methods reproduce behavior within the natural distribution of exact retraining?</li><li><strong>RQ2</strong> Do conventional forgetting and privacy criteria agree with counterfactual fidelity?</li><li><strong>RQ3</strong> Does counterfactual discrepancy accumulate across sequential deletion requests?</li><li><strong>RQ4</strong> How do deletion size and composition affect counterfactual fidelity?</li><li><strong>RQ5</strong> What counterfactual fidelity is sacrificed for computational savings relative to retraining?</li></ol>",
+      "evidence": "/evidence/uncertain/",
+      "limitations": "Hypotheses are neither supported nor rejected.",
+      "method": "Questions precede confirmatory analysis and map to required evidence.",
+      "notes": "Every question currently has INCONCLUSIVE status in the machine-readable register.",
+      "reviewer": "Are these confirmatory? Not until the statistical protocol and matrix are frozen.",
+      "statistics": "No effect or interval is estimable from eligible evidence.",
+      "title": "Research questions"
+    },
+    {
+      "body": "<div class='metrics'><div><b>1</b> gate-passing records</div><div><b>0</b> publication-eligible</div><div><b>0</b> verified claims</div><div><b>0</b> empirical figures</div></div><p class='warning'>Insufficient evidence.</p>",
+      "evidence": "/evidence/strongest/",
+      "limitations": "Gate failures do not imply the original programs failed to execute.",
+      "method": "Legacy records were re-evaluated without mutation under fail-closed gates.",
+      "notes": "This is a provenance outcome. It is not a negative result about any method.",
+      "reviewer": "Why not repair old records? Doing so would invent missing raw evidence and violate immutability.",
+      "statistics": "No unlearning inference is performed.",
+      "title": "Evidence audit outcome"
+    },
+    {
+      "body": "<ul><li>Stable sample IDs and immutable deletion manifests</li><li>Hashed checkpoints and schema-v2 predictions</li><li>SQLite experiment registry</li><li>Independent metric checks and scientific failure tests</li><li>Claim, figure, and release provenance gates</li></ul>",
+      "evidence": "/reproduce/",
+      "limitations": "No clean flagship reproduction has occurred.",
+      "method": "Derived catalogs are regenerated from raw artifacts.",
+      "notes": "Infrastructure capability does not substitute for empirical completion.",
+      "reviewer": "Does the pipeline work end to end? A schema-v2 Digits integration test passes; flagship reproduction is absent.",
+      "statistics": "Fifty deterministic randomized metric-reference fixtures pass.",
+      "title": "Reproducibility infrastructure"
+    },
+    {
+      "body": "<ul><li>No confirmatory or publication-eligible run</li><li>Seed convergence assessed in one pilot condition only</li><li>No frozen confirmatory statistical plan</li><li>No CIFAR or tabular corpus</li><li>No sequential empirical trajectory</li><li>Incomplete citation recheck and baseline fairness audit</li></ul>",
+      "evidence": "/limitations/",
+      "limitations": "This list itself may expand after external review.",
+      "method": "Limitations are drawn from gate and readiness records.",
+      "notes": "Do not minimize these blockers.",
+      "reviewer": "Is a paper currently justified? No.",
+      "statistics": "Not applicable.",
+      "title": "Known limitations"
+    },
+    {
+      "body": "<p>Replicate the schema-v2 pilot across original-model seeds, a second deletion fraction, and high-loss deletion.</p><p>Then use the expanded pilot variance to freeze confirmatory endpoints, margins, and run counts.</p>",
+      "evidence": "/results/",
+      "limitations": "Pilot findings will remain non-confirmatory.",
+      "method": "Use predeclared deletion manifests and append-only experiment IDs.",
+      "notes": "This is planned work, clearly separated from completed artifacts.",
+      "reviewer": "Does k=15 generalize? No; convergence is condition-specific until replicated.",
+      "statistics": "Carry forward the frozen convergence diagnostic and estimate between-original-seed variance.",
+      "title": "Next falsifiable milestone"
+    },
+    {
+      "body": "<pre><code>python -m pip install -e \".[dev]\"\nmake verify\nmake corpus\nunlearn-bench validate\nunlearn-bench status\nunlearn-bench evidence</code></pre>",
+      "evidence": "/reproduce/",
+      "limitations": "Full benchmark and flagship targets remain blocked.",
+      "method": "Use the active environment documented by the repository.",
+      "notes": "These commands verify infrastructure and current status; they do not reproduce a paper result.",
+      "reviewer": "Can another lab reproduce a conclusion? Not yet, because no eligible conclusion exists.",
+      "statistics": "No expected flagship interval exists.",
+      "title": "Verify and inspect"
+    },
+    {
+      "body": "<p>The counterfactual-fidelity question remains scientifically open in this repository.</p><p>The defensible outcome of Phase VI is a traceable statement of insufficiency and a concrete path to obtain the missing evidence.</p>",
+      "evidence": "/evidence/",
+      "limitations": "Repository maturity remains v0.5.0.",
+      "method": "Conclusion is checked against research/conclusions.yaml.",
+      "notes": "End without implying method performance or novelty.",
+      "reviewer": "What did this show? It showed readiness boundaries, not unlearning effectiveness.",
+      "statistics": "No inferential conclusion.",
+      "title": "Conclusion"
+    }
+  ],
+  "source_inventory": "release/metadata/repository_inventory.json"
+}

@@ -1,0 +1,16 @@
+experiment_id: digits-linear-random-02pct-tiny-v1
+maturity: VALIDATION
+dataset: {name: sklearn_digits, test_fraction: 0.2, validation_fraction: 0.1, split_seed: 19}
+model: {architecture: linear, hidden_dim: 16}
+training: {device: auto, epochs: 2, batch_size: 256, learning_rate: 0.02, weight_decay: 0.0, deterministic: true}
+original_seed: 7
+oracle_seeds: [17, 29]
+deletion: {strategy: random, fraction: 0.02, seed: 31}
+unlearning:
+  methods: [fine_tune, naive_gradient_ascent]
+  epochs: 1
+  learning_rate: 0.002
+  retain_weight: 1.0
+  forget_weight: 0.05
+evaluation: {ece_bins: 8}
+output_root: results/raw
