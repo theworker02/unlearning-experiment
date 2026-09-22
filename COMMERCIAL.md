@@ -1,4 +1,4 @@
-# Commercial licensing â€” Measuring Counterfactual Fidelity in Machine Unlearning
+# Commercial licensing Ã¢â‚¬â€ Measuring Counterfactual Fidelity in Machine Unlearning
 
 **Measuring Counterfactual Fidelity in Machine Unlearning** is proprietary software. Production use, redistribution, SaaS hosting, and OEM embedding require a written commercial license or completed acquisition.
 
@@ -18,3 +18,7 @@
 See `ACQUISITION.md` and `docs/acquisition/` for diligence materials.
 
 This file is not legal advice and does not create a binding offer.
+
+## After sale
+
+A completed acquisition or commercial license does **not** automatically convert Measuring Counterfactual Fidelity in Machine Unlearning to open source. Post-closing rights are only those granted in the definitive agreement; absent an express open-source relicense, the Product stays proprietary.

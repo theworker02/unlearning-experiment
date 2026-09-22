@@ -8,7 +8,7 @@ version = "0.5.0"
 description = "Reproducible evaluation of approximate machine unlearning against exact-retraining distributions"
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
-license = "MIT"
+license = { file = "LICENSE" }
 dependencies = [
   # AMD's validated ROCm 7.2.1 PyTorch wheels require the NumPy 1.x ABI.
   # Keeping this bound in the project metadata prevents an editable install
