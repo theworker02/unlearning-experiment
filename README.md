@@ -1,8 +1,16 @@
 # Measuring Counterfactual Fidelity in Machine Unlearning
 
+
+---
+
+## License & acquisition
+
+This project is **proprietary**. Production use, redistribution, and commercial deployment require a written commercial license or completed acquisition. See [LICENSE](./LICENSE) and [ACQUISITION.md](./ACQUISITION.md). Contact [@theworker02](https://github.com/theworker02).
+
+
 *An empirical framework for testing whether approximate machine unlearning reproduces models trained without forgotten data.*
 
-> **Benchmark v0.5.0 — Research Infrastructure Candidate. No conclusions have been established.**
+> **Benchmark v0.5.0 â€” Research Infrastructure Candidate. No conclusions have been established.**
 
 ## Research question
 
@@ -50,10 +58,10 @@ targets so the CLI and source package are installed in the active environment.
 - Retained-data fine-tuning.
 - A deliberately named `naive_gradient_ascent` diagnostic baseline, not a claim of a
   faithful implementation of every negative-gradient method in the literature.
-- A clean-room implementation of SCRUB's alternating teacher–student max/min core,
+- A clean-room implementation of SCRUB's alternating teacherâ€“student max/min core,
   explicitly marked as a Fashion-MNIST adaptation without privacy rewinding.
 - Random, class, and original-model high-loss deletion selection.
-- Accuracy, balanced accuracy, macro-F1, agreement, Jensen–Shannon divergence, total
+- Accuracy, balanced accuracy, macro-F1, agreement, Jensenâ€“Shannon divergence, total
   variation, NLL, Brier score, ECE, loss-threshold membership AUC, linear CKA, and
   parameter distances.
 - Normalization of unlearned-to-retrained distances by retrained-to-retrained dispersion.
