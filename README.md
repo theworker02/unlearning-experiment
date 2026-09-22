@@ -10,7 +10,7 @@ This project is **proprietary**. Production use, redistribution, and commercial 
 
 *An empirical framework for testing whether approximate machine unlearning reproduces models trained without forgotten data.*
 
-> **Benchmark v0.5.0 â€” Research Infrastructure Candidate. No conclusions have been established.**
+> **Benchmark v0.5.0 Ã¢â‚¬â€ Research Infrastructure Candidate. No conclusions have been established.**
 
 ## Research question
 
@@ -58,10 +58,10 @@ targets so the CLI and source package are installed in the active environment.
 - Retained-data fine-tuning.
 - A deliberately named `naive_gradient_ascent` diagnostic baseline, not a claim of a
   faithful implementation of every negative-gradient method in the literature.
-- A clean-room implementation of SCRUB's alternating teacherâ€“student max/min core,
+- A clean-room implementation of SCRUB's alternating teacherÃ¢â‚¬â€œstudent max/min core,
   explicitly marked as a Fashion-MNIST adaptation without privacy rewinding.
 - Random, class, and original-model high-loss deletion selection.
-- Accuracy, balanced accuracy, macro-F1, agreement, Jensenâ€“Shannon divergence, total
+- Accuracy, balanced accuracy, macro-F1, agreement, JensenÃ¢â‚¬â€œShannon divergence, total
   variation, NLL, Brier score, ECE, loss-threshold membership AUC, linear CKA, and
   parameter distances.
 - Normalization of unlearned-to-retrained distances by retrained-to-retrained dispersion.
@@ -110,3 +110,7 @@ do not cite development pilot measurements as established findings.
 
 Code is MIT licensed. Dataset licenses and provenance are documented separately and are
 not superseded by the repository license.
+
+## Acquisition diligence
+
+Buyer-facing diligence materials live in [docs/acquisition/](./docs/acquisition/). Commercial licensing contact path: [COMMERCIAL.md](./COMMERCIAL.md).
