@@ -1,58 +1,31 @@
 # Reproducibility contract
 
-## Levels
+**Scope:** Pilot research infrastructure, not confirmatory evidence. See the executable [reproduction guide](REPRODUCE.md) for prerequisites, commands, error interpretation and capture of local environments.
 
-- **R1 artifact reproduction:** verify archived predictions, recompute reference checks,
-  and validate statistics/figure provenance with `make reproduce-p001-r1`.
-- **R2 computational reproduction:** retrain from official Fashion-MNIST using the exact
-  archived split, deletion request, configuration, and seeds in an isolated output root.
-- **R3 independent implementation:** reproduce the protocol without this training code.
+## Reproduction levels
 
-R2 is documented but its safe staging command remains pending. The immutable P001 output
-directory must never be deleted or reused to make reproduction convenient.
+- **R1 artifact verification:** Validate P001 checksum lists, forget/retain partition, independent metric fixtures and figure provenance without a new training run (`make reproduce-p001-r1` where `make` is available).
+- **R2 computational reproduction:** Reconstruct the P001 inputs and rerun training in an isolated output location. The archived configuration and seeds exist, but safe, fully automated independent R2 staging is not yet available.
+- **R3 independent implementation:** Independently reconstruct the experimental procedure with separate code; **not demonstrated**.
 
-## Environment and hardware
+An R1 PASS is not an R2/R3 PASS, a peer review, or statistical confirmation that unlearning succeeds.
 
-P001 used Python 3.12, PyTorch 2.9.1 built for ROCm 7.2, and an AMD Radeon RX 7800 XT
-through WSL. `HSA_ENABLE_DXG_DETECTION=1` is required on this host. CPU execution remains
-supported for small validation runs. Plan for at least 1 GB free storage and sufficient
-RAM for Fashion-MNIST; the present pilot used no augmentation and batch size 128.
+## Hardware, environment and known variability
 
-Measured P001 timings on that specific machine were:
+The historical P001 development environment recorded Python 3.12.3, a PyTorch 2.9.1 ROCm 7.2 build, AMD Radeon RX 7800 XT, and WSL. The host used `HSA_ENABLE_DXG_DETECTION=1`. Small CPU verification runs are supported; GPU numerical results and performance will vary.
 
-| Component | Time |
-| --- | ---: |
-| Original training | 9.593 s |
-| Fifteen exact retrainings, total | 17.455 s |
-| Three approximate methods, total | 3.286 s |
+Archive-derived P001 time references were approximately 9.593 seconds original training, 17.455 seconds total for 15 exact retrainings, and 3.286 seconds for three approximate methods. These are **machine-specific provenance measurements**, never acceptance thresholds.
 
-These are provenance measurements, not universal performance expectations.
+Same-stack deterministic CPU fixtures target repeatability. Cross-stack/GPU experiments require prospectively specified numerical (`R-NUM`) or scientific/statistical (`R-STAT`) acceptance criteria, not assumed byte-identical checkpoint hashes. See [KNOWN_VARIABILITY.md](KNOWN_VARIABILITY.md).
 
-## R1 command
+## Input integrity and immutable results
 
-```bash
-make reproduce-p001-r1
-```
+The Fashion-MNIST loader expects four checksum-verified compressed IDX files in `data/raw/fashion_mnist/raw/`. Obtain them through `python scripts/download_data.py --dataset fashion_mnist` and validate before any attempted replay. P001 must preserve the archived split, 1% deletion indices, original/model seeds, and fifteen exact-retraining seeds from [reproduction.yaml](reproduction.yaml). A new random deletion manifest is a new experiment.
 
-This checks archived hashes and split disjointness, runs independent metric fixtures, and
-validates figure provenance. Dataset checks are available with `make verify-datasets`.
+Raw records are immutable and must not be overwritten or retagged as newer evidence. Derived registries, manifests, and summary outputs are separately regenerable where their dependencies are present. Record Git commit, source digests, full environment and hardware characteristics before interpreting a result.
 
-## Dataset acquisition
+## Publication and archive boundary
 
-The loader expects the four official compressed IDX files under
-`data/raw/fashion_mnist/raw/`. Run `python scripts/download_data.py`, then verify source
-hashes and splits before training. P001 must use its archived deletion manifest; a newly
-sampled 1% deletion is not P001.
+A pilot methodology manuscript and supplement **have** been archived on [Zenodo (DOI:10.5281/zenodo.23540870)](https://doi.org/10.5281/zenodo.23540870). That DOI **does not** identify a complete software, model, raw-data or R001 research release. There is no verified public R001 package, standalone software DOI, frozen confirmatory protocol, or demonstrated external R2/R3 reproduction. Publication gates are documented in [PUBLICATION_READINESS.md](PUBLICATION_READINESS.md).
 
-## Reproduction interpretation
-
-See `KNOWN_VARIABILITY.md`. Same-stack CPU fixtures target exact reproducibility. GPU and
-cross-stack work normally targets numerical (`R-NUM`) or scientific (`R-STAT`)
-reproduction within prospectively frozen tolerances, not identical checkpoint bytes.
-
-## Current limitations
-
-There is no Zenodo DOI, OSF registration identifier, release commit, environment lock,
-or safe isolated R2 orchestration yet. Consequently Research Release R001 is prepared but
-not published, and the repository must not be described as externally archived.
-
+Current code is subject to the [proprietary license](LICENSE); separate written permission may be needed to execute the reproduction steps. This document records the technical contract, not a new grant of rights.

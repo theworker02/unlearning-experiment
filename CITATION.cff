@@ -1,14 +1,16 @@
 cff-version: 1.2.0
 message: >-
-  Cite the exact archived release you used. No DOI exists yet; until an archival
-  release is published, cite the software version and repository commit.
+  Cite the exact source commit and software version used. The Zenodo DOI
+  10.5281/zenodo.23540870 identifies a pilot manuscript/supplement, not this
+  software or an archived complete research dataset.
 title: "Measuring Counterfactual Fidelity in Machine Unlearning"
 type: software
 authors:
-  - name: "Magnexis"
-version: 0.5.0
-date-released: 2026-08-31
-license: MIT
+  - family-names: Looney
+    given-names: Matthew
+    affiliation: Magnexis
+version: 0.5.1
+repository-code: https://github.com/theworker02/unlearning-experiment
 keywords:
   - machine unlearning
   - counterfactual fidelity
@@ -16,6 +18,7 @@ keywords:
   - reproducibility
   - Fashion-MNIST
 abstract: >-
-  Research software for comparing approximate machine unlearning with distributions
-  of independently retrained models. Version 0.5 contains infrastructure and pilot
-  evidence only; it does not establish successful unlearning.
+  Experimental infrastructure for comparing approximate machine unlearning to
+  distributions of independently retrained models. Current software includes
+  development pilots; no confirmed machine-unlearning effectiveness result is
+  established. Code is proprietary and subject to the repository LICENSE.

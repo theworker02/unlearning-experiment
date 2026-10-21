@@ -1,13 +1,22 @@
-# Citation policy
+# How to cite this research
 
-No DOI has been assigned. Do not invent or infer one.
+Please distinguish **the published pilot methodology manuscript** from the **evolving source repository**.
 
-- For the evolving project, cite the concept record once a Zenodo concept DOI exists.
-- For reproducing P001, cite the future version-specific DOI for Research Release R001.
-- Until R001 is deposited, cite version `0.5.0` plus the exact repository commit or
-  source-archive SHA-256. This workspace currently has no readable Git repository metadata.
-- Cite separately archived datasets or artifacts when they receive their own DOI.
+## Pilot preprint (Zenodo)
 
-`CITATION.cff` is authoritative. A `.zenodo.json` file is intentionally absent to avoid
-maintaining conflicting metadata.
+**Measuring Counterfactual Fidelity in Machine Unlearning** — pilot methodology manuscript and supplement. Persistent record: [https://doi.org/10.5281/zenodo.23540870](https://doi.org/10.5281/zenodo.23540870).
 
+The record is preliminary and non-peer-reviewed. It is **not** a deposited software package, raw experimental dataset, validated confirmatory study, or standalone R001 release.
+
+## Software source
+
+Until a separately archived, version-specific software release exists, identify:
+- Project: **Measuring Counterfactual Fidelity in Machine Unlearning**
+- Author/maintainer: **Matthew Looney (Magnexis)**
+- Source: https://github.com/theworker02/unlearning-experiment
+- Source software version: **0.5.1**
+- **Exact Git commit SHA** used (obtain with `git rev-parse HEAD`), and access date if your citation standard requires it.
+
+[The machine-readable CFF](CITATION.cff) applies to the software. [Versioning](VERSIONING.md) distinguishes software `0.5.1` from Benchmark protocol `0.5.0`.
+
+**Do not** cite the Zenodo pilot DOI as though it were a published software/data artifact. Respect [LICENSE](LICENSE) when attempting a reproduction.

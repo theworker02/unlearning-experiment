@@ -2,12 +2,29 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "name": "Measuring Counterfactual Fidelity in Machine Unlearning",
-  "version": "0.5.0",
-  "datePublished": "2026-08-31",
-  "license": "https://spdx.org/licenses/MIT.html",
-  "author": [{"@type": "Person", "givenName": "Matthew", "familyName": "Looney", "affiliation": {"@type": "Organization", "name": "Magnexis"}}],
+  "version": "0.5.1",
+  "codeRepository": "https://github.com/theworker02/unlearning-experiment",
+  "dateModified": "2026-10-21",
+  "license": "https://github.com/theworker02/unlearning-experiment/blob/main/LICENSE",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Matthew",
+      "familyName": "Looney",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Magnexis"
+      }
+    }
+  ],
   "programmingLanguage": "Python",
-  "keywords": ["machine unlearning", "exact retraining", "counterfactual fidelity"],
+  "keywords": [
+    "machine unlearning",
+    "counterfactual fidelity",
+    "exact retraining",
+    "reproducible research",
+    "machine-learning evaluation"
+  ],
   "developmentStatus": "active",
-  "description": "Research infrastructure and pilot evidence; no successful-unlearning claim is established."
+  "description": "Proprietary research software and exploratory pilot evidence comparing machine unlearning to multi-seed exact retraining; no confirmatory success claim."
 }

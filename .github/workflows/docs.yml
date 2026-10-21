@@ -1,0 +1,45 @@
+name: Documentation checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "REPRODUCE.md"
+      - "REPRODUCIBILITY.md"
+      - "VERSIONING.md"
+      - "CHANGELOG.md"
+      - "CITATION.cff"
+      - "CITATION.md"
+      - "codemeta.json"
+      - "pyproject.toml"
+      - "benchmark/VERSION"
+      - "LICENSE"
+      - "src/exact_unlearning/__init__.py"
+      - "scripts/check_documentation.py"
+      - ".github/workflows/docs.yml"
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "CITATION.cff"
+      - "codemeta.json"
+      - "pyproject.toml"
+      - "benchmark/VERSION"
+      - "LICENSE"
+      - "src/exact_unlearning/__init__.py"
+      - "scripts/check_documentation.py"
+      - ".github/workflows/docs.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check documentation and metadata consistency
+        run: python scripts/check_documentation.py
