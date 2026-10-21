@@ -49,9 +49,9 @@ def main() -> int:
         if version != software:
             failures.append(f"{source} version {version!r} != software {software!r}")
     readme = read("README.md")
-    if f"Software source version:** \`{software}\`" not in readme:
+    if f"Software source version:** `{software}`" not in readme:
         failures.append("README does not state software version")
-    if f"benchmark protocol:** \`{benchmark}\`" not in readme.lower():
+    if f"benchmark protocol:** `{benchmark}`" not in readme.lower():
         failures.append("README does not state benchmark protocol version")
     if "proprietary" not in read("LICENSE").lower():
         failures.append("LICENSE does not identify the proprietary rights status")
