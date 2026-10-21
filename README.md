@@ -12,6 +12,17 @@ This project is **proprietary**. Production use, redistribution, and commercial 
 
 > **Benchmark v0.5.0 Ã¢â‚¬â€ Research Infrastructure Candidate. No conclusions have been established.**
 
+## Published pilot preprint
+
+The archival pilot manuscript and supplement are published on Zenodo:
+**https://zenodo.org/records/23540870**  
+DOI: [10.5281/zenodo.23540870](https://doi.org/10.5281/zenodo.23540870).
+
+This is a preliminary pilot and methodology preprint, not a peer-reviewed or confirmatory
+unlearning result. The deposit describes the surviving archive's evidence limitations.
+The DOI identifies the manuscript and supplement; it does not identify a complete software
+or experimental-data release.
+
 ## Research question
 
 This repository evaluates an unlearned model against a *distribution* of independently
@@ -103,8 +114,10 @@ archived immutably for a research release.
 
 ## Citation
 
-`CITATION.cff` describes the v0.5 software artifact. There is no archival DOI or released paper;
-do not cite development pilot measurements as established findings.
+`CITATION.cff` describes the v0.5 software artifact. The archival pilot preprint is available
+at https://zenodo.org/records/23540870 (DOI: 10.5281/zenodo.23540870). A complete software/data
+release has not been archived under that DOI. Do not cite development pilot measurements
+as established findings.
 
 ## License
 
